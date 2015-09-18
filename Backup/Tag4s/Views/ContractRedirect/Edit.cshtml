@@ -1,0 +1,184 @@
+﻿@model Tag4s.Models.UserContractRedirectModel
+@using Tag4s.Helpers;
+@using Tag4s.Filters;
+@using Tag4s.Data
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "Edit", "Edit", ref translation), controllername.TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+    switch (filter.Key)
+    {
+        case Tag4s.Filters.ViewFilterKeys.nofilter:
+        default:
+            ViewBag.Title = "Contract Url".TranslateString(ref translation);
+            break;
+    }
+    BreadCrum.SetName(ViewBag.Title, Session);
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.Hidden("selectedTab", "0")
+
+    Html.Kendo().TabStrip()
+        .Name("UserContractUri")
+        .HighlightPath(true)
+        .Items(tabstrip =>
+        {
+            tabstrip.Add()
+                .Text("Basic info".TranslateString(ref translation))
+                .Content(@<text>
+                              <fieldset class="no-margin">
+                                  <div class="row @(Html.HasErrorFor(m => m.UserContractRedirect.Name) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.UserContractRedirect.Name)">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor("", "Name", "Name", ref translation)
+                                          @*@Html.DisplayNameTranslatedFor(model => model.UserContractRedirect.Name, ref translation, TranslationTypes.Entity, controllername, actionname)*@
+                                      </label>
+                                      @Html.EditorFor(model => model.UserContractRedirect.Name)
+                                  </div>
+                              </fieldset>
+
+                              <fieldset class="no-margin">
+                                  <div class="row @(Html.HasErrorFor(m => m.UserContractRedirect.DateTimeValueStart) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.UserContractRedirect.DateTimeValueStart)">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor("", "StartDatum", "StartDatum", ref translation)
+                                          @*@Html.DisplayNameTranslatedFor(model => model.UserContractRedirect.StartDatum, ref translation, TranslationTypes.Entity, controllername, actionname)*@
+                                      </label>
+                                      @Html.CheckBoxFor(model => model.UserContractRedirect.StartDatumActive)
+                                      @Html.EditorFor(model => model.UserContractRedirect.DateTimeValueStart)
+                                  </div>
+                              </fieldset>
+
+                              <fieldset class="no-margin">
+                                  <div class="row @(Html.HasErrorFor(m => m.UserContractRedirect.DateTimeValueStop) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.UserContractRedirect.DateTimeValueStop)">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor("", "StopDatum", "StopDatum", ref translation)
+                                          @*@Html.DisplayNameTranslatedFor(model => model.UserContractRedirect.StopDatum, ref translation, TranslationTypes.Entity, controllername, actionname)*@
+                                      </label>
+                                      @Html.CheckBoxFor(model => model.UserContractRedirect.StopDatumActive)
+                                      @Html.EditorFor(model => model.UserContractRedirect.DateTimeValueStop)
+                                  </div>
+                              </fieldset>
+
+                              <fieldset class="no-margin">
+                                  <div class="row @(Html.HasError("ddlWeekday") ? "error" : "")" title="@Html.GetErrorMessage("ddlWeekday")">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor("", "Weekday", "Weekday", ref translation)
+                                          @*@Html.DisplayNameTranslatedFor(model => model.UserContractRedirect.Weekday, ref translation, TranslationTypes.Entity, controllername, actionname)*@
+                                      </label>
+                                      @Html.CheckBoxFor(model => model.UserContractRedirect.WeekdayActive)
+                                      @Html.DropDownList("ddlWeekday", new SelectList(Tag4s.Helpers.DataHelper.WeekDays(ref translation), "Id", "Name", Model.UserContractRedirect.DayOfTheWeekValue), new {style = "width:470px;"})
+                                  </div>
+                              </fieldset>
+
+                              <fieldset class="no-margin">
+                                  <div class="row @(Html.HasErrorFor(m => m.UserContractRedirect.BeginTime) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.UserContractRedirect.BeginTime)">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor("", "BeginTime", "BeginTime", ref translation)
+                                          @*@Html.DisplayNameTranslatedFor(model => model.UserContractRedirect.BeginTime, ref translation, TranslationTypes.Entity, controllername, actionname)*@
+                                      </label>
+                                      @Html.CheckBoxFor(model => model.UserContractRedirect.BeginTimeActive)
+                                      @Html.EditorFor(model => model.UserContractRedirect.BeginTime)
+                                  </div>
+                              </fieldset>
+
+                              <fieldset class="no-margin">
+                                  <div class="row @(Html.HasErrorFor(m => m.UserContractRedirect.EndTime) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.UserContractRedirect.EndTime)">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor("", "EndTime", "EndTime", ref translation)
+                                          @*@Html.DisplayNameTranslatedFor(model => model.UserContractRedirect.EndTime, ref translation, TranslationTypes.Entity, controllername, actionname)*@
+                                      </label>
+                                      @Html.CheckBoxFor(model => model.UserContractRedirect.EndTimeActive)
+                                      @Html.EditorFor(model => model.UserContractRedirect.EndTime)
+                                  </div>
+                              </fieldset>
+
+                              @*                              <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.UserContractRedirect.Counter) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.UserContractRedirect.Counter)">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor("", "Counter", "Counter", ref translation)
+                                      </label>
+                                      @Html.CheckBoxFor(model => model.UserContractRedirect.CounterActive)
+                                      @Html.TextBoxFor(model => model.UserContractRedirect.Counter, new {style = "width:75%"})
+                                  </div>
+                              </fieldset>*@
+
+                              <fieldset class="no-margin">
+                                  <div class="row @(Html.HasErrorFor(m => m.UserContractRedirect.Actief) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.UserContractRedirect.Actief)">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor("", "RuleActive", "RuleActive", ref translation)
+                                          @*@Html.DisplayNameTranslatedFor(model => model.UserContractRedirect.RuleActive, ref translation, TranslationTypes.Entity, controllername, actionname)*@
+                                      </label>
+                                      @Html.CheckBoxFor(model => model.UserContractRedirect.Actief)
+                                  </div>
+                              </fieldset>
+
+
+                              <fieldset class="no-margin">
+                                  <div class="row">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor("", "DefaultUri", "DefaultUri", ref translation)
+                                          @*@Html.DisplayNameTranslatedFor(model => model.UserContractRedirect.UserContractUri1.UserContract.Uri, ref translation, TranslationTypes.Entity, controllername, actionname)*@
+                                      </label>
+                                      <label>
+                                          @Html.DisplayFor(model => model.UserContractRedirect.UserContractUri1.UserContract.Uri)
+                                      </label>
+                                  </div>
+                              </fieldset>
+
+                              <fieldset class="no-margin">
+                                  <div class="row">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor("", "Redirect Url", "Redirect Url", ref translation)
+                                      </label>
+                                      <label>
+                                          @Html.DisplayFor(model => model.UserContractRedirect.UserContractUri1.Uri)
+                                      </label>
+                                  </div>
+                              </fieldset>
+
+
+                              
+                          </text>);
+            tabstrip.Add()
+                .Text("Log info".TranslateString(ref translation))
+                .Content(@<text>
+                              
+                              @Html.DisplayFor(model => model.UserContractRedirect.UserContractLogs, "UserContractLogs")    
+                              
+                          </text>);
+            tabstrip.Add()
+                .Text("Parameters".TranslateString(ref translation))
+                .Content(@<text>
+
+                              @Html.EditorFor(model => model.ParameterModel)
+
+                          </text>);
+            tabstrip.Add()
+                .Text("BrowserData".TranslateString(ref translation))
+                .Content(@<text>
+                              
+                              @Html.EditorFor(model => model.RedirectTypeModel)
+
+                          </text>);
+        })
+        .SelectedIndex(0)
+        //.Events(events => events
+        //    .Select("OnSelectCodeBlock")
+        //)
+        .Render();
+
+
+    <p>
+        <input type="submit" value="@Html.DisplayNameTranslatedFor("", "Save", "Save", ref translation)" />
+    </p>
+}
+
+<div>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</div>

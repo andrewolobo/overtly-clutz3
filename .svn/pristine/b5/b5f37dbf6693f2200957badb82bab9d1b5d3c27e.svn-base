@@ -1,0 +1,47 @@
+﻿@model Tag4s.Data.UserContract
+@using Tag4s.Data
+@using Tag4s.Filters
+@using Tag4s.Helpers
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    //ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "UserContract", "UserContract", ref translation), controllername.TranslateString(ref translation));
+    //BreadCrum.SetName(ViewBag.Title, Session);
+}
+        <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.FullUri) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.FullUri)">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor("", "URL", "URL", ref translation)
+                                      </label>
+                                      <label class="edit-label">@Html.DisplayFor(model => model.FullUri)</label>
+                                  </div>
+                              </fieldset>
+
+        <fieldset class="no-margin">
+            <div class="row @(Html.HasErrorFor(m=>m.QRCode) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.QRCode)">
+                <label>
+                    @Html.DisplayNameTranslatedFor("", "Qr-Code", "Qr-Code", ref translation)
+                </label>
+            <a href="@(Model.QRCode)" download="@(Model.Name??Model.eId).jpg" title="Download" target="_new">
+                <img src=@Model.QRCode alt="QR Code" style="width: 350px; height: 350px;" width="350" height="350"/></a>
+            </div>
+        </fieldset>
+    <fieldset class="no-margin">
+        <div class="row">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.StartDate, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            <label class="edit-label">@Html.DisplayFor(model => model.StartDate)</label>
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.EndDate, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            <label class="edit-label">@Html.DisplayFor(model => model.EndDate)</label>
+        </div>
+    </fieldset>

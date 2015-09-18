@@ -1,0 +1,103 @@
+﻿@model Tag4s.Models.UserContractParametersModel
+@using System.Web.UI.WebControls
+@using Tag4s.Helpers;
+@using Tag4s.Data
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    var contractName = ViewBag.ContractName as string;
+    var currentIndex = (int)ViewData["CurrentIndex"];
+}
+
+        
+        @Html.HiddenFor(model => model.UserContract.UserId)
+        @Html.HiddenFor(model => model.UserContract.ContractId)
+        @Html.HiddenFor(model => model.UserContract.ContractRecipeId)
+        @Html.HiddenFor(model => model.UserContract.eId)
+        @Html.HiddenFor(model => model.UserContract.Id)
+        
+        <input type="hidden" name="@string.Format(string.Format("[{0}].",currentIndex)+"UserContractUri.Id")" value="@Model.UserContractUri.Id"/>
+        <input type="hidden" name="@string.Format(string.Format("[{0}].",currentIndex)+"UserContractUri.UserContractRedirects[0].UserContractUri")" value="@Model.UserContractUri.Id"/>
+        <input type="hidden" name="@string.Format(string.Format("[{0}].",currentIndex)+"UserContractUri.UserContractRedirects[0].Id")" value="@Model.UserContractUri.UserContractRedirects.First().Id"/>
+        <input type="hidden" name="@string.Format(string.Format("[{0}].",currentIndex)+"UserContractUri.UserContractRedirects[0].Enabled")" value="@Model.UserContractUri.UserContractRedirects.First().Enabled"/>
+        <input type="hidden" name="@string.Format(string.Format("[{0}].",currentIndex)+"UserContractUri.UserContractId")" value="@Model.UserContract.Id"/>
+        <input type="hidden" name="@string.Format(string.Format("[{0}].",currentIndex)+"UserContractUri.Name")" value="@Model.UserContractUri.Name"/>
+        <input type="hidden" name="@string.Format(string.Format("[{0}].",currentIndex)+"UserContractUri.RandomFunction")" value="@Model.UserContractUri.RandomFunction"/>
+        
+
+@if (currentIndex == 0)
+{
+    @Html.DisplayFor(m => m.UserContract, "UserContractCustom")
+
+        <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m => m.UserContract.Uri) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.UserContract.Uri)">
+            <label>
+                @Html.DisplayNameTranslatedFor(model => model.UserContract, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.UserContract.Uri)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m => m.UserContract.Name) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.UserContract.Name)">
+            <label>
+                @("ContractName".TranslateString(ref translation))
+            </label>
+            @Html.EditorFor(model => model.UserContract.Name)
+        </div>
+    </fieldset>
+            <fieldset class="no-margin">
+                <div class="row @(Html.HasErrorFor(m => m.UserContract.Actief) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.UserContract.Actief)">
+                    <label>
+                @("ContractActive".TranslateString(ref translation))
+                    </label>
+                    @Html.EditorFor(model => model.UserContract.Actief,"Checkbox")
+                </div>
+            </fieldset>
+    
+}
+else
+{
+            @Html.HiddenFor(model => model.UserContract.Uri)
+    
+}
+
+                    <fieldset class="no-margin">
+                        <div class="row customContract">
+                            <label>
+                                @Html.EditorFor(model => model.UserContractUri.Actief, "Checkbox")
+                            </label>
+@*                            <span class="fromto">
+                                @Html.DisplayNameTranslatedFor("", "From", "From", ref translation)
+                                @Html.EditorFor(model => model.UserContractUri.UserContractRedirects.First().DateTimeValueStart, "Date", string.Format(string.Format("[{0}].",currentIndex)+"UserContractUri.UserContractRedirects[{0}].DateTimeValueStart", 0))
+                                @Html.DisplayNameTranslatedFor("", "To", "To", ref translation)
+                                @Html.EditorFor(model => model.UserContractUri.UserContractRedirects.First().DateTimeValueStop, "Date", string.Format(string.Format("[{0}].",currentIndex)+"UserContractUri.UserContractRedirects[{0}].DateTimeValueStop", 0))
+                            </span>*@
+                                                            @Html.EditorFor(model => model.UserContractUri.Uri)
+                            @Html.ActionLink(" ", "AddUri", "UserContract",  new { userContractId = Model.UserContract.Id, dateTimeValueStart = Model.UserContractUri.UserContractRedirects.First().DateTimeValueStart, uri="http://www.tag4s.com" }, new {Class = "add-row"})
+                            @Html.ActionLink(" ", "DeleteUserContractUri", "UserContract", new { userContractUriId = Model.UserContractUri.Id }, new {Class = "remove-row"})
+
+                        </div>
+                        </fieldset>
+
+
+@{ var index = 0; }
+        @foreach (var parameterModel in Model.ParameterModel)
+        {
+            @Html.EditorFor(model => parameterModel, "ContractRedirectParameterModel", string.Format("ParameterModel[{0}]", index))
+            
+            index++;
+        }
+        @{ index = 0; }
+        @foreach (var redirectType in Model.RedirectTypeModel)
+        {
+            @Html.EditorFor(model => redirectType, "ContractRedirectRedirectTypeModel", string.Format("RedirectTypeModel[{0}]", index))
+            
+            index++;
+        }
+
+
+        @Html.HiddenFor(m => m.UserContract.StartDate)
+        @Html.HiddenFor(m => m.UserContract.EndDate)
+

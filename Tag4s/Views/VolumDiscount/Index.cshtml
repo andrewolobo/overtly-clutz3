@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Tag4s.Data.VolumDiscount>
+@using Tag4s.Helpers;
+@using Tag4s.Data
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "Index", "Index", ref translation), controllername.TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+    switch (filter.Key)
+    {
+        case Tag4s.Filters.ViewFilterKeys.nofilter:
+        default:
+            ViewBag.Title = "VolumDiscount".TranslateString(ref translation);
+            break;
+    }
+    BreadCrum.SetName(ViewBag.Title, Session);
+}
+
+<h2>@ViewBag.Title</h2>
+
+@(Html.Kendo().Grid(Model)
+      .Name("Grid")
+      //.Localizable("nl-NL")
+      .ToolBar(commands => { commands.Template(c => Utilities.ActionImage(customImages.Create, "Create", controllername, new {filterkey = filter.Key, filterid = filter.Id})); })
+      .DataSource(dataBinding =>
+          dataBinding
+              .Server()
+              //.Read(read => read
+              ////.ServerOperation(false)
+              //.Action("Index_AJAX", "Contract", new {search = ""})
+              //)
+              .Model(model => model.Id(m => m.Id))
+              .PageSize(10)
+              .Sort(sortOrder => sortOrder.Add(o => o.Price).Ascending())
+      )
+      .Columns(columns =>
+      {
+
+          columns.Bound(c => c.Contract.Name).Title("Contract".TranslateString(ref translation));
+          columns.Bound(c => c.CountFrom).Title("CountFrom".TranslateString(ref translation));
+          columns.Bound(c => c.CountTo).Title("CountTo".TranslateString(ref translation));
+          columns.Bound(c => c.Price).Title("Price".TranslateString(ref translation));
+          columns.Template(navigation => Utilities.ActionImageNavigation(controllername, new {id = navigation.Id}))
+              .ClientTemplate(Utilities.ActionImageNavigation(controllername, new {id = "#=Id#"}).ToString()).Width(116).Title("");
+      })
+      .Filterable(filtering => filtering.Enabled(false))
+      .Resizable(resizing => resizing.Columns(true))
+      .Scrollable(scrolling => scrolling.Enabled(true).Height("auto"))
+          .Pageable(paging =>
+              paging.PageSizes(new int[] {10, 25, 50, 100, 200, 1000, 2000 })
+                  .PreviousNext(true)
+          )
+      .Sortable(sorting => sorting.Enabled(true).SortMode(GridSortMode.MultipleColumn))
+      )
+
+<p>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</p>

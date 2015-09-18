@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<JustCodeSettings Version="0.0" Timestamp="309882b5-712a-421d-874c-4b91a69805e8">
+  <IgnoredErrorsAndWarningsSettings xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+    <IgnoredErrorsAndWarnings Version="2">
+      <FilePath>
+        <FileRelativePath>Tag4s/Content/app.css</FileRelativePath>
+        <ProjectRelativePath>Tag4s/Tag4s.csproj</ProjectRelativePath>
+        <IgnoredElement>
+          <TextualIdentifier>5754269297989539807</TextualIdentifier>
+        </IgnoredElement>
+      </FilePath>
+    </IgnoredErrorsAndWarnings>
+  </IgnoredErrorsAndWarningsSettings>
+</JustCodeSettings>

@@ -1,0 +1,158 @@
+﻿@model Tag4s.Data.UserContractRedirect
+@using Tag4s.Data
+@using Tag4s.Filters
+@using Tag4s.Helpers
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    //ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "UserContractRedirect", "UserContractRedirect", ref translation), controllername.TranslateString(ref translation));
+    //BreadCrum.SetName(ViewBag.Title, Session);
+}
+
+
+<h3>@Html.DisplayNameTranslatedFor("", "UserContractRedirect", "UserContractRedirect", ref translation)</h3>
+
+<fieldset class="no-margin">
+    <div class="row">
+        <label>
+            @Html.DisplayNameTranslatedFor(m => m.UserContractUri, ref translation, TranslationTypes.Entity, controllername, actionname)
+        </label>
+        <label class="edit-label">
+            @Html.DisplayFor(model => model.UserContractUri)
+        </label>
+    </div>
+</fieldset>
+
+<fieldset class="no-margin">
+    <div class="row">
+        <label>
+            @Html.DisplayNameTranslatedFor(m => m.DateTimeValueStart, ref translation, TranslationTypes.Entity, controllername, actionname)
+        </label>
+        <label class="edit-label">
+            @Html.DisplayFor(model => model.DateTimeValueStart)
+        </label>
+    </div>
+</fieldset>
+
+<<fieldset class="no-margin">
+     <div class="row">
+         <label>
+             @Html.DisplayNameTranslatedFor(m => m.DateTimeValueStop, ref translation, TranslationTypes.Entity, controllername, actionname)
+         </label>
+         <label class="edit-label">
+             @Html.DisplayFor(model => model.DateTimeValueStop)
+         </label>
+     </div>
+ </fieldset>
+
+<fieldset class="no-margin">
+    <div class="row">
+        <label>
+            @Html.DisplayNameTranslatedFor(m => m.DayOfTheWeekValue, ref translation, TranslationTypes.Entity, controllername, actionname)
+        </label>
+        <label class="edit-label">
+            @Html.DisplayFor(model => model.DayOfTheWeekValue)
+        </label>
+    </div>
+</fieldset>
+    
+<fieldset class="no-margin">
+    <div class="row">
+        <label>
+            @Html.DisplayNameTranslatedFor(m => m.TimeOfDayHourStart, ref translation, TranslationTypes.Entity, controllername, actionname)
+        </label>
+        <label class="edit-label">
+            @Html.DisplayFor(model => model.TimeOfDayHourStart)
+        </label>
+    </div>
+</fieldset>
+
+<fieldset class="no-margin">
+    <div class="row">
+        <label>
+            @Html.DisplayNameTranslatedFor(m => m.TimeOfDayHourEnd, ref translation, TranslationTypes.Entity, controllername, actionname)
+        </label>
+        <label class="edit-label">
+            @Html.DisplayFor(model => model.TimeOfDayHourEnd)
+        </label>
+    </div>
+</fieldset>
+    
+<fieldset class="no-margin">
+    <div class="row">
+        <label>
+            @Html.DisplayNameTranslatedFor(m => m.TimeOfDayMinuteStart, ref translation, TranslationTypes.Entity, controllername, actionname)
+        </label>
+        <label class="edit-label">
+            @Html.DisplayFor(model => model.TimeOfDayMinuteStart)
+        </label>
+    </div>
+</fieldset>
+
+<fieldset class="no-margin">
+    <div class="row">
+        <label>
+            @Html.DisplayNameTranslatedFor(m => m.TimeOfDayMinuteEnd, ref translation, TranslationTypes.Entity, controllername, actionname)
+        </label>
+        <label class="edit-label">
+            @Html.DisplayFor(model => model.TimeOfDayMinuteEnd)
+        </label>
+    </div>
+</fieldset>
+    
+<fieldset class="no-margin">
+    <div class="row">
+        <label>
+            @Html.DisplayNameTranslatedFor(m => m.Counter, ref translation, TranslationTypes.Entity, controllername, actionname)
+        </label>
+        <label class="edit-label">
+            @Html.DisplayFor(model => model.Counter)
+        </label>
+    </div>
+</fieldset>
+
+<fieldset class="no-margin">
+    <div class="row">
+        <label>
+            @Html.DisplayNameTranslatedFor(m => m.UserAgent, ref translation, TranslationTypes.Entity, controllername, actionname)
+        </label>
+        <label class="edit-label">
+            @Html.DisplayFor(model => model.UserAgent)
+        </label>
+    </div>
+</fieldset>
+    
+<fieldset class="no-margin">
+    <div class="row">
+        <label>
+            @Html.DisplayNameTranslatedFor(m => m.Name, ref translation, TranslationTypes.Entity, controllername, actionname)
+        </label>
+        <label class="edit-label">
+            @Html.DisplayFor(model => model.Name)
+        </label>
+    </div>
+</fieldset>
+
+<fieldset class="no-margin">
+    <div class="row">
+        <label>
+            @Html.DisplayNameTranslatedFor(m => m.Enabled, ref translation, TranslationTypes.Entity, controllername, actionname)
+        </label>
+        <label class="edit-label">
+            @Html.DisplayFor(model => model.Enabled)
+        </label>
+    </div>
+</fieldset>
+    
+<fieldset class="no-margin">
+    <div class="row">
+        <label>
+            @Html.DisplayNameTranslatedFor(m => m.UniqueIP, ref translation, TranslationTypes.Entity, controllername, actionname)
+        </label>
+        <label class="edit-label">
+            @Html.DisplayFor(model => model.UniqueIP)
+        </label>
+    </div>
+</fieldset>

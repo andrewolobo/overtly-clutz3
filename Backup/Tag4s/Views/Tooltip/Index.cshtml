@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Tag4s.Data.Tooltip>
+@using System.Web.Optimization;
+@using Tag4s.Data
+@using Tag4s.Helpers;
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "Index", "Index", ref translation), controllername.TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+}
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            window.onbeforeunload = function() {
+                var grid = jQuery("#Grid").data("kendoGrid");
+                var hasChanges = grid.dataSource.hasChanges();
+
+                if (hasChanges) {
+                    return '@("UnsavedChanges".TranslateString(ref translation))';
+                }
+                //return null;
+            };
+        });
+    </script>
+    
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+<h2>@ViewBag.Title</h2>
+@(Html.Kendo().Grid<Tag4s.Data.Tooltip>()
+      .Name("Grid")
+      //.Localizable("nl-NL")
+      .ToolBar(commands =>
+      {
+          if (Utilities.AllowRights(customImages.Edit, "Edit", "Tooltip", null))
+          {
+              commands.Save();
+          }
+      })
+      .DataSource(dataBinding =>
+          dataBinding
+              .Ajax()
+              .Batch(true) // Enable batch updates
+              .Model(model =>
+              {
+                  model.Field(p => p.Name).Editable(false);
+                  model.Field(p => p.Entity).Editable(false);
+                  model.Field(p => p.View).Editable(false);
+                  model.Id(m => m.Id);
+              })
+                    .Create(update => update.Action("_SaveBatchEditing_AJAX", "Tooltip"))
+                    .Read(read => read.Action("_SelectBatchEditing_AJAX", "Tooltip", new {filterkey = filter.Key, filterid = filter.Id}))
+                    .Update(update => update.Action("_SaveBatchEditing_AJAX", "Tooltip", new {filterkey = filter.Key, filterid = filter.Id}))
+                    .Destroy(update => update.Action("_SaveBatchEditing_AJAX", "Tooltip", new {filterkey = filter.Key, filterid = filter.Id}))
+              .PageSize(200)
+              .Sort(sortOrder =>
+              {
+                  sortOrder.Add(o => o.Entity).Ascending();
+                  sortOrder.Add(o => o.Name).Ascending();
+              })
+      )
+      .Columns(columns =>
+      {
+          columns.Bound(c => c.Name).Title("Name".TranslateString(ref translation));
+          columns.Bound(c => c.Entity).Title("Entity".TranslateString(ref translation));
+          columns.Bound(c => c.View).Title("View".TranslateString(ref translation));
+          columns.Bound(c => c.EN).Title("EN".TranslateString(ref translation)).Sortable(false);
+          columns.Bound(c => c.NL).Title("NL".TranslateString(ref translation)).Sortable(false);
+          columns.Bound(c => c.DE).Title("DE".TranslateString(ref translation)).Sortable(false);
+          //columns.Template(navigation => Utilities.ActionImageNavigation(controllername, new {id = navigation.Id}, customImages.Edit, customImages.Delete)).ClientTemplate(Utilities.ActionImageNavigation(controllername, new {id = "#=Id#"}, customImages.Edit, customImages.Delete).ToString()).Width(116).Title("");
+      })
+      .Editable(editing => editing.Mode(GridEditMode.InCell))
+      .Filterable(filtering => filtering.Enabled(false))
+      .Resizable(resizing => resizing.Columns(true))
+      .Scrollable(scrolling => scrolling.Enabled(true).Height("auto"))
+      .Pageable(paging =>
+          paging.PageSizes(new int[] {25, 50, 100, 200, 1000, 2000})
+              .PreviousNext(true)
+      )
+      .Sortable(sorting => sorting.Enabled(true).SortMode(GridSortMode.MultipleColumn)
+      )
+      )
+
+<div>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</div>

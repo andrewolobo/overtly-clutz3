@@ -1,0 +1,56 @@
+﻿@using System.Web.Optimization
+@using Tag4s.Data
+@using Tag4s.Filters
+@using Tag4s.Helpers
+@model Tag4s.Data.User
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = "TransferCredit".TranslateString(ref translation);
+    BreadCrum.SetName(ViewBag.Title, Session);
+
+    var user = ViewBag.User as User;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m=>m.Id)
+    <fieldset class="no-margin">
+        <div class="row">
+            <label>
+                @("MyCredit".TranslateString(ref translation))
+            </label>
+            <label class="spanrow">@user.Credit</label>
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Credit) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Credit)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.Credit, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+@(Html.Kendo().IntegerTextBoxFor(m => m.Credit)
+      .Min(0)
+      .Max(Model.Credit??0+ user.Credit)
+)    
+        </div>
+    </fieldset>
+
+    <p>
+        <input type="submit" value="@Html.DisplayNameTranslatedFor("", "Save", "Save", ref translation)" />
+    </p>
+}
+
+<div>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

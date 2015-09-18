@@ -1,0 +1,121 @@
+﻿@model Tag4s.Data.UserContract
+@using Tag4s.Helpers;
+@using Tag4s.Data
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "ContractEditByRandom1", "ContractEditByRandom1", ref translation), controllername.TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+    switch (filter.Key)
+    {
+        case Tag4s.Filters.ViewFilterKeys.nofilter:
+        default:
+            ViewBag.Title = "ContractEditByRandom1".TranslateString(ref translation);
+            break;
+    }
+    BreadCrum.SetName(ViewBag.Title, Session);
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+
+
+
+    </script>
+}
+
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Edit", "UserContract"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset class="Tag4s-fieldset">
+    
+        @if (Model.ContractRecipe.Code == 4)
+        {
+            <legend>@Html.DisplayNameTranslatedFor("", "UserContract", "UserContract", ref translation)</legend>
+
+            @Html.HiddenFor(model => model.UserId)
+            @Html.HiddenFor(model => model.ContractId)
+            @Html.HiddenFor(model => model.ContractRecipeId)
+            @Html.HiddenFor(model => model.eId)
+
+            <input type="hidden" name="@string.Format("UserContractUris[0].Id")" value="@Model.UserContractUris.FirstOrDefault().Id"/>
+            <input type="hidden" name="@string.Format("UserContractUris[0].RandomFunction")" value="@Model.UserContractUris.FirstOrDefault().RandomFunction"/>
+            <input type="hidden" name="@string.Format("UserContractUris[0].RandomUris[0].UserContractUriId")" value="@Model.UserContractUris.FirstOrDefault().Id"/>
+            <input type="hidden" name="@string.Format("UserContractUris[0].RandomUris[0].Id")" value="@Model.UserContractUris.FirstOrDefault().RandomUris.First().Id"/>
+            <input type="hidden" name="@string.Format("UserContractUris[0].UserContractId")" value="@Model.UserContractUris.FirstOrDefault().UserContractId"/>
+            <input type="hidden" name="@string.Format("UserContractUris[0].Name")" value="@Model.UserContractUris.FirstOrDefault().Name"/>@*
+                <input type="hidden" name="@string.Format("UserContractUris[0].UserContractRedirects[0].UserContractUri")" value="@Model.UserContractUris.FirstOrDefault().UserContractRedirects.FirstOrDefault().UserContractUri"/>
+                <input type="hidden" name="@string.Format("UserContractUris[0].UserContractRedirects[0].Id")" value="@Model.UserContractUris.FirstOrDefault().UserContractRedirects.FirstOrDefault().Id"/>
+                <input type="hidden" name="@string.Format("UserContractUris[0].UserContractRedirects[0].Enabled")" value="@Model.UserContractUris.FirstOrDefault().UserContractRedirects.FirstOrDefault().Enabled"/>
+                <input type="hidden" name="@string.Format("UserContractUris[0].UserContractRedirects[0].DateTimeValueStart")" value="@Model.UserContractUris.FirstOrDefault().UserContractRedirects.FirstOrDefault().DateTimeValueStart"/>
+                <input type="hidden" name="@string.Format("UserContractUris[0].UserContractRedirects[0].DateTimeValueStop")" value="@Model.UserContractUris.FirstOrDefault().UserContractRedirects.FirstOrDefault().DateTimeValueStop"/>*@
+            
+        @Html.DisplayFor(m => m, "UserContractCustom")
+            
+            
+            <fieldset class="no-margin">
+                <div class="row @(Html.HasError("UserContractUris[0].Uri") ? "error" : "")" title="@Html.GetErrorMessage("UserContractUris[0].Uri")">
+                    <label>
+                        @("DefaultRedirectUri".TranslateString(ref translation))
+                    </label>
+                            @Html.EditorFor(model => @Model.UserContractUris.FirstOrDefault().Uri, null, "UserContractUris[0].Uri")
+                </div>
+            </fieldset>
+            
+            <fieldset class="no-margin">
+                <div class="row customContract">
+                    <label>
+                        @Html.EditorFor(model => model.UserContractUris.FirstOrDefault().Actief, "Checkbox", string.Format("UserContractUris[0].Actief"))
+                        @Html.EditorFor(model => model.UserContractUris.FirstOrDefault().RandomUris.FirstOrDefault().RandomParameter, null, string.Format("UserContractUris[0].RandomUris[0].RandomParameter"))
+                    </label>
+                        @Html.EditorFor(model => model.UserContractUris.FirstOrDefault().RandomUris.FirstOrDefault().Uri, null, string.Format("UserContractUris[0].RandomUris[0].Uri"))
+                </div>
+            </fieldset>
+            
+           
+
+            <fieldset class="no-margin">
+                <div class="row @(Html.HasErrorFor(m => m.Uri) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.Uri)">
+                    <label>
+                        @Html.DisplayNameTranslatedFor(model => model.Uri, ref translation, TranslationTypes.Entity, controllername, actionname)
+                    </label>
+                    @Html.EditorFor(model => model.Uri)
+                </div>
+            </fieldset>
+            <fieldset class="no-margin">
+                <div class="row @(Html.HasErrorFor(m => m.Name) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.Name)">
+                    <label>
+                        @Html.DisplayNameTranslatedFor(model => model.Name, ref translation, TranslationTypes.Entity, controllername, actionname)
+                    </label>
+                    @Html.EditorFor(model => model.Name)
+                </div>
+            </fieldset>
+            <fieldset class="no-margin">
+                <div class="row @(Html.HasErrorFor(m => m.Actief) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.Actief)">
+                    <label>
+                        @Html.DisplayNameTranslatedFor(model => model.Actief, ref translation, TranslationTypes.Entity, controllername, actionname)
+                    </label>
+                    @Html.EditorFor(model => model.Actief,"Checkbox")
+                </div>
+            </fieldset>
+
+            @Html.HiddenFor(m => m.StartDate)
+            @Html.HiddenFor(m => m.EndDate)
+        }
+    </fieldset>
+
+    <p>
+        <input type="submit" value="@Html.DisplayNameTranslatedFor("", "Save", "Save", ref translation)" />
+    </p>
+}
+
+<div>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</div>

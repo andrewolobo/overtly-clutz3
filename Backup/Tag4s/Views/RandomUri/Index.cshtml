@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Tag4s.Data.RandomUri>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Uri)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RandomParameter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserContractUri.Uri)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Uri)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RandomParameter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserContractUri.Uri)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

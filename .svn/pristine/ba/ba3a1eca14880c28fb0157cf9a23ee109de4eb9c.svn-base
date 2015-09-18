@@ -1,0 +1,51 @@
+﻿@using System.Web.Optimization
+@using Tag4s.Data
+@using Tag4s.Filters
+@using Tag4s.Helpers;
+
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as ViewFilter;
+    ViewBag.Title = Html.DisplayNameTranslatedFor("", "Forgot Password", "Forgot Password", ref translation).ToString();
+    BreadCrum.SetName(ViewBag.Title, Session);
+    var errMessage = ViewBag.ForgotPasswordErrMessage as string;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("ForgotPassword", "Home", FormMethod.Post))
+{
+            <h6>@errMessage</h6>
+        <br/><br/>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasError("nUser") ? "error" : "")" title="@Html.GetErrorMessage("nUser")">
+            <label>
+            @Html.DisplayNameTranslatedFor("", "User", "User", ref translation).ToString()
+            </label>
+            @Html.TextBox("nUser")
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasError("eAdd") ? "error" : "")" title="@Html.GetErrorMessage("eAdd")">
+            <label>
+            @Html.DisplayNameTranslatedFor("", "Email Address", "Email Address", ref translation).ToString()
+            </label>
+            @Html.TextBox("eAdd")
+        </div>
+    </fieldset>
+
+    <p>
+        <input id="Submit" type="submit" value="@Html.DisplayNameTranslatedFor("", "Reset", "Reset", ref translation)" />
+    </p>
+}
+
+<div>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

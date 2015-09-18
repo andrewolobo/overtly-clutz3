@@ -1,0 +1,163 @@
+﻿@model Tag4s.Data.Person
+@using Tag4s.Data
+@using Tag4s.Filters
+@using Tag4s.Helpers
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as ViewFilter;
+
+    List<Tag4s.ViewModel.RolePersonCheckBox> roles = ViewBag.Roles;
+}
+
+@*      <script>
+
+          $(document).ready(function () {
+
+              $('#BirthDate').change(function () {
+                  var val = $(this).val();
+                  var d1 = Date.parse(val);
+                  alert(d1);
+                  //if (d1.year+18> Date.now().year) {
+                  //    $("#CareTaker").show();
+                  //} else {
+                  //    $("#CareTaker").hide();
+
+                  //}
+              });
+
+
+          });
+
+  </script>*@
+
+    <h3>@Html.DisplayNameTranslatedFor("", "Person", "Person", ref translation)</h3>
+
+
+    @{
+        Html.Kendo().TabStrip()
+            .Name("FormFields")
+            .HighlightPath(true)
+            .Items(tabstrip =>
+            {
+                tabstrip.Add()
+                    .Text("Person".TranslateString(ref translation))
+                    .ContentHtmlAttributes(new {style = "height:430px;"})
+                    .Content(@<text>
+                                  <div class="editor-label">
+                                      @Html.DisplayNameTranslatedFor(m => m.NickName, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                  </div>
+                                  <div class="editor-field">
+                                      @Html.EditorFor(model => model.NickName)
+                                      @Html.ValidationMessageFor(model => model.NickName)
+                                  </div>
+            
+                                  <div class="editor-label">
+                                      @Html.DisplayNameTranslatedFor(m => m.LastName, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                  </div>
+                                  <div class="editor-field">
+                                      @Html.EditorFor(model => model.LastName)
+                                      @Html.ValidationMessageFor(model => model.LastName)
+                                  </div>
+    
+                                  <div class="editor-label">
+                                      @Html.DisplayNameTranslatedFor(m => m.Gender, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                  </div>
+                                  <div class="editor-field">
+                                      @Html.DropDownList("GenderId", String.Empty)
+                                      @Html.ValidationMessageFor(model => model.GenderId)
+                                  </div>
+
+                                  <div class="editor-label">
+                                      @Html.DisplayNameTranslatedFor(m => m.PhoneNumber, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                  </div>
+                                  <div class="editor-field">
+                                      @Html.EditorFor(model => model.PhoneNumber)
+                                      @Html.ValidationMessageFor(model => model.PhoneNumber)
+                                  </div>
+
+                                  <div class="editor-label">
+                                      @Html.DisplayNameTranslatedFor(m => m.MobileNumber, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                  </div>
+                                  <div class="editor-field">
+                                      @Html.EditorFor(model => model.MobileNumber)
+                                      @Html.ValidationMessageFor(model => model.MobileNumber)
+                                  </div>
+
+                                  <div class="editor-label">
+                                      @Html.DisplayNameTranslatedFor(m => m.EmailAddress, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                  </div>
+                                  <div class="editor-field">
+                                      @Html.EditorFor(model => model.EmailAddress)
+                                      @Html.ValidationMessageFor(model => model.EmailAddress)
+                                  </div>
+                              
+                              </text>);
+                tabstrip.Add()
+                    .Text("Address".TranslateString(ref translation))
+                    .ContentHtmlAttributes(new {style = "height:300px;"})
+                    .Content(@<text>
+                                  <div class="editor-label">
+                                      @Html.DisplayNameTranslatedFor(m => m.Street, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                  </div>
+                                  <div class="editor-field">
+                                      @Html.EditorFor(model => model.Street)
+                                      @Html.ValidationMessageFor(model => model.Street)
+                                  </div>
+            
+                                  <div class="editor-label">
+                                      @Html.DisplayNameTranslatedFor(m => m.HouseNumber, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                  </div>
+                                  <div class="editor-field">
+                                      @Html.EditorFor(model => model.HouseNumber)
+                                      @Html.ValidationMessageFor(model => model.HouseNumber)
+                                  </div>
+            
+                                  <div class="editor-label">
+                                      @Html.DisplayNameTranslatedFor(m => m.ZipCode, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                  </div>
+                                  <div class="editor-field">
+                                      @Html.EditorFor(model => model.ZipCode)
+                                      @Html.ValidationMessageFor(model => model.ZipCode)
+                                  </div>
+            
+                                  <div class="editor-label">
+                                      @Html.DisplayNameTranslatedFor(m => m.City, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                  </div>
+                                  <div class="editor-field">
+                                      @Html.EditorFor(model => model.City)
+                                      @Html.ValidationMessageFor(model => model.City)
+                                  </div>
+
+                                  <div class="editor-label">
+                                      @Html.DisplayNameTranslatedFor(m => m.Country, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                  </div>
+                                  <div class="editor-field">
+                                      @Html.DropDownList("CountryId", String.Empty)
+                                      @Html.ValidationMessageFor(model => model.CountryId)
+                                  </div>
+
+                                  <div class="editor-label">
+                                      @Html.DisplayNameTranslatedFor(m => m.Nationality, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                  </div>
+                                  <div class="editor-field">
+                                      @Html.DropDownList("NationalityId", String.Empty)
+                                      @Html.ValidationMessageFor(model => model.NationalityId)
+                                  </div>
+                              
+                              </text>);
+            })
+            .SelectedIndex(0)
+            .Events(events => events
+                .Select("OnSelectCodeBlock")
+            )
+            .Render();
+    }
+
+
+
+
+
+
+

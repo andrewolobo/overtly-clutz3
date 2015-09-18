@@ -1,0 +1,78 @@
+﻿@model Tag4s.Data.UserContractRedirect
+@using Tag4s.Data
+@using Tag4s.Filters
+@using Tag4s.Helpers
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    //ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "UserContractRedirect", "UserContractRedirect", ref translation), controllername.TranslateString(ref translation));
+    //BreadCrum.SetName(ViewBag.Title, Session);
+}
+
+    <h3>@Html.DisplayNameTranslatedFor("", "UserContractRedirect", "UserContractRedirect", ref translation)</h3>
+    
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.UserContractUri) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.UserContractUri)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.UserContractUri, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.DropDownList("UserContractUri", string.Empty)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.DateTimeValueStart) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.DateTimeValueStart)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.DateTimeValueStart, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.DateTimeValueStart)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.DateTimeValueStop) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.DateTimeValueStop)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.DateTimeValueStop, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.DateTimeValueStop)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.DayOfTheWeekValue) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.DayOfTheWeekValue)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.DayOfTheWeekValue, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.DayOfTheWeekValue)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.BeginTime) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.BeginTime)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.BeginTime, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.BeginTime)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.EndTime) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.EndTime)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.EndTime, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.EndTime)
+        </div>
+    </fieldset>
+
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Enabled) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Enabled)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.Enabled, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.Enabled)
+        </div>
+    </fieldset>

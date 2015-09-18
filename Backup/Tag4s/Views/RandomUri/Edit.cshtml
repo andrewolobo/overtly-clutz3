@@ -1,0 +1,40 @@
+﻿@using Tag4s.Filters
+@using Tag4s.Helpers
+@using Tag4s.Data
+@model Tag4s.Data.RandomUri
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "Edit", "Edit", ref translation), controllername.TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>RandomUri</legend>
+
+        @Html.HiddenFor(model => model.Id)
+        
+        @Html.EditorForModel()
+
+        <p>
+            <input type="submit" value="@Html.DisplayNameTranslatedFor("", "Save", "Save", ref translation)" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,18 @@
+﻿@using Tag4s.Data
+@using Tag4s.Helpers
+@model Tag4s.Data.Invoice
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}-{2}", Html.DisplayNameTranslatedFor("", "Details", "Details", ref translation), controllername.TranslateString(ref translation), Model != null ? Model.Date.ToString() : "new".TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+}
+
+<h2>Details</h2>
+
+@Html.DisplayForModel()
+<p>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</p>

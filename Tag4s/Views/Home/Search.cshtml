@@ -1,0 +1,61 @@
+﻿@using System.Web.Optimization
+@using Tag4s.Data
+@using Tag4s.Filters
+@using Tag4s.Helpers
+@model Tag4s.Models.SearchModel
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "Search", "Search", ref translation), controllername.TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="display-label">
+        @Html.EditorFor(model => model.SearchText)
+    </div>
+    <div class="=display-field">
+            <input type="submit" value="@Html.DisplayNameTranslatedFor("", "Search", "Search", ref translation)" />
+        </div>
+        <div class="display-label">
+            @if (Model.SearchResults.Count > 0)
+            {
+                @(Html.Kendo().Grid(Model.SearchResults)
+                      .Name("Grid")
+                      //.Localizable("nl-NL")
+                      //.ToolBar(commands => { commands.Template(c => Utilities.ActionImage(customImages.Create, "Create", controllername, new {filterkey = filter.Key, filterid = filter.Id})); })
+                      .Columns(columns =>
+                      {
+                          columns.Bound(c => c.Display).Width(450).Title("Title".TranslateString(ref translation));
+                          columns.Template(navigation => Utilities.ActionImageWithText("GoTo".TranslateString(ref translation), customImages.Tooltip, "Edit", navigation.Table, new {id = navigation.Id}))
+                              .Width(116).Title("");
+                      })
+                      .Filterable(filtering => filtering.Enabled(false))
+                      .Resizable(resizing => resizing.Columns(true))
+                      .HtmlAttributes(new { style = "width: 720px;" })
+                      .Scrollable(scrolling => scrolling.Enabled(true).Height("auto"))
+                      .Pageable(paging =>
+                          paging.PageSizes(new int[] {10, 25, 50, 100, 200, 1000, 2000})
+                              .PreviousNext(true)
+                      )
+                      .Sortable(sorting => sorting.Enabled(true).SortMode(GridSortMode.MultipleColumn)
+                      )
+                      )
+            }
+        </div>
+}
+
+<div>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

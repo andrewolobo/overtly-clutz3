@@ -1,0 +1,2637 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Tag4sModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="Tag4sModelStoreContainer">
+          <EntitySet Name="Application" EntityType="Tag4sModel.Store.Application" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Contract" EntityType="Tag4sModel.Store.Contract" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ContractRecipe" EntityType="Tag4sModel.Store.ContractRecipe" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ContractType" EntityType="Tag4sModel.Store.ContractType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Country" EntityType="Tag4sModel.Store.Country" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Gender" EntityType="Tag4sModel.Store.Gender" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Invoice" EntityType="Tag4sModel.Store.Invoice" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="InvoiceLine" EntityType="Tag4sModel.Store.InvoiceLine" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Menu" EntityType="Tag4sModel.Store.Menu" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Nationality" EntityType="Tag4sModel.Store.Nationality" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Person" EntityType="Tag4sModel.Store.Person" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PersonRole" EntityType="Tag4sModel.Store.PersonRole" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PersonSetting" EntityType="Tag4sModel.Store.PersonSetting" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RandomUri" EntityType="Tag4sModel.Store.RandomUri" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RedirectType" EntityType="Tag4sModel.Store.RedirectType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RedirectTypeValue" EntityType="Tag4sModel.Store.RedirectTypeValue" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Role" EntityType="Tag4sModel.Store.Role" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RuleParameter" EntityType="Tag4sModel.Store.RuleParameter" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RuleParameterValue" EntityType="Tag4sModel.Store.RuleParameterValue" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ShoppingBasket" EntityType="Tag4sModel.Store.ShoppingBasket" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tooltip" EntityType="Tag4sModel.Store.Tooltip" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Translation" EntityType="Tag4sModel.Store.Translation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TranslationType" EntityType="Tag4sModel.Store.TranslationType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="Tag4sModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserContract" EntityType="Tag4sModel.Store.UserContract" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserContractLog" EntityType="Tag4sModel.Store.UserContractLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserContractRedirect" EntityType="Tag4sModel.Store.UserContractRedirect" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserContractRedirectRedirectTypeValue" EntityType="Tag4sModel.Store.UserContractRedirectRedirectTypeValue" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserContractRedirectRuleParameterValue" EntityType="Tag4sModel.Store.UserContractRedirectRuleParameterValue" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserContractUri" EntityType="Tag4sModel.Store.UserContractUri" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserPassword" EntityType="Tag4sModel.Store.UserPassword" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserRole" EntityType="Tag4sModel.Store.UserRole" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="VolumDiscount" EntityType="Tag4sModel.Store.VolumDiscount" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Weekday" EntityType="Tag4sModel.Store.Weekday" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MenuChild" EntityType="Tag4sModel.Store.MenuChild" store:Type="Views" store:Schema="dbo" store:Name="MenuChild">
+            <DefiningQuery>SELECT 
+      [MenuChild].[Id] AS [Id], 
+      [MenuChild].[Name] AS [Name], 
+      [MenuChild].[Entity] AS [Entity], 
+      [MenuChild].[View] AS [View], 
+      [MenuChild].[ParentMenuId] AS [ParentMenuId]
+      FROM [dbo].[MenuChild] AS [MenuChild]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MenuParent" EntityType="Tag4sModel.Store.MenuParent" store:Type="Views" store:Schema="dbo" store:Name="MenuParent">
+            <DefiningQuery>SELECT 
+      [MenuParent].[Id] AS [Id], 
+      [MenuParent].[Name] AS [Name], 
+      [MenuParent].[Entity] AS [Entity], 
+      [MenuParent].[View] AS [View]
+      FROM [dbo].[MenuParent] AS [MenuParent]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TooltipWithType" EntityType="Tag4sModel.Store.TooltipWithType" store:Type="Views" store:Schema="dbo" store:Name="TooltipWithType">
+            <DefiningQuery>SELECT 
+      [TooltipWithType].[Name] AS [Name], 
+      [TooltipWithType].[Entity] AS [Entity], 
+      [TooltipWithType].[View] AS [View], 
+      [TooltipWithType].[EN] AS [EN], 
+      [TooltipWithType].[NL] AS [NL], 
+      [TooltipWithType].[DE] AS [DE], 
+      [TooltipWithType].[Type] AS [Type], 
+      [TooltipWithType].[KeyName] AS [KeyName]
+      FROM [dbo].[TooltipWithType] AS [TooltipWithType]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TranslationWithType" EntityType="Tag4sModel.Store.TranslationWithType" store:Type="Views" store:Schema="dbo" store:Name="TranslationWithType">
+            <DefiningQuery>SELECT 
+      [TranslationWithType].[Name] AS [Name], 
+      [TranslationWithType].[Entity] AS [Entity], 
+      [TranslationWithType].[View] AS [View], 
+      [TranslationWithType].[EN] AS [EN], 
+      [TranslationWithType].[NL] AS [NL], 
+      [TranslationWithType].[DE] AS [DE], 
+      [TranslationWithType].[Type] AS [Type], 
+      [TranslationWithType].[KeyName] AS [KeyName]
+      FROM [dbo].[TranslationWithType] AS [TranslationWithType]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Contract_ContractType" Association="Tag4sModel.Store.FK_Contract_ContractType">
+            <End Role="ContractType" EntitySet="ContractType" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContractRecipe_Contract" Association="Tag4sModel.Store.FK_ContractRecipe_Contract">
+            <End Role="Contract" EntitySet="Contract" />
+            <End Role="ContractRecipe" EntitySet="ContractRecipe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_User" Association="Tag4sModel.Store.FK_Invoice_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceLine_Invoice" Association="Tag4sModel.Store.FK_InvoiceLine_Invoice">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="InvoiceLine" EntitySet="InvoiceLine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceLine_UserContract" Association="Tag4sModel.Store.FK_InvoiceLine_UserContract">
+            <End Role="UserContract" EntitySet="UserContract" />
+            <End Role="InvoiceLine" EntitySet="InvoiceLine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu_Menu" Association="Tag4sModel.Store.FK_Menu_Menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="Menu1" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_Country" Association="Tag4sModel.Store.FK_Person_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_Gender" Association="Tag4sModel.Store.FK_Person_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_Nationality" Association="Tag4sModel.Store.FK_Person_Nationality">
+            <End Role="Nationality" EntitySet="Nationality" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonRole_Person" Association="Tag4sModel.Store.FK_PersonRole_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="PersonRole" EntitySet="PersonRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonRole_Role" Association="Tag4sModel.Store.FK_PersonRole_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="PersonRole" EntitySet="PersonRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonSetting_Person" Association="Tag4sModel.Store.FK_PersonSetting_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="PersonSetting" EntitySet="PersonSetting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RandomUri_UserContractUri" Association="Tag4sModel.Store.FK_RandomUri_UserContractUri">
+            <End Role="UserContractUri" EntitySet="UserContractUri" />
+            <End Role="RandomUri" EntitySet="RandomUri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RedirectTypeValue_RedirectType" Association="Tag4sModel.Store.FK_RedirectTypeValue_RedirectType">
+            <End Role="RedirectType" EntitySet="RedirectType" />
+            <End Role="RedirectTypeValue" EntitySet="RedirectTypeValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RuleParameterValue_RuleParameter" Association="Tag4sModel.Store.FK_RuleParameterValue_RuleParameter">
+            <End Role="RuleParameter" EntitySet="RuleParameter" />
+            <End Role="RuleParameterValue" EntitySet="RuleParameterValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoppingBasket_UserContract" Association="Tag4sModel.Store.FK_ShoppingBasket_UserContract">
+            <End Role="UserContract" EntitySet="UserContract" />
+            <End Role="ShoppingBasket" EntitySet="ShoppingBasket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tooltip_TranslationType" Association="Tag4sModel.Store.FK_Tooltip_TranslationType">
+            <End Role="TranslationType" EntitySet="TranslationType" />
+            <End Role="Tooltip" EntitySet="Tooltip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Translation_TranslationType" Association="Tag4sModel.Store.FK_Translation_TranslationType">
+            <End Role="TranslationType" EntitySet="TranslationType" />
+            <End Role="Translation" EntitySet="Translation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Country" Association="Tag4sModel.Store.FK_User_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_User" Association="Tag4sModel.Store.FK_User_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="User1" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_UserRole" Association="Tag4sModel.Store.FK_User_UserRole">
+            <End Role="UserRole" EntitySet="UserRole" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContract_Contract" Association="Tag4sModel.Store.FK_UserContract_Contract">
+            <End Role="Contract" EntitySet="Contract" />
+            <End Role="UserContract" EntitySet="UserContract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContract_ContractRecipe" Association="Tag4sModel.Store.FK_UserContract_ContractRecipe">
+            <End Role="ContractRecipe" EntitySet="ContractRecipe" />
+            <End Role="UserContract" EntitySet="UserContract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContract_User" Association="Tag4sModel.Store.FK_UserContract_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserContract" EntitySet="UserContract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContractLog_UserContract" Association="Tag4sModel.Store.FK_UserContractLog_UserContract">
+            <End Role="UserContract" EntitySet="UserContract" />
+            <End Role="UserContractLog" EntitySet="UserContractLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContractLog_UserContractRedirect" Association="Tag4sModel.Store.FK_UserContractLog_UserContractRedirect">
+            <End Role="UserContractRedirect" EntitySet="UserContractRedirect" />
+            <End Role="UserContractLog" EntitySet="UserContractLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContractLog_UserContractUri" Association="Tag4sModel.Store.FK_UserContractLog_UserContractUri">
+            <End Role="UserContractUri" EntitySet="UserContractUri" />
+            <End Role="UserContractLog" EntitySet="UserContractLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContractRedirect_UserContractUri" Association="Tag4sModel.Store.FK_UserContractRedirect_UserContractUri">
+            <End Role="UserContractUri" EntitySet="UserContractUri" />
+            <End Role="UserContractRedirect" EntitySet="UserContractRedirect" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContractRedirect_Weekday" Association="Tag4sModel.Store.FK_UserContractRedirect_Weekday">
+            <End Role="Weekday" EntitySet="Weekday" />
+            <End Role="UserContractRedirect" EntitySet="UserContractRedirect" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContractRedirectRedirectTypeValue_RedirectTypeValue" Association="Tag4sModel.Store.FK_UserContractRedirectRedirectTypeValue_RedirectTypeValue">
+            <End Role="RedirectTypeValue" EntitySet="RedirectTypeValue" />
+            <End Role="UserContractRedirectRedirectTypeValue" EntitySet="UserContractRedirectRedirectTypeValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContractRedirectRedirectTypeValue_UserContractRedirect" Association="Tag4sModel.Store.FK_UserContractRedirectRedirectTypeValue_UserContractRedirect">
+            <End Role="UserContractRedirect" EntitySet="UserContractRedirect" />
+            <End Role="UserContractRedirectRedirectTypeValue" EntitySet="UserContractRedirectRedirectTypeValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContractRedirectRuleParameterValue_RuleParameterValue" Association="Tag4sModel.Store.FK_UserContractRedirectRuleParameterValue_RuleParameterValue">
+            <End Role="RuleParameterValue" EntitySet="RuleParameterValue" />
+            <End Role="UserContractRedirectRuleParameterValue" EntitySet="UserContractRedirectRuleParameterValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContractRedirectRuleParameterValue_UserContractRedirect" Association="Tag4sModel.Store.FK_UserContractRedirectRuleParameterValue_UserContractRedirect">
+            <End Role="UserContractRedirect" EntitySet="UserContractRedirect" />
+            <End Role="UserContractRedirectRuleParameterValue" EntitySet="UserContractRedirectRuleParameterValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContractUri_UserContract" Association="Tag4sModel.Store.FK_UserContractUri_UserContract">
+            <End Role="UserContract" EntitySet="UserContract" />
+            <End Role="UserContractUri" EntitySet="UserContractUri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPassword_User1" Association="Tag4sModel.Store.FK_UserPassword_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserPassword" EntitySet="UserPassword" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VolumDiscount_Contract" Association="Tag4sModel.Store.FK_VolumDiscount_Contract">
+            <End Role="Contract" EntitySet="Contract" />
+            <End Role="VolumDiscount" EntitySet="VolumDiscount" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="LinkApplicationUser" Type="bit" Nullable="false" />
+          <Property Name="TemplateUserRegistered" Type="nvarchar(max)" />
+          <Property Name="TemplateUserForgotPassword" Type="nvarchar(max)" />
+          <Property Name="TemplateProductOrdered" Type="nvarchar(max)" />
+          <Property Name="SystemEmailAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="TemplateUserRegisteredSubject" Type="nvarchar(max)" />
+          <Property Name="TemplateUserForgotPasswordSubject" Type="nvarchar(max)" />
+          <Property Name="TemplateProductOrderedSubject" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ContractTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Advertisement" Type="bit" Nullable="false" />
+          <Property Name="MaxUris" Type="int" Nullable="false" />
+          <Property Name="MaxRedirectsPerUri" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Scale="2" />
+        </EntityType>
+        <EntityType Name="ContractRecipe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="ContractId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Position" Type="int" Nullable="false" />
+          <Property Name="CssClass" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ContractType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="VAT" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="Number" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Paid" Type="bit" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="InvoiceLine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="InvoiceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserContractId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="VAT" Type="decimal" Nullable="false" Scale="2" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Entity" Type="nvarchar" MaxLength="255" />
+          <Property Name="View" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsFirstParent" Type="bit" Nullable="false" />
+          <Property Name="ParentMenuId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Nationality">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NickName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="Street" Type="nvarchar" MaxLength="50" />
+          <Property Name="HouseNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryId" Type="uniqueidentifier" />
+          <Property Name="NationalityId" Type="uniqueidentifier" />
+          <Property Name="GenderId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="PersonRole">
+          <Key>
+            <PropertyRef Name="PersonId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="PersonId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonSetting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ItemKey" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="ItemValue" Type="nvarchar(max)" />
+          <Property Name="PersonId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RandomUri">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Uri" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RandomParameter" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="UserContractUriId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RedirectType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="FriendlyName" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="RedirectTypeValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RedirectTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="DisplayAs" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RuleParameter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RuleParameterValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RuleParameterId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShoppingBasket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserContractId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="TransactionId" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tooltip">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TranslationTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Entity" Type="nvarchar" MaxLength="255" />
+          <Property Name="View" Type="nvarchar" MaxLength="255" />
+          <Property Name="EN" Type="ntext" />
+          <Property Name="NL" Type="ntext" />
+          <Property Name="DE" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Translation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TranslationTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Entity" Type="nvarchar" MaxLength="255" />
+          <Property Name="View" Type="nvarchar" MaxLength="255" />
+          <Property Name="EN" Type="ntext" />
+          <Property Name="NL" Type="ntext" />
+          <Property Name="DE" Type="ntext" />
+        </EntityType>
+        <EntityType Name="TranslationType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Description" Type="ntext" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Firstname" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Prefix" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lastname" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="EmailAddress" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="UserRoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReselerId" Type="uniqueidentifier" />
+          <Property Name="eId" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Street" Type="nvarchar" MaxLength="50" />
+          <Property Name="HouseNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryId" Type="uniqueidentifier" />
+          <Property Name="Organisation" Type="nvarchar" MaxLength="255" />
+          <Property Name="VAT" Type="nvarchar" MaxLength="50" />
+          <Property Name="KVK" Type="nvarchar" MaxLength="50" />
+          <Property Name="Company" Type="nvarchar" MaxLength="50" />
+          <Property Name="Credit" Type="int" />
+          <Property Name="DisableEditOwner" Type="bit" />
+          <Property Name="Disabled" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserContract">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ContractId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+          <Property Name="Uri" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Enabled" Type="bit" />
+          <Property Name="TransactionId" Type="nvarchar" MaxLength="50" />
+          <Property Name="eId" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="ContractRecipeId" Type="uniqueidentifier" />
+          <Property Name="LastPaid" Type="date" />
+          <Property Name="Created" Type="date" />
+        </EntityType>
+        <EntityType Name="UserContractLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserContractId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="UserAgent" Type="nvarchar(max)" />
+          <Property Name="Host" Type="nvarchar" MaxLength="50" />
+          <Property Name="ResultUri" Type="nvarchar(max)" />
+          <Property Name="UserContractUri" Type="uniqueidentifier" />
+          <Property Name="UserContractRedirect" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="UserContractRedirect">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserContractUri" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateTimeValueStart" Type="datetime" />
+          <Property Name="DateTimeValueStop" Type="datetime" />
+          <Property Name="DayOfTheWeekValue" Type="int" />
+          <Property Name="TimeOfDayHourStart" Type="int" />
+          <Property Name="TimeOfDayHourEnd" Type="int" />
+          <Property Name="TimeOfDayMinuteStart" Type="int" />
+          <Property Name="TimeOfDayMinuteEnd" Type="int" />
+          <Property Name="Counter" Type="int" />
+          <Property Name="UserAgent" Type="nvarchar" MaxLength="255" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Enabled" Type="bit" />
+          <Property Name="UniqueIP" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserContractRedirectRedirectTypeValue">
+          <Key>
+            <PropertyRef Name="RedirectTypeValueId" />
+            <PropertyRef Name="UserContractRedirectId" />
+          </Key>
+          <Property Name="RedirectTypeValueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserContractRedirectId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserContractRedirectRuleParameterValue">
+          <Key>
+            <PropertyRef Name="RuleParameterValueId" />
+            <PropertyRef Name="UserContractRedirectId" />
+          </Key>
+          <Property Name="RuleParameterValueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserContractRedirectId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserContractUri">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserContractId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Uri" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="RandomFunction" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPassword">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsAccountAdmin" Type="bit" Nullable="false" />
+          <Property Name="IsReset" Type="bit" />
+          <Property Name="EmailAddress" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="255" />
+          <Property Name="CanStatistics" Type="bit" />
+          <Property Name="CanQr" Type="bit" />
+          <Property Name="CanFinance" Type="bit" />
+          <Property Name="IsDisabled" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="VolumDiscount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ContractId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CountFrom" Type="int" Nullable="false" />
+          <Property Name="CountTo" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Weekday">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Tag4s.dbo.MenuChild' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="MenuChild">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Entity" Type="nvarchar" MaxLength="255" />
+          <Property Name="View" Type="nvarchar" MaxLength="255" />
+          <Property Name="ParentMenuId" Type="uniqueidentifier" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Tag4s.dbo.MenuParent' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="MenuParent">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Entity" Type="nvarchar" MaxLength="255" />
+          <Property Name="View" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Tag4s.dbo.TooltipWithType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="TooltipWithType">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="KeyName" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Entity" Type="nvarchar" MaxLength="255" />
+          <Property Name="View" Type="nvarchar" MaxLength="255" />
+          <Property Name="EN" Type="ntext" />
+          <Property Name="NL" Type="ntext" />
+          <Property Name="DE" Type="ntext" />
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="KeyName" Type="nvarchar" Nullable="false" MaxLength="511" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Tag4s.dbo.TranslationWithType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="TranslationWithType">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="KeyName" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Entity" Type="nvarchar" MaxLength="255" />
+          <Property Name="View" Type="nvarchar" MaxLength="255" />
+          <Property Name="EN" Type="ntext" />
+          <Property Name="NL" Type="ntext" />
+          <Property Name="DE" Type="ntext" />
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="KeyName" Type="nvarchar" Nullable="false" MaxLength="511" />
+        </EntityType>
+        <Association Name="FK_Contract_ContractType">
+          <End Role="ContractType" Type="Tag4sModel.Store.ContractType" Multiplicity="1" />
+          <End Role="Contract" Type="Tag4sModel.Store.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContractType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="ContractTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContractRecipe_Contract">
+          <End Role="Contract" Type="Tag4sModel.Store.Contract" Multiplicity="1" />
+          <End Role="ContractRecipe" Type="Tag4sModel.Store.ContractRecipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contract">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContractRecipe">
+              <PropertyRef Name="ContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_User">
+          <End Role="User" Type="Tag4sModel.Store.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Invoice" Type="Tag4sModel.Store.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceLine_Invoice">
+          <End Role="Invoice" Type="Tag4sModel.Store.Invoice" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InvoiceLine" Type="Tag4sModel.Store.InvoiceLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InvoiceLine">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceLine_UserContract">
+          <End Role="UserContract" Type="Tag4sModel.Store.UserContract" Multiplicity="1" />
+          <End Role="InvoiceLine" Type="Tag4sModel.Store.InvoiceLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserContract">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InvoiceLine">
+              <PropertyRef Name="UserContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menu_Menu">
+          <End Role="Menu" Type="Tag4sModel.Store.Menu" Multiplicity="0..1" />
+          <End Role="Menu1" Type="Tag4sModel.Store.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Menu1">
+              <PropertyRef Name="ParentMenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_Country">
+          <End Role="Country" Type="Tag4sModel.Store.Country" Multiplicity="0..1" />
+          <End Role="Person" Type="Tag4sModel.Store.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_Gender">
+          <End Role="Gender" Type="Tag4sModel.Store.Gender" Multiplicity="0..1" />
+          <End Role="Person" Type="Tag4sModel.Store.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_Nationality">
+          <End Role="Nationality" Type="Tag4sModel.Store.Nationality" Multiplicity="0..1" />
+          <End Role="Person" Type="Tag4sModel.Store.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nationality">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="NationalityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonRole_Person">
+          <End Role="Person" Type="Tag4sModel.Store.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PersonRole" Type="Tag4sModel.Store.PersonRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonRole">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonRole_Role">
+          <End Role="Role" Type="Tag4sModel.Store.Role" Multiplicity="1" />
+          <End Role="PersonRole" Type="Tag4sModel.Store.PersonRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonSetting_Person">
+          <End Role="Person" Type="Tag4sModel.Store.Person" Multiplicity="1" />
+          <End Role="PersonSetting" Type="Tag4sModel.Store.PersonSetting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonSetting">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RandomUri_UserContractUri">
+          <End Role="UserContractUri" Type="Tag4sModel.Store.UserContractUri" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RandomUri" Type="Tag4sModel.Store.RandomUri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserContractUri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RandomUri">
+              <PropertyRef Name="UserContractUriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RedirectTypeValue_RedirectType">
+          <End Role="RedirectType" Type="Tag4sModel.Store.RedirectType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RedirectTypeValue" Type="Tag4sModel.Store.RedirectTypeValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RedirectType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RedirectTypeValue">
+              <PropertyRef Name="RedirectTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RuleParameterValue_RuleParameter">
+          <End Role="RuleParameter" Type="Tag4sModel.Store.RuleParameter" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RuleParameterValue" Type="Tag4sModel.Store.RuleParameterValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RuleParameter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RuleParameterValue">
+              <PropertyRef Name="RuleParameterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoppingBasket_UserContract">
+          <End Role="UserContract" Type="Tag4sModel.Store.UserContract" Multiplicity="1" />
+          <End Role="ShoppingBasket" Type="Tag4sModel.Store.ShoppingBasket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserContract">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShoppingBasket">
+              <PropertyRef Name="UserContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tooltip_TranslationType">
+          <End Role="TranslationType" Type="Tag4sModel.Store.TranslationType" Multiplicity="1" />
+          <End Role="Tooltip" Type="Tag4sModel.Store.Tooltip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TranslationType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tooltip">
+              <PropertyRef Name="TranslationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Translation_TranslationType">
+          <End Role="TranslationType" Type="Tag4sModel.Store.TranslationType" Multiplicity="1" />
+          <End Role="Translation" Type="Tag4sModel.Store.Translation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TranslationType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Translation">
+              <PropertyRef Name="TranslationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Country">
+          <End Role="Country" Type="Tag4sModel.Store.Country" Multiplicity="0..1" />
+          <End Role="User" Type="Tag4sModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_User">
+          <End Role="User" Type="Tag4sModel.Store.User" Multiplicity="0..1" />
+          <End Role="User1" Type="Tag4sModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User1">
+              <PropertyRef Name="ReselerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_UserRole">
+          <End Role="UserRole" Type="Tag4sModel.Store.UserRole" Multiplicity="1" />
+          <End Role="User" Type="Tag4sModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContract_Contract">
+          <End Role="Contract" Type="Tag4sModel.Store.Contract" Multiplicity="1" />
+          <End Role="UserContract" Type="Tag4sModel.Store.UserContract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contract">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContract">
+              <PropertyRef Name="ContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContract_ContractRecipe">
+          <End Role="ContractRecipe" Type="Tag4sModel.Store.ContractRecipe" Multiplicity="0..1" />
+          <End Role="UserContract" Type="Tag4sModel.Store.UserContract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContractRecipe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContract">
+              <PropertyRef Name="ContractRecipeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContract_User">
+          <End Role="User" Type="Tag4sModel.Store.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserContract" Type="Tag4sModel.Store.UserContract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContract">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContractLog_UserContract">
+          <End Role="UserContract" Type="Tag4sModel.Store.UserContract" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserContractLog" Type="Tag4sModel.Store.UserContractLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserContract">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContractLog">
+              <PropertyRef Name="UserContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContractLog_UserContractRedirect">
+          <End Role="UserContractRedirect" Type="Tag4sModel.Store.UserContractRedirect" Multiplicity="0..1" />
+          <End Role="UserContractLog" Type="Tag4sModel.Store.UserContractLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserContractRedirect">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContractLog">
+              <PropertyRef Name="UserContractRedirect" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContractLog_UserContractUri">
+          <End Role="UserContractUri" Type="Tag4sModel.Store.UserContractUri" Multiplicity="0..1" />
+          <End Role="UserContractLog" Type="Tag4sModel.Store.UserContractLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserContractUri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContractLog">
+              <PropertyRef Name="UserContractUri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContractRedirect_UserContractUri">
+          <End Role="UserContractUri" Type="Tag4sModel.Store.UserContractUri" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserContractRedirect" Type="Tag4sModel.Store.UserContractRedirect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserContractUri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContractRedirect">
+              <PropertyRef Name="UserContractUri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContractRedirect_Weekday">
+          <End Role="Weekday" Type="Tag4sModel.Store.Weekday" Multiplicity="0..1" />
+          <End Role="UserContractRedirect" Type="Tag4sModel.Store.UserContractRedirect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Weekday">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContractRedirect">
+              <PropertyRef Name="DayOfTheWeekValue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContractRedirectRedirectTypeValue_RedirectTypeValue">
+          <End Role="RedirectTypeValue" Type="Tag4sModel.Store.RedirectTypeValue" Multiplicity="1" />
+          <End Role="UserContractRedirectRedirectTypeValue" Type="Tag4sModel.Store.UserContractRedirectRedirectTypeValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RedirectTypeValue">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContractRedirectRedirectTypeValue">
+              <PropertyRef Name="RedirectTypeValueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContractRedirectRedirectTypeValue_UserContractRedirect">
+          <End Role="UserContractRedirect" Type="Tag4sModel.Store.UserContractRedirect" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserContractRedirectRedirectTypeValue" Type="Tag4sModel.Store.UserContractRedirectRedirectTypeValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserContractRedirect">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContractRedirectRedirectTypeValue">
+              <PropertyRef Name="UserContractRedirectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContractRedirectRuleParameterValue_RuleParameterValue">
+          <End Role="RuleParameterValue" Type="Tag4sModel.Store.RuleParameterValue" Multiplicity="1" />
+          <End Role="UserContractRedirectRuleParameterValue" Type="Tag4sModel.Store.UserContractRedirectRuleParameterValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RuleParameterValue">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContractRedirectRuleParameterValue">
+              <PropertyRef Name="RuleParameterValueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContractRedirectRuleParameterValue_UserContractRedirect">
+          <End Role="UserContractRedirect" Type="Tag4sModel.Store.UserContractRedirect" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserContractRedirectRuleParameterValue" Type="Tag4sModel.Store.UserContractRedirectRuleParameterValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserContractRedirect">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContractRedirectRuleParameterValue">
+              <PropertyRef Name="UserContractRedirectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContractUri_UserContract">
+          <End Role="UserContract" Type="Tag4sModel.Store.UserContract" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserContractUri" Type="Tag4sModel.Store.UserContractUri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserContract">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContractUri">
+              <PropertyRef Name="UserContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPassword_User1">
+          <End Role="User" Type="Tag4sModel.Store.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserPassword" Type="Tag4sModel.Store.UserPassword" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPassword">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VolumDiscount_Contract">
+          <End Role="Contract" Type="Tag4sModel.Store.Contract" Multiplicity="1" />
+          <End Role="VolumDiscount" Type="Tag4sModel.Store.VolumDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contract">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VolumDiscount">
+              <PropertyRef Name="ContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Tag4sModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Tag4sEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Countries" EntityType="Tag4sModel.Country" />
+          <EntitySet Name="Genders" EntityType="Tag4sModel.Gender" />
+          <EntitySet Name="Menus" EntityType="Tag4sModel.Menu" />
+          <EntitySet Name="Nationalities" EntityType="Tag4sModel.Nationality" />
+          <EntitySet Name="Person" EntityType="Tag4sModel.Person" />
+          <EntitySet Name="PersonSettings" EntityType="Tag4sModel.PersonSetting" />
+          <EntitySet Name="Roles" EntityType="Tag4sModel.Role" />
+          <EntitySet Name="Translations" EntityType="Tag4sModel.Translation" />
+          <EntitySet Name="TranslationTypes" EntityType="Tag4sModel.TranslationType" />
+          <AssociationSet Name="FK_Person_Country" Association="Tag4sModel.FK_Person_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_Gender" Association="Tag4sModel.FK_Person_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu_Menu" Association="Tag4sModel.FK_Menu_Menu">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="Menu1" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_Nationality" Association="Tag4sModel.FK_Person_Nationality">
+            <End Role="Nationality" EntitySet="Nationalities" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonSetting_Person" Association="Tag4sModel.FK_PersonSetting_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="PersonSetting" EntitySet="PersonSettings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Translation_TranslationType" Association="Tag4sModel.FK_Translation_TranslationType">
+            <End Role="TranslationType" EntitySet="TranslationTypes" />
+            <End Role="Translation" EntitySet="Translations" />
+          </AssociationSet>
+          <AssociationSet Name="PersonRole" Association="Tag4sModel.PersonRole">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
+          <EntitySet Name="MenuChilds" EntityType="Tag4sModel.MenuChild" />
+          <EntitySet Name="MenuParents" EntityType="Tag4sModel.MenuParent" />
+          <EntitySet Name="TranslationWithTypes" EntityType="Tag4sModel.TranslationWithType" />
+          <EntitySet Name="Contracts" EntityType="Tag4sModel.Contract" />
+          <EntitySet Name="ContractTypes" EntityType="Tag4sModel.ContractType" />
+          <EntitySet Name="RandomUris" EntityType="Tag4sModel.RandomUri" />
+          <EntitySet Name="RedirectTypes" EntityType="Tag4sModel.RedirectType" />
+          <EntitySet Name="RedirectTypeValues" EntityType="Tag4sModel.RedirectTypeValue" />
+          <EntitySet Name="RuleParameters" EntityType="Tag4sModel.RuleParameter" />
+          <EntitySet Name="RuleParameterValues" EntityType="Tag4sModel.RuleParameterValue" />
+          <EntitySet Name="UserContractLogs" EntityType="Tag4sModel.UserContractLog" />
+          <EntitySet Name="UserContractRedirects" EntityType="Tag4sModel.UserContractRedirect" />
+          <EntitySet Name="UserRoles" EntityType="Tag4sModel.UserRole" />
+          <EntitySet Name="Weekdays" EntityType="Tag4sModel.Weekday" />
+          <AssociationSet Name="FK_Contract_ContractType" Association="Tag4sModel.FK_Contract_ContractType">
+            <End Role="ContractType" EntitySet="ContractTypes" />
+            <End Role="Contract" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RedirectTypeValue_RedirectType" Association="Tag4sModel.FK_RedirectTypeValue_RedirectType">
+            <End Role="RedirectType" EntitySet="RedirectTypes" />
+            <End Role="RedirectTypeValue" EntitySet="RedirectTypeValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RuleParameterValue_RuleParameter" Association="Tag4sModel.FK_RuleParameterValue_RuleParameter">
+            <End Role="RuleParameter" EntitySet="RuleParameters" />
+            <End Role="RuleParameterValue" EntitySet="RuleParameterValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContractLog_UserContractRedirect" Association="Tag4sModel.FK_UserContractLog_UserContractRedirect">
+            <End Role="UserContractRedirect" EntitySet="UserContractRedirects" />
+            <End Role="UserContractLog" EntitySet="UserContractLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContractRedirect_Weekday" Association="Tag4sModel.FK_UserContractRedirect_Weekday">
+            <End Role="Weekday" EntitySet="Weekdays" />
+            <End Role="UserContractRedirect" EntitySet="UserContractRedirects" />
+          </AssociationSet>
+          <AssociationSet Name="UserContractRedirectRedirectTypeValue" Association="Tag4sModel.UserContractRedirectRedirectTypeValue">
+            <End Role="RedirectTypeValue" EntitySet="RedirectTypeValues" />
+            <End Role="UserContractRedirect" EntitySet="UserContractRedirects" />
+          </AssociationSet>
+          <AssociationSet Name="UserContractRedirectRuleParameterValue" Association="Tag4sModel.UserContractRedirectRuleParameterValue">
+            <End Role="RuleParameterValue" EntitySet="RuleParameterValues" />
+            <End Role="UserContractRedirect" EntitySet="UserContractRedirects" />
+          </AssociationSet>
+          <EntitySet Name="UserContracts" EntityType="Tag4sModel.UserContract" />
+          <AssociationSet Name="FK_UserContract_Contract" Association="Tag4sModel.FK_UserContract_Contract">
+            <End Role="Contract" EntitySet="Contracts" />
+            <End Role="UserContract" EntitySet="UserContracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContractLog_UserContract" Association="Tag4sModel.FK_UserContractLog_UserContract">
+            <End Role="UserContract" EntitySet="UserContracts" />
+            <End Role="UserContractLog" EntitySet="UserContractLogs" />
+          </AssociationSet>
+          <EntitySet Name="UserContractUris" EntityType="Tag4sModel.UserContractUri" />
+          <AssociationSet Name="FK_RandomUri_UserContractUri" Association="Tag4sModel.FK_RandomUri_UserContractUri">
+            <End Role="UserContractUri" EntitySet="UserContractUris" />
+            <End Role="RandomUri" EntitySet="RandomUris" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContractUri_UserContract" Association="Tag4sModel.FK_UserContractUri_UserContract">
+            <End Role="UserContract" EntitySet="UserContracts" />
+            <End Role="UserContractUri" EntitySet="UserContractUris" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContractLog_UserContractUri" Association="Tag4sModel.FK_UserContractLog_UserContractUri">
+            <End Role="UserContractUri" EntitySet="UserContractUris" />
+            <End Role="UserContractLog" EntitySet="UserContractLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContractRedirect_UserContractUri" Association="Tag4sModel.FK_UserContractRedirect_UserContractUri">
+            <End Role="UserContractUri" EntitySet="UserContractUris" />
+            <End Role="UserContractRedirect" EntitySet="UserContractRedirects" />
+          </AssociationSet>
+          <EntitySet Name="ContractRecipes" EntityType="Tag4sModel.ContractRecipe" />
+          <EntitySet Name="Invoices" EntityType="Tag4sModel.Invoice" />
+          <EntitySet Name="InvoiceLines" EntityType="Tag4sModel.InvoiceLine" />
+          <EntitySet Name="UserPasswords" EntityType="Tag4sModel.UserPassword" />
+          <AssociationSet Name="FK_UserContract_ContractRecipe" Association="Tag4sModel.FK_UserContract_ContractRecipe">
+            <End Role="ContractRecipe" EntitySet="ContractRecipes" />
+            <End Role="UserContract" EntitySet="UserContracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceLine_Invoice" Association="Tag4sModel.FK_InvoiceLine_Invoice">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="InvoiceLine" EntitySet="InvoiceLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceLine_UserContract" Association="Tag4sModel.FK_InvoiceLine_UserContract">
+            <End Role="UserContract" EntitySet="UserContracts" />
+            <End Role="InvoiceLine" EntitySet="InvoiceLines" />
+          </AssociationSet>
+          <EntitySet Name="ShoppingBaskets" EntityType="Tag4sModel.ShoppingBasket" />
+          <EntitySet Name="Users" EntityType="Tag4sModel.User" />
+          <EntitySet Name="VolumDiscounts" EntityType="Tag4sModel.VolumDiscount" />
+          <AssociationSet Name="FK_VolumDiscount_Contract" Association="Tag4sModel.FK_VolumDiscount_Contract">
+            <End Role="Contract" EntitySet="Contracts" />
+            <End Role="VolumDiscount" EntitySet="VolumDiscounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Country" Association="Tag4sModel.FK_User_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_User" Association="Tag4sModel.FK_Invoice_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoppingBasket_UserContract" Association="Tag4sModel.FK_ShoppingBasket_UserContract">
+            <End Role="UserContract" EntitySet="UserContracts" />
+            <End Role="ShoppingBasket" EntitySet="ShoppingBaskets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_User" Association="Tag4sModel.FK_User_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="User1" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_UserRole" Association="Tag4sModel.FK_User_UserRole">
+            <End Role="UserRole" EntitySet="UserRoles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserContract_User" Association="Tag4sModel.FK_UserContract_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserContract" EntitySet="UserContracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPassword_User1" Association="Tag4sModel.FK_UserPassword_User1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserPassword" EntitySet="UserPasswords" />
+          </AssociationSet>
+          <EntitySet Name="Tooltips" EntityType="Tag4sModel.Tooltip" />
+          <AssociationSet Name="FK_Tooltip_TranslationType" Association="Tag4sModel.FK_Tooltip_TranslationType">
+            <End Role="TranslationType" EntitySet="TranslationTypes" />
+            <End Role="Tooltip" EntitySet="Tooltips" />
+          </AssociationSet>
+          <EntitySet Name="TooltipWithTypes" EntityType="Tag4sModel.TooltipWithType" />
+          <EntitySet Name="Applications" EntityType="Tag4sModel.Application" />
+          <AssociationSet Name="FK_ContractRecipe_Contract" Association="Tag4sModel.FK_ContractRecipe_Contract">
+            <End Role="Contract" EntitySet="Contracts" />
+            <End Role="ContractRecipe" EntitySet="ContractRecipes" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="People" Relationship="Tag4sModel.FK_Person_Country" FromRole="Country" ToRole="Person" />
+          <NavigationProperty Name="Users" Relationship="Tag4sModel.FK_User_Country" FromRole="Country" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="People" Relationship="Tag4sModel.FK_Person_Gender" FromRole="Gender" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Entity" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="View" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="IsFirstParent" Type="Boolean" Nullable="false" />
+          <Property Name="ParentMenuId" Type="Guid" />
+          <NavigationProperty Name="Menu1" Relationship="Tag4sModel.FK_Menu_Menu" FromRole="Menu" ToRole="Menu1" />
+          <NavigationProperty Name="Menu2" Relationship="Tag4sModel.FK_Menu_Menu" FromRole="Menu1" ToRole="Menu" />
+        </EntityType>
+        <EntityType Name="Nationality">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="People" Relationship="Tag4sModel.FK_Person_Nationality" FromRole="Nationality" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="NickName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MobileNumber" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Street" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="HouseNumber" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CountryId" Type="Guid" />
+          <Property Name="NationalityId" Type="Guid" />
+          <Property Name="GenderId" Type="Guid" />
+          <NavigationProperty Name="Country" Relationship="Tag4sModel.FK_Person_Country" FromRole="Person" ToRole="Country" />
+          <NavigationProperty Name="Gender" Relationship="Tag4sModel.FK_Person_Gender" FromRole="Person" ToRole="Gender" />
+          <NavigationProperty Name="Nationality" Relationship="Tag4sModel.FK_Person_Nationality" FromRole="Person" ToRole="Nationality" />
+          <NavigationProperty Name="PersonSettings" Relationship="Tag4sModel.FK_PersonSetting_Person" FromRole="Person" ToRole="PersonSetting" />
+          <NavigationProperty Name="Roles" Relationship="Tag4sModel.PersonRole" FromRole="Person" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="PersonSetting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ItemKey" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ItemValue" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PersonId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Tag4sModel.FK_PersonSetting_Person" FromRole="PersonSetting" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DisplayAs" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="People" Relationship="Tag4sModel.PersonRole" FromRole="Role" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Translation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="TranslationTypeId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Entity" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="View" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="EN" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="NL" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DE" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="TranslationType" Relationship="Tag4sModel.FK_Translation_TranslationType" FromRole="Translation" ToRole="TranslationType" />
+        </EntityType>
+        <EntityType Name="TranslationType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Translations" Relationship="Tag4sModel.FK_Translation_TranslationType" FromRole="TranslationType" ToRole="Translation" />
+          <NavigationProperty Name="Tooltips" Relationship="Tag4sModel.FK_Tooltip_TranslationType" FromRole="TranslationType" ToRole="Tooltip" />
+        </EntityType>
+        <Association Name="FK_Person_Country">
+          <End Role="Country" Type="Tag4sModel.Country" Multiplicity="0..1" />
+          <End Role="Person" Type="Tag4sModel.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_Gender">
+          <End Role="Gender" Type="Tag4sModel.Gender" Multiplicity="0..1" />
+          <End Role="Person" Type="Tag4sModel.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menu_Menu">
+          <End Role="Menu" Type="Tag4sModel.Menu" Multiplicity="0..1" />
+          <End Role="Menu1" Type="Tag4sModel.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Menu1">
+              <PropertyRef Name="ParentMenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_Nationality">
+          <End Role="Nationality" Type="Tag4sModel.Nationality" Multiplicity="0..1" />
+          <End Role="Person" Type="Tag4sModel.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nationality">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="NationalityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonSetting_Person">
+          <End Role="Person" Type="Tag4sModel.Person" Multiplicity="1" />
+          <End Role="PersonSetting" Type="Tag4sModel.PersonSetting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonSetting">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Translation_TranslationType">
+          <End Role="TranslationType" Type="Tag4sModel.TranslationType" Multiplicity="1" />
+          <End Role="Translation" Type="Tag4sModel.Translation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TranslationType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Translation">
+              <PropertyRef Name="TranslationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PersonRole">
+          <End Role="Person" Type="Tag4sModel.Person" Multiplicity="*" />
+          <End Role="Role" Type="Tag4sModel.Role" Multiplicity="*" />
+        </Association>
+        <EntityType Name="MenuChild">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Entity" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="View" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="ParentMenuId" />
+        </EntityType>
+        <EntityType Name="MenuParent">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Entity" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="View" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TranslationWithType">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="KeyName" />
+          </Key>
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Entity" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="View" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EN" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NL" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DE" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KeyName" Nullable="false" MaxLength="511" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="ContractTypeId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Advertisement" Nullable="false" />
+          <Property Type="Int32" Name="MaxUris" Nullable="false" />
+          <Property Type="Int32" Name="MaxRedirectsPerUri" Nullable="false" />
+          <Property Type="Decimal" Name="Price" Precision="18" Scale="2" />
+          <NavigationProperty Name="ContractType" Relationship="Tag4sModel.FK_Contract_ContractType" FromRole="Contract" ToRole="ContractType" />
+          <NavigationProperty Name="UserContracts" Relationship="Tag4sModel.FK_UserContract_Contract" FromRole="Contract" ToRole="UserContract" />
+          <NavigationProperty Name="VolumDiscounts" Relationship="Tag4sModel.FK_VolumDiscount_Contract" FromRole="Contract" ToRole="VolumDiscount" />
+          <NavigationProperty Name="ContractRecipes" Relationship="Tag4sModel.FK_ContractRecipe_Contract" FromRole="Contract" ToRole="ContractRecipe" />
+        </EntityType>
+        <EntityType Name="ContractType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contracts" Relationship="Tag4sModel.FK_Contract_ContractType" FromRole="ContractType" ToRole="Contract" />
+        </EntityType>
+        <EntityType Name="RandomUri">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Uri" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="RandomParameter" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Guid" Name="UserContractUriId" Nullable="false" />
+          <NavigationProperty Name="UserContractUri" Relationship="Tag4sModel.FK_RandomUri_UserContractUri" FromRole="RandomUri" ToRole="UserContractUri" />
+        </EntityType>
+        <EntityType Name="RedirectType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FriendlyName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RedirectTypeValues" Relationship="Tag4sModel.FK_RedirectTypeValue_RedirectType" FromRole="RedirectType" ToRole="RedirectTypeValue" />
+        </EntityType>
+        <EntityType Name="RedirectTypeValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="RedirectTypeId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RedirectType" Relationship="Tag4sModel.FK_RedirectTypeValue_RedirectType" FromRole="RedirectTypeValue" ToRole="RedirectType" />
+          <NavigationProperty Name="UserContractRedirects" Relationship="Tag4sModel.UserContractRedirectRedirectTypeValue" FromRole="RedirectTypeValue" ToRole="UserContractRedirect" />
+        </EntityType>
+        <EntityType Name="RuleParameter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RuleParameterValues" Relationship="Tag4sModel.FK_RuleParameterValue_RuleParameter" FromRole="RuleParameter" ToRole="RuleParameterValue" />
+        </EntityType>
+        <EntityType Name="RuleParameterValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="RuleParameterId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <NavigationProperty Name="RuleParameter" Relationship="Tag4sModel.FK_RuleParameterValue_RuleParameter" FromRole="RuleParameterValue" ToRole="RuleParameter" />
+          <NavigationProperty Name="UserContractRedirects" Relationship="Tag4sModel.UserContractRedirectRuleParameterValue" FromRole="RuleParameterValue" ToRole="UserContractRedirect" />
+        </EntityType>
+        <EntityType Name="UserContractLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="UserContractId" Nullable="false" />
+          <Property Type="DateTime" Name="DateTime" Nullable="false" Precision="3" />
+          <Property Type="String" Name="UserAgent" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Host" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ResultUri" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="UserContractUri" />
+          <Property Type="Guid" Name="UserContractRedirect" />
+          <NavigationProperty Name="UserContractRedirect1" Relationship="Tag4sModel.FK_UserContractLog_UserContractRedirect" FromRole="UserContractLog" ToRole="UserContractRedirect" />
+          <NavigationProperty Name="UserContract" Relationship="Tag4sModel.FK_UserContractLog_UserContract" FromRole="UserContractLog" ToRole="UserContract" />
+          <NavigationProperty Name="UserContractUri1" Relationship="Tag4sModel.FK_UserContractLog_UserContractUri" FromRole="UserContractLog" ToRole="UserContractUri" />
+        </EntityType>
+        <EntityType Name="UserContractRedirect">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="UserContractUri" Nullable="false" />
+          <Property Type="DateTime" Name="DateTimeValueStart" Precision="3" />
+          <Property Type="DateTime" Name="DateTimeValueStop" Precision="3" />
+          <Property Type="Int32" Name="DayOfTheWeekValue" />
+          <Property Type="Int32" Name="TimeOfDayHourStart" />
+          <Property Type="Int32" Name="TimeOfDayHourEnd" />
+          <Property Type="Int32" Name="TimeOfDayMinuteStart" />
+          <Property Type="Int32" Name="TimeOfDayMinuteEnd" />
+          <Property Type="Int32" Name="Counter" />
+          <Property Type="String" Name="UserAgent" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Enabled" />
+          <Property Type="Boolean" Name="UniqueIP" />
+          <NavigationProperty Name="UserContractLogs" Relationship="Tag4sModel.FK_UserContractLog_UserContractRedirect" FromRole="UserContractRedirect" ToRole="UserContractLog" />
+          <NavigationProperty Name="Weekday" Relationship="Tag4sModel.FK_UserContractRedirect_Weekday" FromRole="UserContractRedirect" ToRole="Weekday" />
+          <NavigationProperty Name="RedirectTypeValues" Relationship="Tag4sModel.UserContractRedirectRedirectTypeValue" FromRole="UserContractRedirect" ToRole="RedirectTypeValue" />
+          <NavigationProperty Name="RuleParameterValues" Relationship="Tag4sModel.UserContractRedirectRuleParameterValue" FromRole="UserContractRedirect" ToRole="RuleParameterValue" />
+          <NavigationProperty Name="UserContractUri1" Relationship="Tag4sModel.FK_UserContractRedirect_UserContractUri" FromRole="UserContractRedirect" ToRole="UserContractUri" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Tag4sModel.FK_User_UserRole" FromRole="UserRole" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Weekday">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserContractRedirects" Relationship="Tag4sModel.FK_UserContractRedirect_Weekday" FromRole="Weekday" ToRole="UserContractRedirect" />
+        </EntityType>
+        <Association Name="FK_Contract_ContractType">
+          <End Type="Tag4sModel.ContractType" Role="ContractType" Multiplicity="1" />
+          <End Type="Tag4sModel.Contract" Role="Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContractType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="ContractTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RedirectTypeValue_RedirectType">
+          <End Type="Tag4sModel.RedirectType" Role="RedirectType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Tag4sModel.RedirectTypeValue" Role="RedirectTypeValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RedirectType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RedirectTypeValue">
+              <PropertyRef Name="RedirectTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RuleParameterValue_RuleParameter">
+          <End Type="Tag4sModel.RuleParameter" Role="RuleParameter" Multiplicity="1" />
+          <End Type="Tag4sModel.RuleParameterValue" Role="RuleParameterValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RuleParameter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RuleParameterValue">
+              <PropertyRef Name="RuleParameterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContractLog_UserContractRedirect">
+          <End Type="Tag4sModel.UserContractRedirect" Role="UserContractRedirect" Multiplicity="0..1" />
+          <End Type="Tag4sModel.UserContractLog" Role="UserContractLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserContractRedirect">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContractLog">
+              <PropertyRef Name="UserContractRedirect" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContractRedirect_Weekday">
+          <End Type="Tag4sModel.Weekday" Role="Weekday" Multiplicity="0..1" />
+          <End Type="Tag4sModel.UserContractRedirect" Role="UserContractRedirect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Weekday">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContractRedirect">
+              <PropertyRef Name="DayOfTheWeekValue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserContractRedirectRedirectTypeValue">
+          <End Type="Tag4sModel.RedirectTypeValue" Role="RedirectTypeValue" Multiplicity="*" />
+          <End Type="Tag4sModel.UserContractRedirect" Role="UserContractRedirect" Multiplicity="*" />
+        </Association>
+        <Association Name="UserContractRedirectRuleParameterValue">
+          <End Type="Tag4sModel.RuleParameterValue" Role="RuleParameterValue" Multiplicity="*" />
+          <End Type="Tag4sModel.UserContractRedirect" Role="UserContractRedirect" Multiplicity="*" />
+        </Association>
+        <EntityType Name="UserContract">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="ContractId" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="EndDate" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Uri" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Enabled" />
+          <Property Type="String" Name="TransactionId" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="eId" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contract" Relationship="Tag4sModel.FK_UserContract_Contract" FromRole="UserContract" ToRole="Contract" />
+          <NavigationProperty Name="UserContractLogs" Relationship="Tag4sModel.FK_UserContractLog_UserContract" FromRole="UserContract" ToRole="UserContractLog" />
+          <Property Type="Guid" Name="ContractRecipeId" />
+          <NavigationProperty Name="UserContractUris" Relationship="Tag4sModel.FK_UserContractUri_UserContract" FromRole="UserContract" ToRole="UserContractUri" />
+          <NavigationProperty Name="ContractRecipe" Relationship="Tag4sModel.FK_UserContract_ContractRecipe" FromRole="UserContract" ToRole="ContractRecipe" />
+          <NavigationProperty Name="InvoiceLines" Relationship="Tag4sModel.FK_InvoiceLine_UserContract" FromRole="UserContract" ToRole="InvoiceLine" />
+          <NavigationProperty Name="ShoppingBaskets" Relationship="Tag4sModel.FK_ShoppingBasket_UserContract" FromRole="UserContract" ToRole="ShoppingBasket" />
+          <NavigationProperty Name="User" Relationship="Tag4sModel.FK_UserContract_User" FromRole="UserContract" ToRole="User" />
+          <Property Type="DateTime" Name="LastPaid" Precision="0" />
+          <Property Type="DateTime" Name="Created" Precision="0" />
+        </EntityType>
+        <Association Name="FK_UserContract_Contract">
+          <End Type="Tag4sModel.Contract" Role="Contract" Multiplicity="1" />
+          <End Type="Tag4sModel.UserContract" Role="UserContract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contract">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContract">
+              <PropertyRef Name="ContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContractLog_UserContract">
+          <End Type="Tag4sModel.UserContract" Role="UserContract" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Tag4sModel.UserContractLog" Role="UserContractLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserContract">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContractLog">
+              <PropertyRef Name="UserContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserContractUri">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="UserContractId" Nullable="false" />
+          <Property Type="String" Name="Uri" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Enabled" Nullable="false" />
+          <Property Type="Int32" Name="RandomFunction" Nullable="false" />
+          <NavigationProperty Name="RandomUris" Relationship="Tag4sModel.FK_RandomUri_UserContractUri" FromRole="UserContractUri" ToRole="RandomUri" />
+          <NavigationProperty Name="UserContract" Relationship="Tag4sModel.FK_UserContractUri_UserContract" FromRole="UserContractUri" ToRole="UserContract" />
+          <NavigationProperty Name="UserContractLogs" Relationship="Tag4sModel.FK_UserContractLog_UserContractUri" FromRole="UserContractUri" ToRole="UserContractLog" />
+          <NavigationProperty Name="UserContractRedirects" Relationship="Tag4sModel.FK_UserContractRedirect_UserContractUri" FromRole="UserContractUri" ToRole="UserContractRedirect" />
+        </EntityType>
+        <Association Name="FK_RandomUri_UserContractUri">
+          <End Type="Tag4sModel.UserContractUri" Role="UserContractUri" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Tag4sModel.RandomUri" Role="RandomUri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserContractUri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RandomUri">
+              <PropertyRef Name="UserContractUriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContractUri_UserContract">
+          <End Type="Tag4sModel.UserContract" Role="UserContract" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Tag4sModel.UserContractUri" Role="UserContractUri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserContract">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContractUri">
+              <PropertyRef Name="UserContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContractLog_UserContractUri">
+          <End Type="Tag4sModel.UserContractUri" Role="UserContractUri" Multiplicity="0..1" />
+          <End Type="Tag4sModel.UserContractLog" Role="UserContractLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserContractUri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContractLog">
+              <PropertyRef Name="UserContractUri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContractRedirect_UserContractUri">
+          <End Type="Tag4sModel.UserContractUri" Role="UserContractUri" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Tag4sModel.UserContractRedirect" Role="UserContractRedirect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserContractUri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContractRedirect">
+              <PropertyRef Name="UserContractUri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ContractRecipe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Code" Nullable="false" />
+          <NavigationProperty Name="UserContracts" Relationship="Tag4sModel.FK_UserContract_ContractRecipe" FromRole="ContractRecipe" ToRole="UserContract" />
+          <Property Type="Guid" Name="ContractId" Nullable="false" />
+          <Property Type="String" Name="Description" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="Int32" Name="Position" Nullable="false" />
+          <NavigationProperty Name="Contract" Relationship="Tag4sModel.FK_ContractRecipe_Contract" FromRole="ContractRecipe" ToRole="Contract" />
+          <Property Type="String" Name="CssClass" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="DateTime" Name="Date" Nullable="false" Precision="0" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="VAT" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Number" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="InvoiceLines" Relationship="Tag4sModel.FK_InvoiceLine_Invoice" FromRole="Invoice" ToRole="InvoiceLine" />
+          <NavigationProperty Name="User" Relationship="Tag4sModel.FK_Invoice_User" FromRole="Invoice" ToRole="User" />
+          <Property Type="String" Name="TransactionId" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Paid" />
+          <Property Type="Int32" Name="Quantity" />
+        </EntityType>
+        <EntityType Name="InvoiceLine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="InvoiceId" Nullable="false" />
+          <Property Type="Guid" Name="UserContractId" Nullable="false" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="VAT" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="Invoice" Relationship="Tag4sModel.FK_InvoiceLine_Invoice" FromRole="InvoiceLine" ToRole="Invoice" />
+          <NavigationProperty Name="UserContract" Relationship="Tag4sModel.FK_InvoiceLine_UserContract" FromRole="InvoiceLine" ToRole="UserContract" />
+        </EntityType>
+        <EntityType Name="UserPassword">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Boolean" Name="IsAccountAdmin" Nullable="false" />
+          <Property Type="Boolean" Name="IsReset" />
+          <Property Type="String" Name="EmailAddress" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Tag4sModel.FK_UserPassword_User1" FromRole="UserPassword" ToRole="User" />
+          <Property Type="String" Name="FullName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="CanStatistics" />
+          <Property Type="Boolean" Name="CanQr" />
+          <Property Type="Boolean" Name="CanFinance" />
+          <Property Type="Boolean" Name="IsDisabled" />
+        </EntityType>
+        <Association Name="FK_UserContract_ContractRecipe">
+          <End Type="Tag4sModel.ContractRecipe" Role="ContractRecipe" Multiplicity="0..1" />
+          <End Type="Tag4sModel.UserContract" Role="UserContract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContractRecipe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContract">
+              <PropertyRef Name="ContractRecipeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceLine_Invoice">
+          <End Type="Tag4sModel.Invoice" Role="Invoice" Multiplicity="1" />
+          <End Type="Tag4sModel.InvoiceLine" Role="InvoiceLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InvoiceLine">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceLine_UserContract">
+          <End Type="Tag4sModel.UserContract" Role="UserContract" Multiplicity="1" />
+          <End Type="Tag4sModel.InvoiceLine" Role="InvoiceLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserContract">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InvoiceLine">
+              <PropertyRef Name="UserContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ShoppingBasket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="UserContractId" Nullable="false" />
+          <Property Type="Double" Name="Price" Nullable="false" />
+          <NavigationProperty Name="UserContract" Relationship="Tag4sModel.FK_ShoppingBasket_UserContract" FromRole="ShoppingBasket" ToRole="UserContract" />
+          <Property Type="String" Name="TransactionId" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Firstname" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Lastname" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EmailAddress" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="UserRoleId" Nullable="false" />
+          <Property Type="Guid" Name="ReselerId" />
+          <Property Type="String" Name="eId" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Street" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="HouseNumber" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ZipCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="CountryId" />
+          <Property Type="String" Name="VAT" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KVK" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Company" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Country" Relationship="Tag4sModel.FK_User_Country" FromRole="User" ToRole="Country" />
+          <NavigationProperty Name="Invoices" Relationship="Tag4sModel.FK_Invoice_User" FromRole="User" ToRole="Invoice" />
+          <NavigationProperty Name="User1" Relationship="Tag4sModel.FK_User_User" FromRole="User" ToRole="User1" />
+          <NavigationProperty Name="User2" Relationship="Tag4sModel.FK_User_User" FromRole="User1" ToRole="User" />
+          <NavigationProperty Name="UserRole" Relationship="Tag4sModel.FK_User_UserRole" FromRole="User" ToRole="UserRole" />
+          <NavigationProperty Name="UserContracts" Relationship="Tag4sModel.FK_UserContract_User" FromRole="User" ToRole="UserContract" />
+          <NavigationProperty Name="UserPasswords" Relationship="Tag4sModel.FK_UserPassword_User1" FromRole="User" ToRole="UserPassword" />
+          <Property Type="Int32" Name="Credit" />
+          <Property Type="String" Name="Title" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Prefix" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Organisation" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="DisableEditOwner" />
+          <Property Type="Boolean" Name="Disabled" />
+        </EntityType>
+        <EntityType Name="VolumDiscount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="ContractId" Nullable="false" />
+          <Property Type="Int32" Name="CountFrom" Nullable="false" />
+          <Property Type="Int32" Name="CountTo" Nullable="false" />
+          <Property Type="Double" Name="Price" Nullable="false" />
+          <NavigationProperty Name="Contract" Relationship="Tag4sModel.FK_VolumDiscount_Contract" FromRole="VolumDiscount" ToRole="Contract" />
+        </EntityType>
+        <Association Name="FK_VolumDiscount_Contract">
+          <End Type="Tag4sModel.Contract" Role="Contract" Multiplicity="1" />
+          <End Type="Tag4sModel.VolumDiscount" Role="VolumDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contract">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VolumDiscount">
+              <PropertyRef Name="ContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Country">
+          <End Type="Tag4sModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="Tag4sModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_User">
+          <End Type="Tag4sModel.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Tag4sModel.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoppingBasket_UserContract">
+          <End Type="Tag4sModel.UserContract" Role="UserContract" Multiplicity="1" />
+          <End Type="Tag4sModel.ShoppingBasket" Role="ShoppingBasket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserContract">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShoppingBasket">
+              <PropertyRef Name="UserContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_User">
+          <End Type="Tag4sModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="Tag4sModel.User" Role="User1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User1">
+              <PropertyRef Name="ReselerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_UserRole">
+          <End Type="Tag4sModel.UserRole" Role="UserRole" Multiplicity="1" />
+          <End Type="Tag4sModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserContract_User">
+          <End Type="Tag4sModel.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Tag4sModel.UserContract" Role="UserContract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserContract">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPassword_User1">
+          <End Type="Tag4sModel.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Tag4sModel.UserPassword" Role="UserPassword" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPassword">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tooltip">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="TranslationTypeId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Entity" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="View" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EN" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NL" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DE" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TranslationType" Relationship="Tag4sModel.FK_Tooltip_TranslationType" FromRole="Tooltip" ToRole="TranslationType" />
+        </EntityType>
+        <Association Name="FK_Tooltip_TranslationType">
+          <End Type="Tag4sModel.TranslationType" Role="TranslationType" Multiplicity="1" />
+          <End Type="Tag4sModel.Tooltip" Role="Tooltip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TranslationType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tooltip">
+              <PropertyRef Name="TranslationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TooltipWithType">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="KeyName" />
+          </Key>
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Entity" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="View" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EN" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NL" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DE" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KeyName" Nullable="false" MaxLength="511" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="LinkApplicationUser" Nullable="false" />
+          <Property Type="String" Name="TemplateUserRegistered" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TemplateUserForgotPassword" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TemplateProductOrdered" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SystemEmailAddress" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TemplateUserRegisteredSubject" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TemplateUserForgotPasswordSubject" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TemplateProductOrderedSubject" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_ContractRecipe_Contract">
+          <End Type="Tag4sModel.Contract" Role="Contract" Multiplicity="1" />
+          <End Type="Tag4sModel.ContractRecipe" Role="ContractRecipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contract">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContractRecipe">
+              <PropertyRef Name="ContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Tag4sModelStoreContainer" CdmEntityContainer="Tag4sEntities">
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="Tag4sModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="Tag4sModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="Tag4sModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Entity" ColumnName="Entity" />
+                <ScalarProperty Name="View" ColumnName="View" />
+                <ScalarProperty Name="IsFirstParent" ColumnName="IsFirstParent" />
+                <ScalarProperty Name="ParentMenuId" ColumnName="ParentMenuId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nationalities">
+            <EntityTypeMapping TypeName="Tag4sModel.Nationality">
+              <MappingFragment StoreEntitySet="Nationality">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person">
+            <EntityTypeMapping TypeName="Tag4sModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="NationalityId" ColumnName="NationalityId" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonSettings">
+            <EntityTypeMapping TypeName="Tag4sModel.PersonSetting">
+              <MappingFragment StoreEntitySet="PersonSetting">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ItemKey" ColumnName="ItemKey" />
+                <ScalarProperty Name="ItemValue" ColumnName="ItemValue" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="Tag4sModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DisplayAs" ColumnName="DisplayAs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Translations">
+            <EntityTypeMapping TypeName="Tag4sModel.Translation">
+              <MappingFragment StoreEntitySet="Translation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TranslationTypeId" ColumnName="TranslationTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Entity" ColumnName="Entity" />
+                <ScalarProperty Name="View" ColumnName="View" />
+                <ScalarProperty Name="EN" ColumnName="EN" />
+                <ScalarProperty Name="NL" ColumnName="NL" />
+                <ScalarProperty Name="DE" ColumnName="DE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TranslationTypes">
+            <EntityTypeMapping TypeName="Tag4sModel.TranslationType">
+              <MappingFragment StoreEntitySet="TranslationType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="PersonRole" TypeName="Tag4sModel.PersonRole" StoreEntitySet="PersonRole">
+            <EndProperty Name="Person">
+              <ScalarProperty Name="Id" ColumnName="PersonId" />
+            </EndProperty>
+            <EndProperty Name="Role">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="MenuChilds">
+            <EntityTypeMapping TypeName="Tag4sModel.MenuChild">
+              <MappingFragment StoreEntitySet="MenuChild">
+                <ScalarProperty Name="ParentMenuId" ColumnName="ParentMenuId" />
+                <ScalarProperty Name="View" ColumnName="View" />
+                <ScalarProperty Name="Entity" ColumnName="Entity" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuParents">
+            <EntityTypeMapping TypeName="Tag4sModel.MenuParent">
+              <MappingFragment StoreEntitySet="MenuParent">
+                <ScalarProperty Name="View" ColumnName="View" />
+                <ScalarProperty Name="Entity" ColumnName="Entity" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TranslationWithTypes">
+            <EntityTypeMapping TypeName="Tag4sModel.TranslationWithType">
+              <MappingFragment StoreEntitySet="TranslationWithType">
+                <ScalarProperty Name="KeyName" ColumnName="KeyName" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="DE" ColumnName="DE" />
+                <ScalarProperty Name="NL" ColumnName="NL" />
+                <ScalarProperty Name="EN" ColumnName="EN" />
+                <ScalarProperty Name="View" ColumnName="View" />
+                <ScalarProperty Name="Entity" ColumnName="Entity" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contracts">
+            <EntityTypeMapping TypeName="Tag4sModel.Contract">
+              <MappingFragment StoreEntitySet="Contract">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="MaxRedirectsPerUri" ColumnName="MaxRedirectsPerUri" />
+                <ScalarProperty Name="MaxUris" ColumnName="MaxUris" />
+                <ScalarProperty Name="Advertisement" ColumnName="Advertisement" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContractTypeId" ColumnName="ContractTypeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContractTypes">
+            <EntityTypeMapping TypeName="Tag4sModel.ContractType">
+              <MappingFragment StoreEntitySet="ContractType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RandomUris">
+            <EntityTypeMapping TypeName="Tag4sModel.RandomUri">
+              <MappingFragment StoreEntitySet="RandomUri">
+                <ScalarProperty Name="UserContractUriId" ColumnName="UserContractUriId" />
+                <ScalarProperty Name="RandomParameter" ColumnName="RandomParameter" />
+                <ScalarProperty Name="Uri" ColumnName="Uri" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RedirectTypes">
+            <EntityTypeMapping TypeName="Tag4sModel.RedirectType">
+              <MappingFragment StoreEntitySet="RedirectType">
+                <ScalarProperty Name="FriendlyName" ColumnName="FriendlyName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RedirectTypeValues">
+            <EntityTypeMapping TypeName="Tag4sModel.RedirectTypeValue">
+              <MappingFragment StoreEntitySet="RedirectTypeValue">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RedirectTypeId" ColumnName="RedirectTypeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RuleParameters">
+            <EntityTypeMapping TypeName="Tag4sModel.RuleParameter">
+              <MappingFragment StoreEntitySet="RuleParameter">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RuleParameterValues">
+            <EntityTypeMapping TypeName="Tag4sModel.RuleParameterValue">
+              <MappingFragment StoreEntitySet="RuleParameterValue">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RuleParameterId" ColumnName="RuleParameterId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserContractLogs">
+            <EntityTypeMapping TypeName="Tag4sModel.UserContractLog">
+              <MappingFragment StoreEntitySet="UserContractLog">
+                <ScalarProperty Name="UserContractRedirect" ColumnName="UserContractRedirect" />
+                <ScalarProperty Name="UserContractUri" ColumnName="UserContractUri" />
+                <ScalarProperty Name="ResultUri" ColumnName="ResultUri" />
+                <ScalarProperty Name="Host" ColumnName="Host" />
+                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="UserContractId" ColumnName="UserContractId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserContractRedirects">
+            <EntityTypeMapping TypeName="Tag4sModel.UserContractRedirect">
+              <MappingFragment StoreEntitySet="UserContractRedirect">
+                <ScalarProperty Name="UniqueIP" ColumnName="UniqueIP" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+                <ScalarProperty Name="Counter" ColumnName="Counter" />
+                <ScalarProperty Name="TimeOfDayMinuteEnd" ColumnName="TimeOfDayMinuteEnd" />
+                <ScalarProperty Name="TimeOfDayMinuteStart" ColumnName="TimeOfDayMinuteStart" />
+                <ScalarProperty Name="TimeOfDayHourEnd" ColumnName="TimeOfDayHourEnd" />
+                <ScalarProperty Name="TimeOfDayHourStart" ColumnName="TimeOfDayHourStart" />
+                <ScalarProperty Name="DayOfTheWeekValue" ColumnName="DayOfTheWeekValue" />
+                <ScalarProperty Name="DateTimeValueStop" ColumnName="DateTimeValueStop" />
+                <ScalarProperty Name="DateTimeValueStart" ColumnName="DateTimeValueStart" />
+                <ScalarProperty Name="UserContractUri" ColumnName="UserContractUri" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="Tag4sModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Weekdays">
+            <EntityTypeMapping TypeName="Tag4sModel.Weekday">
+              <MappingFragment StoreEntitySet="Weekday">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UserContractRedirectRedirectTypeValue" TypeName="Tag4sModel.UserContractRedirectRedirectTypeValue" StoreEntitySet="UserContractRedirectRedirectTypeValue">
+            <EndProperty Name="UserContractRedirect">
+              <ScalarProperty Name="Id" ColumnName="UserContractRedirectId" />
+            </EndProperty>
+            <EndProperty Name="RedirectTypeValue">
+              <ScalarProperty Name="Id" ColumnName="RedirectTypeValueId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserContractRedirectRuleParameterValue" TypeName="Tag4sModel.UserContractRedirectRuleParameterValue" StoreEntitySet="UserContractRedirectRuleParameterValue">
+            <EndProperty Name="UserContractRedirect">
+              <ScalarProperty Name="Id" ColumnName="UserContractRedirectId" />
+            </EndProperty>
+            <EndProperty Name="RuleParameterValue">
+              <ScalarProperty Name="Id" ColumnName="RuleParameterValueId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="UserContracts">
+            <EntityTypeMapping TypeName="Tag4sModel.UserContract">
+              <MappingFragment StoreEntitySet="UserContract">
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastPaid" ColumnName="LastPaid" />
+                <ScalarProperty Name="ContractRecipeId" ColumnName="ContractRecipeId" />
+                <ScalarProperty Name="eId" ColumnName="eId" />
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Uri" ColumnName="Uri" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserContractUris">
+            <EntityTypeMapping TypeName="Tag4sModel.UserContractUri">
+              <MappingFragment StoreEntitySet="UserContractUri">
+                <ScalarProperty Name="RandomFunction" ColumnName="RandomFunction" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Uri" ColumnName="Uri" />
+                <ScalarProperty Name="UserContractId" ColumnName="UserContractId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContractRecipes">
+            <EntityTypeMapping TypeName="Tag4sModel.ContractRecipe">
+              <MappingFragment StoreEntitySet="ContractRecipe">
+                <ScalarProperty Name="CssClass" ColumnName="CssClass" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="Tag4sModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="VAT" ColumnName="VAT" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceLines">
+            <EntityTypeMapping TypeName="Tag4sModel.InvoiceLine">
+              <MappingFragment StoreEntitySet="InvoiceLine">
+                <ScalarProperty Name="VAT" ColumnName="VAT" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="UserContractId" ColumnName="UserContractId" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPasswords">
+            <EntityTypeMapping TypeName="Tag4sModel.UserPassword">
+              <MappingFragment StoreEntitySet="UserPassword">
+                <ScalarProperty Name="IsDisabled" ColumnName="IsDisabled" />
+                <ScalarProperty Name="CanFinance" ColumnName="CanFinance" />
+                <ScalarProperty Name="CanQr" ColumnName="CanQr" />
+                <ScalarProperty Name="CanStatistics" ColumnName="CanStatistics" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="IsReset" ColumnName="IsReset" />
+                <ScalarProperty Name="IsAccountAdmin" ColumnName="IsAccountAdmin" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShoppingBaskets">
+            <EntityTypeMapping TypeName="Tag4sModel.ShoppingBasket">
+              <MappingFragment StoreEntitySet="ShoppingBasket">
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="UserContractId" ColumnName="UserContractId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Tag4sModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+                <ScalarProperty Name="DisableEditOwner" ColumnName="DisableEditOwner" />
+                <ScalarProperty Name="Organisation" ColumnName="Organisation" />
+                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Credit" ColumnName="Credit" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="KVK" ColumnName="KVK" />
+                <ScalarProperty Name="VAT" ColumnName="VAT" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="eId" ColumnName="eId" />
+                <ScalarProperty Name="ReselerId" ColumnName="ReselerId" />
+                <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VolumDiscounts">
+            <EntityTypeMapping TypeName="Tag4sModel.VolumDiscount">
+              <MappingFragment StoreEntitySet="VolumDiscount">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CountTo" ColumnName="CountTo" />
+                <ScalarProperty Name="CountFrom" ColumnName="CountFrom" />
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tooltips">
+            <EntityTypeMapping TypeName="Tag4sModel.Tooltip">
+              <MappingFragment StoreEntitySet="Tooltip">
+                <ScalarProperty Name="DE" ColumnName="DE" />
+                <ScalarProperty Name="NL" ColumnName="NL" />
+                <ScalarProperty Name="EN" ColumnName="EN" />
+                <ScalarProperty Name="View" ColumnName="View" />
+                <ScalarProperty Name="Entity" ColumnName="Entity" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TranslationTypeId" ColumnName="TranslationTypeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TooltipWithTypes">
+            <EntityTypeMapping TypeName="Tag4sModel.TooltipWithType">
+              <MappingFragment StoreEntitySet="TooltipWithType">
+                <ScalarProperty Name="KeyName" ColumnName="KeyName" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="DE" ColumnName="DE" />
+                <ScalarProperty Name="NL" ColumnName="NL" />
+                <ScalarProperty Name="EN" ColumnName="EN" />
+                <ScalarProperty Name="View" ColumnName="View" />
+                <ScalarProperty Name="Entity" ColumnName="Entity" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="Tag4sModel.Application">
+              <MappingFragment StoreEntitySet="Application">
+                <ScalarProperty Name="TemplateProductOrderedSubject" ColumnName="TemplateProductOrderedSubject" />
+                <ScalarProperty Name="TemplateUserForgotPasswordSubject" ColumnName="TemplateUserForgotPasswordSubject" />
+                <ScalarProperty Name="TemplateUserRegisteredSubject" ColumnName="TemplateUserRegisteredSubject" />
+                <ScalarProperty Name="SystemEmailAddress" ColumnName="SystemEmailAddress" />
+                <ScalarProperty Name="TemplateProductOrdered" ColumnName="TemplateProductOrdered" />
+                <ScalarProperty Name="TemplateUserForgotPassword" ColumnName="TemplateUserForgotPassword" />
+                <ScalarProperty Name="TemplateUserRegistered" ColumnName="TemplateUserRegistered" />
+                <ScalarProperty Name="LinkApplicationUser" ColumnName="LinkApplicationUser" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,25 @@
+﻿@using Tag4s.Helpers
+@model Boolean?
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+
+    var defaultValue = Convert.ToString(ViewData["DefaultValue"]); 
+
+    var yesValue = Convert.ToString(ViewData["YesValue"]); 
+    if (string.IsNullOrWhiteSpace(yesValue)) {yesValue= "Yes";}
+
+    var noValue = Convert.ToString(ViewData["NoValue"]);
+    if (string.IsNullOrWhiteSpace(noValue)) { noValue = "No"; }
+
+    var unknownValue = Convert.ToString(ViewData["UnknownValue"]);
+    if (string.IsNullOrWhiteSpace(unknownValue)) { unknownValue = ""; }
+        
+    if (translation != null)
+    {
+        yesValue = Html.DisplayNameTranslatedFor("", yesValue, yesValue, ref translation).ToString();
+        noValue = Html.DisplayNameTranslatedFor("", noValue, noValue, ref translation).ToString();
+        unknownValue = Html.DisplayNameTranslatedFor("", unknownValue, unknownValue, ref translation).ToString();
+    }
+}
+
+@Html.DropDownListFor(m => m, BoolUtility.SelectList(Model,unknownValue, yesValue, noValue, defaultValue))

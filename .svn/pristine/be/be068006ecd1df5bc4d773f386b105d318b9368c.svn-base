@@ -1,0 +1,145 @@
+﻿@model Tag4s.Data.UserContract
+@using Tag4s.Helpers;
+@using Tag4s.Data
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "ContractEditByWeekDay", "ContractEditByWeekDay", ref translation), controllername.TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+    switch (filter.Key)
+    {
+        case Tag4s.Filters.ViewFilterKeys.nofilter:
+        default:
+            ViewBag.Title = "ContractEditByWeekDay".TranslateString(ref translation);
+            break;
+    }
+    BreadCrum.SetName(ViewBag.Title, Session);
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+
+
+
+    </script>
+}
+
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Edit", "UserContract"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset class="Tag4s-fieldset">
+    
+        @if (Model.ContractRecipe.Code == 11)
+        {
+            <legend>@Html.DisplayNameTranslatedFor("", "UserContract", "UserContract", ref translation)</legend>
+
+            @Html.HiddenFor(model => model.UserId)
+            @Html.HiddenFor(model => model.ContractId)
+            @Html.HiddenFor(model => model.ContractRecipeId)
+            @Html.HiddenFor(model => model.eId)
+
+            @Html.DisplayFor(m => m, "UserContractCustom")
+            
+            <fieldset class="no-margin">
+                <div class="row">
+                    <label>
+                    </label>
+                </div>
+            </fieldset>
+            
+            var index = 0;
+            for (int i = 1; i <= 7; i++)
+            {
+                var UserContractUrisList = Model.UserContractUris.Where(row => row.UserContractRedirects.First().DayOfTheWeekValue == i).ToList();
+                var firstIndex = 0;
+                foreach (var userContractUris in UserContractUrisList)
+                {
+                    <input type="hidden" name="@string.Format("UserContractUris[{0}].Id", index)" value="@userContractUris.Id"/>
+                    <input type="hidden" name="@string.Format("UserContractUris[{0}].Name", index)" value="@userContractUris.Name"/>
+                    <input type="hidden" name="@string.Format("UserContractUris[{0}].UserContractId", index)" value="@Model.Id"/>
+                    <input type="hidden" name="@string.Format("UserContractUris[{0}].UserContractRedirects[{1}].UserContractUri", index, 0)" value="@userContractUris.Id"/>
+                    <input type="hidden" name="@string.Format("UserContractUris[{0}].UserContractRedirects[{1}].Id", index, 0)" value="@userContractUris.UserContractRedirects.First().Id"/>
+                    @*<input type="hidden" name="@string.Format("UserContractUris[{0}].UserContractRedirects[{1}].Enabled", index, 0)" value="@userContractUris.UserContractRedirects.First().Enabled"/>*@
+                    <input type="hidden" name="@string.Format("UserContractUris[{0}].UserContractRedirects[{1}].DayOfTheWeekValue", index, 0)" value="@userContractUris.UserContractRedirects.First().DayOfTheWeekValue"/>
+
+                    if (firstIndex == 0)
+                    {
+                        @Html.EditorFor(m => userContractUris, "customUserContractUri", string.Format("UserContractUris[{0}]", index))
+                        <span class="fromto">
+                            @Html.ActionLink(" ", "AddUserContractUri", "UserContract", new { userContractId = Model.Id, weekDay = i }, new { Class = "add-row" })
+                        </span>
+                    }
+                    else
+                    {
+                        <fieldset class="no-margin">
+                            <div class="row customContract">
+                                <span class="fromto">
+                                    @Html.DisplayNameTranslatedFor("", "From", "From", ref translation)
+                                    @Html.EditorFor(model => userContractUris.UserContractRedirects.First().DateTimeValueStart, "Date", string.Format("UserContractUris[{0}].UserContractRedirects[{1}].DateTimeValueStart", index, 0))
+                                    @Html.DisplayNameTranslatedFor("", "To", "To", ref translation)
+                                    @Html.EditorFor(model => userContractUris.UserContractRedirects.First().DateTimeValueStop, "Date", string.Format("UserContractUris[{0}].UserContractRedirects[{1}].DateTimeValueStop", index, 0))
+                                </span>
+                                @Html.EditorFor(model => userContractUris.Uri, null, string.Format("UserContractUris[{0}].Uri", index))
+                                @*@Html.ActionLink(" ", "AddUserContractUri", "UserContract", new { userContractId = Model.Id, weekDay = i }, new { Class = "add-row" })*@
+                                @Html.ActionLink(" ", "DeleteUserContractUri", "UserContract", new { userContractUriId = userContractUris.Id }, new { Class = "remove-row" })
+
+                            </div>
+                        </fieldset>
+            
+                    }
+                    index++;
+                    firstIndex++;
+                }
+            }
+            <fieldset class="no-margin">
+                <div class="row">
+                    <label>
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="no-margin">
+                <div class="row @(Html.HasErrorFor(m => m.Uri) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.Uri)">
+                    <label>
+                        @Html.DisplayNameTranslatedFor(model => model.Uri, ref translation, TranslationTypes.Entity, controllername, actionname)
+                    </label>
+                    @Html.EditorFor(model => model.Uri)
+                </div>
+            </fieldset>
+            <fieldset class="no-margin">
+                <div class="row @(Html.HasErrorFor(m => m.Name) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.Name)">
+                    <label>
+                        @Html.DisplayNameTranslatedFor(model => model.Name, ref translation, TranslationTypes.Entity, controllername, actionname)
+                    </label>
+                    @Html.EditorFor(model => model.Name)
+                </div>
+            </fieldset>
+            <fieldset class="no-margin">
+                <div class="row @(Html.HasErrorFor(m => m.Actief) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.Actief)">
+                    <label>
+                        @Html.DisplayNameTranslatedFor(model => model.Actief, ref translation, TranslationTypes.Entity, controllername, actionname)
+                    </label>
+                    @Html.EditorFor(model => model.Actief,"Checkbox")
+                </div>
+            </fieldset>
+
+            @Html.HiddenFor(m => m.StartDate)
+            @Html.HiddenFor(m => m.EndDate)
+        }
+    </fieldset>
+
+    <p>
+        <input type="submit" value="@Html.DisplayNameTranslatedFor("", "Save", "Save", ref translation)" />
+    </p>
+}
+
+<div>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</div>

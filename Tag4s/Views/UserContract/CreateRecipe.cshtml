@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Tag4s.Data.ContractRecipe>
+@using Tag4s.Helpers;
+@using Tag4s.Data
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "ContractRecipes", "ContractRecipes", ref translation), controllername.TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+    switch (filter.Key)
+    {
+        case Tag4s.Filters.ViewFilterKeys.nofilter:
+        default:
+            ViewBag.Title = "ContractRecipes".TranslateString(ref translation);
+            break;
+    }
+    BreadCrum.SetName(ViewBag.Title, Session);
+    Guid recipe1 = Model.Single(row => row.Code == 1).Id;
+    Guid recipe2 = Model.Single(row => row.Code == 2).Id;
+    Guid recipe3 = Model.Single(row => row.Code == 3).Id;
+    Guid recipe4 = Model.Single(row => row.Code == 4).Id;
+    Guid recipe5 = Model.Single(row => row.Code == 5).Id;
+    Guid recipe6 = Model.Single(row => row.Code == 6).Id;
+    Guid recipe7 = Model.Single(row => row.Code == 7).Id;
+    Guid recipe8 = Model.Single(row => row.Code == 8).Id;
+    //Guid recipe9 = Model.Single(row => row.Code == 9).Id;
+    Guid recipe10 = Model.Single(row => row.Code == 10).Id;
+    Guid recipe11 = Model.Single(row => row.Code == 11).Id;
+    //Guid recipe12 = Model.Single(row => row.Code == 12).Id;
+    //Guid recipe13 = Model.Single(row => row.Code == 13).Id;
+    Guid recipe14 = Model.Single(row => row.Code == 14).Id;
+    //Guid recipe15 = Model.Single(row => row.Code == 15).Id;
+    //Guid recipe16 = Model.Single(row => row.Code == 16).Id;
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+
+    
+    </script>
+}
+
+
+<h2>@ViewBag.Title</h2>
+@Html.ActionLink("RecipeByRule".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe1, ViewBag.userId, defaultContractId="18a77083-3b99-4ef9-8fbc-93a3e64009d0"}, new {Class = "button padded"})
+@Html.ActionLink("RecipeByDate".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe2, ViewBag.userId, defaultContractId="18a77083-3b99-4ef9-8fbc-93a3e64009d0"}, new {Class = "button padded"})
+@Html.ActionLink("RecipeByWeekDay".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe3, ViewBag.userId, defaultContractId="18a77083-3b99-4ef9-8fbc-93a3e64009d0"}, new {Class = "button padded"})
+<br/>
+@Html.ActionLink("RecipeByRandom1".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe4, ViewBag.userId, defaultContractId="18a77083-3b99-4ef9-8fbc-93a3e64009d0"}, new {Class = "button padded"})
+@Html.ActionLink("RecipeByRandom2".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe5, ViewBag.userId, defaultContractId="18a77083-3b99-4ef9-8fbc-93a3e64009d0"}, new {Class = "button padded"})
+@Html.ActionLink("RecipeByTime".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe6, ViewBag.userId, defaultContractId="18a77083-3b99-4ef9-8fbc-93a3e64009d0"}, new {Class = "button padded"})
+<br/>
+@Html.ActionLink("RecipeByRandom3".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe7, ViewBag.userId, defaultContractId="18a77083-3b99-4ef9-8fbc-93a3e64009d0"}, new {Class = "button padded"})
+@Html.ActionLink("RecipeByRandom4".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe8, ViewBag.userId, defaultContractId="18a77083-3b99-4ef9-8fbc-93a3e64009d0"}, new {Class = "button padded"})
+<br/>
+@Html.ActionLink("RecipeByDatePro".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe10, ViewBag.userId, defaultContractId="662277e4-d87a-45b6-9ba1-c40123e7b9aa"}, new {Class = "button padded"})
+@Html.ActionLink("RecipeByWeekDayPro".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe11, ViewBag.userId, defaultContractId="662277e4-d87a-45b6-9ba1-c40123e7b9aa"}, new {Class = "button padded"})
+@Html.ActionLink("RecipeByTimePro".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe14, ViewBag.userId, defaultContractId="662277e4-d87a-45b6-9ba1-c40123e7b9aa"}, new {Class = "button padded"})
+<br/>
+
+<p>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</p>

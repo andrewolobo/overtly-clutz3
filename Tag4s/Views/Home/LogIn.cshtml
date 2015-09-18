@@ -1,0 +1,48 @@
+﻿@using Tag4s
+@using Tag4s.Helpers
+@model Tag4s.Data.UserPassword 
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "LogIn", "LogIn", ref translation), controllername.TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+}
+@{
+    ViewBag.Title = Html.DisplayNameTranslatedFor("", "LogIn", "LogIn", ref translation).ToString();
+}
+
+@{ var errMsg = (Session.Pop(ErrorMessage.Name) as ErrorMessage) ?? new ErrorMessage(""); }
+
+
+<h2>@Html.DisplayNameTranslatedFor("", "LogIn", "LogIn", ref translation)</h2>
+@using (Html.BeginForm()){
+        <fieldset>
+            <h6>@errMsg.Value</h6>
+        <br/><br/>
+
+            <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.UserName) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.UserName)">
+                    <label>
+                        @Html.DisplayNameTranslatedFor("","Username","Username", ref translation)
+                    </label>
+                    @Html.TextBoxFor(model => model.UserName,new {@class="login-text"})
+                </div>
+            </fieldset>
+
+            <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Password) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Password)">
+                    <label>
+                        @Html.DisplayNameTranslatedFor("","Password","Password", ref translation)
+                    </label>
+                    @Html.PasswordFor(model => model.Password,new {@class="login-text"})
+                </div>
+                </fieldset>
+        </fieldset>
+        <p>
+@Html.ActionLink("Forgot Password".TranslateString(ref translation), "ForgotPassword", "Home")
+                        <input type="submit" id="btnSubmitLogin" value="@Html.DisplayNameTranslatedFor("", "Login", "Login", ref translation)" />
+        </p>
+    
+}

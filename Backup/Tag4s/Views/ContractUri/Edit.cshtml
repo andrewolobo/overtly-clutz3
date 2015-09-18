@@ -1,0 +1,200 @@
+﻿@model Tag4s.Data.UserContractUri
+@using Tag4s.Helpers;
+@using Tag4s.Filters;
+@using Tag4s.Data
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "Edit", "Edit", ref translation), controllername.TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+    switch (filter.Key)
+    {
+        case Tag4s.Filters.ViewFilterKeys.nofilter:
+        default:
+            ViewBag.Title = "ContractUrl".TranslateString(ref translation);
+            break;
+    }
+    BreadCrum.SetName(ViewBag.Title, Session);
+    var randomFunctions = new[]
+    {
+        new {Id = 0, Value = "No random".TranslateString(ref translation)},
+        new {Id = 1, Value = "x% with different url".TranslateString(ref translation)},
+        new {Id = 2, Value = "One in x clicks with different url".TranslateString(ref translation)},
+        new {Id = 3, Value = "Weigthed ratios".TranslateString(ref translation)},
+        new {Id = 4, Value = "Generic random".TranslateString(ref translation)}
+    };
+
+    var randomFunctionsList = new SelectList(randomFunctions,"Id","Value", Model != null ? Model.RandomFunction : 0);
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.Hidden("selectedTab", "0")
+
+
+    Html.Kendo().TabStrip()
+        .Name("UserContractUri")
+        .HighlightPath(true)
+        .Items(tabstrip =>
+        {
+            tabstrip.Add()
+                .Text("Basic info".TranslateString(ref translation))
+                .ContentHtmlAttributes(new {style = "height:580px;"})
+                .Content(@<text>
+                              <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Actief) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Actief)">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor(model => model.Actief, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                      </label>
+                                      @Html.EditorFor(model => model.Actief)
+                                  </div>
+                              </fieldset>
+
+                              <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Uri) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Uri)">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor("", "Redirect Url", "Redirect Url", ref translation)
+                                      </label>
+                                      @Html.EditorFor(model => model.Uri)
+                                  </div>
+                              </fieldset>
+
+
+                              <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.RandomFunction) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.RandomFunction)">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor(model => model.RandomFunction, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                      </label>
+                                      @Html.DropDownList("RandomFunction", randomFunctionsList)
+                                  </div>
+                              </fieldset>
+
+                              <fieldset class="no-margin">
+                                  <div class="row">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor("", "Default Url", "Default Url", ref translation)
+                                          @*@Html.DisplayNameTranslatedFor(model => model.UserContract.Name, ref translation, TranslationTypes.Entity, controllername, actionname)*@
+                                      </label>
+                                      <label>
+                                          @Html.DisplayFor(model => model.UserContract.Uri)
+                                      </label>
+
+                                  </div>
+                              </fieldset>
+
+
+@*                              <fieldset class="no-margin">
+                                  <div class="row @(ViewData.ModelState.ContainsKey("UserContract.Contract.Advertisement") ? "error_" : "")">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor("", "Advertisement", "Advertisement", ref translation)
+                                      </label>
+                                      @Html.CheckBoxFor(model => model.UserContract.Contract.Advertisement, new {@disabled = "disabled"})
+                                  </div>
+                              </fieldset>*@
+
+                              
+                          </text>);
+            if (Model.Id != Guid.Empty)
+            {
+                tabstrip.Add()
+                    .Text("Log info".TranslateString(ref translation))
+                    .ContentHtmlAttributes(new {style = "height:300px;"})
+                    .Content(@<text>
+                                  
+                                  @Html.DisplayFor(model => model.UserContractLogs, "UserContractLogs")
+                              
+                              </text>);
+                tabstrip.Add()
+                    .Text("Parameters".TranslateString(ref translation))
+                    .ContentHtmlAttributes(new {style = "height:300px;"})
+                    .Content(@<text>
+                                  
+                                  @(Html.Kendo().Grid(Model.UserContractRedirects)
+                                        .Name("GridParameters")
+                                        //.Localizable("nl-NL")
+                                        .ToolBar(commands => { commands.Template(c => Utilities.ActionImageWithText("Create".TranslateString(ref translation), customImages.Create, "Edit", "ContractRedirect", new {id = Guid.Empty, contractUriId = Model.Id})); })
+                                        .DataSource(dataBinding =>
+                                            dataBinding
+                                                .Server()
+                                                .Model(model => model.Id(m => m.Id))
+                                                .PageSize(10)
+                                                .Sort(sortOrder => sortOrder.Add(o => o.Name).Ascending())
+                                        )
+                                        .Columns(columns =>
+                                        {
+                                            columns.Bound(c => c.Name).Title("Name".TranslateString(ref translation));
+                                            columns.Bound(c => c.Actief).Title("Actief".TranslateString(ref translation));
+                                            columns.Template(navigation => Utilities.ActionImageNavigation("ContractRedirect", new {id = navigation.Id, contractUriId = Model.Id}, customImages.Edit, customImages.Delete))
+                                                .ClientTemplate(Utilities.ActionImageNavigation(controllername, new {id = "#=Id#", contractUriId = "#=Model.Id#"}, customImages.Edit, customImages.Delete).ToString()).Width(116).Title("");
+                                        })
+                                        .Filterable(filtering => filtering.Enabled(false))
+                                        .Resizable(resizing => resizing.Columns(true))
+                                        .Scrollable(scrolling => scrolling.Enabled(true).Height("auto"))
+                                        .Pageable(paging =>
+                                            paging.PageSizes(new int[] {10, 25, 50, 100, 200, 1000, 2000})
+                                                .PreviousNext(true)
+                                        )
+                                        .Sortable(sorting => sorting.Enabled(true).SortMode(GridSortMode.MultipleColumn)
+                                        )
+                                        )
+                              
+                              </text>);
+                if (Model.RandomFunction != 0)
+                {
+                    tabstrip.Add()
+                        .Text("RandomUris".TranslateString(ref translation))
+                        .ContentHtmlAttributes(new {style = "height:300px;"})
+                        .Content(@<text>
+                                  
+                                      @(Html.Kendo().Grid(Model.RandomUris)
+                                            .Name("GridRandomUris")
+                                            //.Localizable("nl-NL")
+                                            .ToolBar(commands => { commands.Template(c => Utilities.ActionImageNavigation("RandomUri", new {contractUriId = Model.Id}, customImages.Create)); })
+                                            .DataSource(dataBinding =>
+                                                dataBinding
+                                                    .Server()
+                                                    .Model(model => model.Id(m => m.Id))
+                                                    .PageSize(10)
+                                                    .Sort(sortOrder => sortOrder.Add(o => o.RandomParameter).Ascending())
+                                            )
+                                            .Columns(columns =>
+                                            {
+                                                columns.Bound(c => c.Uri).Title("Url".TranslateString(ref translation));
+                                                columns.Bound(c => c.RandomParameter).Title("RandomParameter".TranslateString(ref translation));
+                                                columns.Template(navigation => Utilities.ActionImageNavigation("RandomUri", new {id = navigation.Id}, customImages.Edit, customImages.Delete))
+                                                    .ClientTemplate(Utilities.ActionImageNavigation(controllername, new {id = "#=Id#"}, customImages.Edit, customImages.Delete).ToString()).Width(116).Title("");
+                                            })
+                                            .Filterable(filtering => filtering.Enabled(false))
+                                            .Resizable(resizing => resizing.Columns(true))
+                                            .Scrollable(scrolling => scrolling.Enabled(true).Height("auto"))
+                                            .Pageable(paging =>
+                                                paging.PageSizes(new int[] {10, 25, 50, 100, 200, 1000, 2000})
+                                                    .PreviousNext(true)
+                                            )
+                                            .Sortable(sorting => sorting.Enabled(true).SortMode(GridSortMode.MultipleColumn)
+                                            )
+                                            )
+                              
+                                  </text>);
+                }
+            }
+        })
+        .SelectedIndex(0)
+        //.Events(events => events
+        //    .Select("OnSelectCodeBlock")
+        //)
+        .Render();
+
+
+    <p>
+        <input type="submit" value="@Html.DisplayNameTranslatedFor("", "Save", "Save", ref translation)" />
+    </p>
+}
+
+<div>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</div>

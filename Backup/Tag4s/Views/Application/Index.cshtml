@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Tag4s.Data.Application>
+@using Tag4s.Helpers;
+@using Tag4s.Data
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "Index", "Index", ref translation), controllername.TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+    switch (filter.Key)
+    {
+        case Tag4s.Filters.ViewFilterKeys.nofilter:
+        default:
+            ViewBag.Title = "Invoice".TranslateString(ref translation);
+            break;
+    }
+    BreadCrum.SetName(ViewBag.Title, Session);
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        function collapseMVCGroupedGrids(e) {
+            var grid = $('#' + e.target.id);
+            $.each(
+                grid.find('td.t-group-cell').parent('tr'),
+                function (index, value) {
+                    $(value).attr('style', 'display: none;');
+                }
+            );
+            $.each(
+                grid
+                .find('.t-icon'),
+                function (index, value) {
+                    if ($(value).hasClass('t-collapse')) {
+                        $(value).removeClass('t-collapse').addClass('t-expand');
+                    }
+                });
+        }
+    </script>
+}
+
+
+<h2>@ViewBag.Title</h2>
+
+@(Html.Kendo().Grid(Model)
+      .Name("Grid")
+      //.Localizable("nl-NL")
+      .DataSource(dataBinding =>
+          dataBinding
+              .Server()
+              .Model(model => model.Id(m => m.Id))
+              .PageSize(10)
+      )
+      .Columns(columns =>
+      {
+          columns.Bound(c => c.Description).Title("Language".TranslateString(ref translation)).Sortable(false);
+          columns.Template(navigation => Utilities.ActionImageNavigation(controllername, new {language = navigation.Description}, customImages.Edit)).Width(116).Title("");
+          
+      })
+      .Filterable(filtering => filtering.Enabled(false))
+      .Resizable(resizing => resizing.Columns(true))
+      .Scrollable(scrolling => scrolling.Enabled(true).Height("auto"))
+      .Pageable(paging =>
+          paging.PageSizes(new int[] {25, 50, 100, 200, 1000, 2000})
+              .PreviousNext(true)
+      )
+      .Sortable(sorting => sorting.Enabled(true).SortMode(GridSortMode.MultipleColumn)
+      )
+      )
+  <p>
+  @BreadCrum.ActionLinkStepBack(Session, ref translation)
+  </p>

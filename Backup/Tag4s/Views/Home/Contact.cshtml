@@ -1,0 +1,46 @@
+﻿@using Tag4s.Helpers;
+
+
+
+@{
+    ViewBag.Title = "Contact";
+    
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="contactcol" style="float: left">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+
+<div class="contactcol" style=" float: right">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2451.852170472353!2d5.412024!3d52.082496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c64524b03d5353%3A0xf7c73f5d077c9c15!2sVoorstraat+31!5e0!3m2!1sen!2s!4v1399925148143" width="300" height="300" frameborder="0" style="border:0"></iframe>
+</div>
+    
+
+<div class="contacthor">
+</div>
+
+<div class="contact">
+    <div style="font-size: 16px"> Adresgegevens</div>
+    <br/> Tag4s B.V. 
+    <br/>Voorstraat 31 a
+    <br/>3931 Waudenberg
+</div>
+<br/>
+<div class="contact">
+   <div style="font-size: 16px">KVK: 56660987</div>
+   <div style="font-size: 16px">BTW: NL 8522 44 083 B01</div>
+</div>
+<br/>
+<div class="contact">
+       <div><a href="/Content/Tag4S  PRIVACY STATEMENT june 2014.pdf" download="@("PrivacyStatement".TranslateString(ref translation))" target="_new">@("PrivacyStatement".TranslateString(ref translation))</a></div>
+   <div><a href="/Content/TERMS OF SERVICE Tag4S 1006114.pdf" download="@("TermsOfService".TranslateString(ref translation))" target="_new">@("TermsOfService".TranslateString(ref translation))</a></div>
+</div>
+<br/>
+<br/>
+<a href="#" class="button signup">@("Stuur ons een e-mail".TranslateString(ref translation))</a>
+<div class="contacthor">
+</div>
+<a href="#" class="button signup">@("Bel +31 33 760 10 60".TranslateString(ref translation))</a>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7ce3a13dd82d48e99a2db70de080d916" Name="Diagram1">
+        <EntityTypeShape EntityType="Tag4sModel.Country" Width="1.5" PointX="0.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tag4sModel.Gender" Width="1.5" PointX="3.75" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tag4sModel.Menu" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tag4sModel.Nationality" Width="1.5" PointX="3.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tag4sModel.Person" Width="1.5" PointX="6" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tag4sModel.PersonSetting" Width="1.5" PointX="8.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tag4sModel.Role" Width="1.5" PointX="8.25" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tag4sModel.Translation" Width="1.5" PointX="14" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tag4sModel.TranslationType" Width="1.5" PointX="11.75" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="Tag4sModel.FK_Person_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="Tag4sModel.FK_Person_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="Tag4sModel.FK_Menu_Menu" ManuallyRouted="false" />
+        <AssociationConnector Association="Tag4sModel.FK_Person_Nationality" ManuallyRouted="false" />
+        <AssociationConnector Association="Tag4sModel.FK_PersonSetting_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="Tag4sModel.FK_Translation_TranslationType" ManuallyRouted="false" />
+        <AssociationConnector Association="Tag4sModel.PersonRole" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Tag4sModel.MenuChild" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Tag4sModel.MenuParent" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Tag4sModel.TranslationWithType" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Tag4sModel.Contract" Width="1.5" PointX="9" PointY="5.125" />
+        <EntityTypeShape EntityType="Tag4sModel.ContractType" Width="1.5" PointX="6.75" PointY="5.875" />
+        <EntityTypeShape EntityType="Tag4sModel.RandomUri" Width="1.5" PointX="15.75" PointY="22.125" />
+        <EntityTypeShape EntityType="Tag4sModel.RedirectType" Width="1.5" PointX="14.25" PointY="28.875" />
+        <EntityTypeShape EntityType="Tag4sModel.RedirectTypeValue" Width="1.5" PointX="16.5" PointY="28.75" />
+        <EntityTypeShape EntityType="Tag4sModel.RuleParameter" Width="1.5" PointX="14.25" PointY="26.125" />
+        <EntityTypeShape EntityType="Tag4sModel.RuleParameterValue" Width="1.5" PointX="16.5" PointY="25.875" />
+        <EntityTypeShape EntityType="Tag4sModel.UserContractLog" Width="1.5" PointX="15.75" PointY="17.5" />
+        <EntityTypeShape EntityType="Tag4sModel.UserRole" Width="1.5" PointX="0.75" PointY="12.125" />
+        <EntityTypeShape EntityType="Tag4sModel.Weekday" Width="1.5" PointX="16.5" PointY="14.5" />
+        <AssociationConnector Association="Tag4sModel.FK_Contract_ContractType" />
+        <AssociationConnector Association="Tag4sModel.FK_RedirectTypeValue_RedirectType" />
+        <AssociationConnector Association="Tag4sModel.FK_RuleParameterValue_RuleParameter" />
+        <EntityTypeShape EntityType="Tag4sModel.UserContractRedirect" Width="1.5" PointX="18.75" PointY="20.875" />
+        <AssociationConnector Association="Tag4sModel.FK_UserContractLog_UserContractRedirect" />
+        <AssociationConnector Association="Tag4sModel.FK_UserContractRedirect_Weekday" />
+        <AssociationConnector Association="Tag4sModel.UserContractRedirectRedirectTypeValue" />
+        <AssociationConnector Association="Tag4sModel.UserContractRedirectRuleParameterValue" />
+        <EntityTypeShape EntityType="Tag4sModel.UserContract" Width="1.5" PointX="11.25" PointY="13.5" />
+        <AssociationConnector Association="Tag4sModel.FK_UserContract_Contract" />
+        <AssociationConnector Association="Tag4sModel.FK_UserContractLog_UserContract" />
+        <EntityTypeShape EntityType="Tag4sModel.UserContractUri" Width="1.5" PointX="13.5" PointY="21.75" />
+        <AssociationConnector Association="Tag4sModel.FK_RandomUri_UserContractUri" />
+        <AssociationConnector Association="Tag4sModel.FK_UserContractUri_UserContract" />
+        <AssociationConnector Association="Tag4sModel.FK_UserContractLog_UserContractUri" />
+        <AssociationConnector Association="Tag4sModel.FK_UserContractRedirect_UserContractUri" />
+        <EntityTypeShape EntityType="Tag4sModel.ContractRecipe" Width="1.5" PointX="9" PointY="9.625" />
+        <EntityTypeShape EntityType="Tag4sModel.Invoice" Width="1.5" PointX="5.25" PointY="22.875" />
+        <EntityTypeShape EntityType="Tag4sModel.InvoiceLine" Width="1.5" PointX="13.5" PointY="18.625" />
+        <EntityTypeShape EntityType="Tag4sModel.UserPassword" Width="1.5" PointX="5.25" PointY="9.25" />
+        <AssociationConnector Association="Tag4sModel.FK_UserContract_ContractRecipe" />
+        <AssociationConnector Association="Tag4sModel.FK_InvoiceLine_Invoice" />
+        <AssociationConnector Association="Tag4sModel.FK_InvoiceLine_UserContract" />
+        <EntityTypeShape EntityType="Tag4sModel.ShoppingBasket" Width="1.5" PointX="13.5" PointY="13.125" />
+        <EntityTypeShape EntityType="Tag4sModel.User" Width="1.5" PointX="3" PointY="12.75" />
+        <EntityTypeShape EntityType="Tag4sModel.VolumDiscount" Width="1.5" PointX="11.25" PointY="6.625" />
+        <AssociationConnector Association="Tag4sModel.FK_VolumDiscount_Contract" />
+        <AssociationConnector Association="Tag4sModel.FK_User_Country" />
+        <AssociationConnector Association="Tag4sModel.FK_Invoice_User" />
+        <AssociationConnector Association="Tag4sModel.FK_ShoppingBasket_UserContract" />
+        <AssociationConnector Association="Tag4sModel.FK_User_User" />
+        <AssociationConnector Association="Tag4sModel.FK_User_UserRole" />
+        <AssociationConnector Association="Tag4sModel.FK_UserContract_User" />
+        <AssociationConnector Association="Tag4sModel.FK_UserPassword_User1" />
+        <EntityTypeShape EntityType="Tag4sModel.Tooltip" Width="1.5" PointX="14" PointY="4.625" />
+        <AssociationConnector Association="Tag4sModel.FK_Tooltip_TranslationType" />
+        <EntityTypeShape EntityType="Tag4sModel.TooltipWithType" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Tag4sModel.Application" Width="1.5" PointX="0.75" PointY="6.75" />
+        <AssociationConnector Association="Tag4sModel.FK_ContractRecipe_Contract" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

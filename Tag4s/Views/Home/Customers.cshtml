@@ -1,0 +1,70 @@
+﻿@model Tag4s.Models.AdministratorModel
+@using System.Web.Optimization;
+@using Tag4s.Data
+@using Tag4s.Helpers;
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "Customers", "Customers", ref translation), controllername.TranslateString(ref translation));
+    var user = ViewBag.User as User;
+    BreadCrum.SetName(ViewBag.Title, Session);
+}
+@section scripts
+{
+    <script>
+       
+    </script>
+    
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+<h2>@ViewBag.Title</h2>
+@(Html.Kendo().Grid(Model.Customers)
+      .Name("Grid")
+      //.Localizable("nl-NL")
+          .ToolBar(commands => { commands.Template(c => Utilities.ActionImage(customImages.Create, "Create", "User", new { filterkey = filter.Key, filterid = filter.Id, userRoleId = Utilities.UserRoleKlant() })); })
+      .DataSource(dataBinding =>
+          dataBinding
+              .Server()
+              .Model(model => model.Id(m => m.Id))
+              .PageSize(10)
+              .Sort(sortOrder => sortOrder.Add(o => o.Lastname).Ascending())
+      )
+      .Columns(columns =>
+      {
+          columns.Bound(c => c.User2.FullName).Title("Reseller".TranslateString(ref translation)).Sortable(false);
+          columns.Bound(c => c.Firstname).Title("FirstName".TranslateString(ref translation));
+          columns.Bound(c => c.Lastname).Title("Lastname".TranslateString(ref translation));
+          columns.Bound(c => c.EmailAddress).Title("EmailAddress".TranslateString(ref translation));
+          //columns.Bound(c => c.UserRole.Name).Title("Role".TranslateString(ref translation));
+          columns.Bound(c => c.Id).Sortable(false).Title(Html.DisplayNameTranslatedFor("", "Statistics", "Statistics", ref translation).ToString()).Template(c => Utilities.ActionImage(customImages.Csv, "PerUserContract", "Statistics", new { userId = c.Id, browserProperty = "0" }));
+          if (Utilities.IsAdministrator(Session))
+          {
+              columns.Bound(c => c.UserContracts.Count).Sortable(false).Title(Html.DisplayNameTranslatedFor("", "UserContracts", "UserContracts", ref translation).ToString())
+                  .Template(c => Utilities.ActionImageWithText(c.UserContracts.Count.ToString(), customImages.Tooltip, "Dashboard", "Home", new {userId = c.Id}));
+
+              columns.Template(navigation => Utilities.ActionImageNavigation("User", new { id = navigation.Id, userRoleId = Utilities.UserRoleKlant() }, customImages.Edit, customImages.Delete)).Width(116).Title("");
+          }
+          else
+          {
+              columns.Template(navigation => Utilities.ActionImageNavigation("User", new { id = navigation.Id, userRoleId = Utilities.UserRoleKlant() }, customImages.Edit)).Width(116).Title("");
+              
+          }
+      })
+      .Filterable(filtering => filtering.Enabled(false))
+      .Resizable(resizing => resizing.Columns(true))
+      .Scrollable(scrolling => scrolling.Enabled(true).Height("auto"))
+      .Pageable(paging =>
+          paging.PageSizes(new int[] {10, 25, 50, 100, 200, 1000, 2000})
+              .PreviousNext(true)
+      )
+      .Sortable(sorting => sorting.Enabled(true).SortMode(GridSortMode.MultipleColumn)
+      )
+      )
+
+<div>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</div>

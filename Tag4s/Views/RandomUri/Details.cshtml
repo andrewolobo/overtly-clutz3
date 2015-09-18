@@ -1,0 +1,42 @@
+﻿@using Tag4s.Data
+@using Tag4s.Helpers
+@model Tag4s.Data.RandomUri
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}-{2}", Html.DisplayNameTranslatedFor("", "Details", "Details", ref translation), controllername.TranslateString(ref translation), Model != null ? Model.Uri : "new".TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+}
+
+<h2>@ViewBag.Title</h2>
+
+<fieldset>
+    <legend>RandomUri</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Uri)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Uri)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RandomParameter)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RandomParameter)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserContractUri.Uri)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserContractUri.Uri)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,264 @@
+﻿@model Tag4s.Models.UserContractLogModel
+@using Tag4s.Helpers;
+@using Tag4s.Data
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "Index", "Index", ref translation), controllername.TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+    switch (filter.Key)
+    {
+        case Tag4s.Filters.ViewFilterKeys.nofilter:
+        default:
+            ViewBag.Title = "UserContractLog".TranslateString(ref translation);
+            break;
+    }
+    BreadCrum.SetName(ViewBag.Title, Session);
+}
+    
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm())
+{
+    @*@Html.AntiForgeryToken()
+    @Html.ValidationSummary(true) *@
+    @Html.HiddenFor(m=>m.UserId)
+    @Html.HiddenFor(m=>m.UserContractId)
+
+    <p>
+        <input type="submit" value="@Html.DisplayNameTranslatedFor("", "Submit", "Submit", ref translation)" />
+    </p>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m => m.StartDate) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.StartDate)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.StartDate, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.StartDate)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m => m.EndDate) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.EndDate)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.EndDate, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.EndDate)
+        </div>
+    </fieldset>
+
+    @(Html.Kendo().Grid(Model.UserContractLogs)
+          .Name("Grid")
+          //.Localizable("nl-NL")
+          //.ToolBar(commands => { commands.Template(c => Utilities.ActionImage(customImages.Create, "Create", controllername, new {filterkey = filter.Key, filterid = filter.Id})); })
+          .Columns(columns =>
+          {
+              columns.Bound(c => c.DateTime).Title("Date".TranslateString(ref translation));
+              columns.Bound(c => c.ResultUri).Title("Uri".TranslateString(ref translation));
+              columns.Bound(c => c.Host).Title("Host".TranslateString(ref translation));
+          })
+          .Filterable(filtering => filtering.Enabled(false))
+          .Resizable(resizing => resizing.Columns(true))
+          .Scrollable(scrolling => scrolling.Enabled(true).Height("auto"))
+          .Pageable(paging =>
+              paging.PageSizes(new int[] {25, 50, 100, 200, 1000, 2000})
+                  .PreviousNext(true)
+          )
+          .Sortable(sorting => sorting.Enabled(true).SortMode(GridSortMode.MultipleColumn)
+          )
+          )
+    <br/>
+    <br/>
+    var LogsPerDay = Model.UserContractLogs.Where(r => r.DateTime.Month == DateTime.Now.Month-1).GroupBy(g => g.DateTime.Day);
+    //hits-day
+    Html.Kendo().Chart(LogsPerDay.Select(row => new { Date = row.Key, Count = row.Count() }).OrderBy(r => r.Date)).Name("Uri-Day")
+        .Title("Logs / Day")
+        .Series(series => { series.Column(o => o.Count); })
+        .CategoryAxis(axis => axis.Categories(c => c.Date))
+        .Legend(legend => legend
+            .Visible(false)
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+            .Template("#= series.name #: #= value #")
+        )
+        .Render();
+    <br/>
+    <br/>
+    var LogsPerWeek = Model.UserContractLogs.GroupBy(g => g.DateTime.Date.DayOfWeek);
+    //hits-week
+    Html.Kendo().Chart(LogsPerWeek.Select(row => new { Date = row.Key, Count = row.Count() }).OrderBy(r => r.Date)).Name("Uri-Week")
+        .Title("Logs / WeekDay")
+        .Series(series => { series.Column(o => o.Count); })
+        .CategoryAxis(axis => axis.Categories(c => c.Date)) //must define weeks
+        .Legend(legend => legend
+            .Visible(false)
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+            .Template("#= series.name #: #= value #")
+        )
+        .Render();
+    <br/>
+    <br/>
+    var LogsPerMonth = Model.UserContractLogs.GroupBy(g => g.DateTime.Month);
+    //hits-month
+    Html.Kendo().Chart(LogsPerMonth.Select(row => new { Date = row.Key, Count = row.Count() }).OrderBy(r => r.Date)).Name("Uri-Month")
+        .Title("Logs / Month")
+        .Series(series => { series.Column(o => o.Count).Name("Uris"); })
+        .CategoryAxis(axis => axis.Categories(c => c.Date))
+        .Legend(legend => legend
+            .Visible(false)
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+            .Template("#= series.name #: #= value #")
+        )
+        .Render();
+    <br/>
+    <br/>
+    var LogsPerYear = Model.UserContractLogs.GroupBy(g => g.DateTime.Year);
+    //hits-year
+    Html.Kendo().Chart(LogsPerYear.Select(row => new { Date = row.Key, Count = row.Count() }).OrderBy(r => r.Date)).Name("Uri-Year")
+        .Title("Logs / Year")
+        .Series(series => { series.Column(o => o.Count); })
+        .CategoryAxis(axis => axis.Categories(c => c.Date))
+        .Legend(legend => legend
+            .Visible(false)
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+            .Template("#= series.name #: #= value #")
+        )
+        .Render();
+    <br/>
+    <br/>
+
+    //var PieLogs = Model.UserContractLogs.GroupBy(g => g.ResultUri);
+    //Html.Kendo().Chart(PieLogs).Name("ResultUri-Pie")
+    //    .Series(series => { series.Pie(PieLogs.Select(row=> new {category=row.Key, value=row.Count()}).ToArray()); })
+    //    //.CategoryAxis(axis => axis.Categories(c => c.DateTime.Day))
+    //    .Render();
+
+    var UriLogsDay = Model.UserContractLogs.GroupBy(g => g.DateTime.Date);
+    var sites = Model.UserContractLogs.Select(row => row.ResultUri).Distinct();
+    //hits-day
+    Html.Kendo().Chart(UriLogsDay.Select(row => new { Uri = row.Key, Count = row.Count() }).OrderBy(r => r.Uri)).Name("ResultUri-Day")
+        .Title("Logs / Day")
+        .Series(series =>
+        {
+            foreach (var site in sites)
+            {
+                var values = new List<int>();
+                foreach (var logs in UriLogsDay)
+                {
+                    var value = logs.Count(row => row.ResultUri == site);
+                    values.Add(value);
+                }
+                series.Column(values).Name(site);
+            }
+        })
+        .CategoryAxis(axis => axis
+            .Categories(c => c.Uri))
+        .Legend(legend => legend
+            .Visible(true)
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+            //.Template("#= series.name #: #= value #")
+            .Format("#=series.name= : #= value#")
+        )
+        .Render();
+    <br/>
+    <br/>
+    //hits-week
+    var UriLogsWeek = Model.UserContractLogs.GroupBy(g => g.DateTime.DayOfWeek);
+    Html.Kendo().Chart(UriLogsWeek.Select(row => new { Uri = row.Key, Count = row.Count() }).OrderBy(r => r.Uri)).Name("ResultUri-Week")
+        .Title("Logs / Week")
+        .Series(series =>
+        {
+            foreach (var site in sites)
+            {
+                var values = new List<int>();
+                foreach (var logs in UriLogsWeek)
+                {
+                    var value = logs.Count(row => row.ResultUri == site);
+                    values.Add(value);
+                }
+                series.Column(values).Name(site);
+            }
+        })
+        .CategoryAxis(axis => axis.Categories(c => c.Uri)) //must define weeks
+        .Legend(legend => legend
+            .Visible(true)
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+            .Template("#= series.name #: #= value #")
+        )
+        .Render();
+    <br/>
+    <br/>
+    //hits-month
+    var UriLogsMonth = Model.UserContractLogs.GroupBy(g => g.DateTime.Month);
+    Html.Kendo().Chart(UriLogsMonth.Select(row => new { Uri = row.Key, Count = row.Count() }).OrderBy(r => r.Uri)).Name("ResultUri-Month")
+        .Title("Logs / Month")
+        .Series(series =>
+        {
+            foreach (var site in sites)
+            {
+                var values = new List<int>();
+                foreach (var logs in UriLogsMonth)
+                {
+                    var value = logs.Count(row => row.ResultUri == site);
+                    values.Add(value);
+                }
+                series.Column(values).Name(site);
+            }
+        })
+        .CategoryAxis(axis => axis.Categories(c => c.Uri))
+        .Legend(legend => legend
+            .Visible(true)
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+            .Template("#= series.name #: #= value #")
+        )
+        .Render();
+    <br/>
+    <br/>
+    //hits-year
+    var UriLogsYear = Model.UserContractLogs.GroupBy(g => g.DateTime.Year);
+    Html.Kendo().Chart(UriLogsYear.Select(row => new { Uri = row.Key, Count = row.Count() }).OrderBy(r => r.Uri)).Name("ResultUri-Year")
+        .Title("Logs / Year")
+        .Series(series =>
+        {
+            foreach (var site in sites)
+            {
+                var values = new List<int>();
+                foreach (var logs in UriLogsYear)
+                {
+                    var value = logs.Count(row => row.ResultUri == site);
+                    values.Add(value);
+                }
+                series.Column(values).Name(site);
+            }
+        })
+        .CategoryAxis(axis => axis.Categories(c => c.Uri))
+        .Legend(legend => legend
+            .Visible(true)
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+            .Template("#= series.name #: #= value #")
+        )
+        .Render();
+}
+        
+
+<p>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</p>

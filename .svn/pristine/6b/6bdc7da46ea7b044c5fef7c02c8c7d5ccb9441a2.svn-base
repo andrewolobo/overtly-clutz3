@@ -1,0 +1,24 @@
+﻿@using Tag4s.Filters
+@model bool?
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as ViewFilter;
+    
+}
+@if (Model.HasValue)
+{
+    if (Model.Value)
+    {
+        <span class="command_icon Active"></span>
+    }
+    else
+    {
+        <span class="command_icon Inactive"></span>
+    }
+}
+else
+{
+    @*<span class="command_icon Inactive"></span>*@
+}

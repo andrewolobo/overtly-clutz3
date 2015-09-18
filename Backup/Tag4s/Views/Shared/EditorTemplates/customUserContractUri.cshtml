@@ -1,0 +1,29 @@
+@model Tag4s.Data.UserContractUri
+@using Tag4s.Data
+@using Tag4s.Filters
+@using Tag4s.Helpers
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    //ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "UserContract", "UserContract", ref translation), controllername.TranslateString(ref translation));
+    //BreadCrum.SetName(ViewBag.Title, Session);
+
+    var userContract = ViewData["UserContract"] as UserContract;
+}
+
+@Html.HiddenFor(m => m.Id)
+@Html.HiddenFor(m => m.UserContractId)
+@Html.HiddenFor(m => m.Name)
+@Html.HiddenFor(m => m.RandomFunction)  
+
+    <fieldset class="no-margin">
+        <div class="row">
+            <label>
+    @Html.CheckBoxFor(m => m.Enabled)
+    @(Model.UserContractRedirects.FirstOrDefault().Weekday.Name.TranslateString(ref translation))
+            </label>
+    @Html.EditorFor(m => m.Uri)
+        </div>
+    </fieldset>

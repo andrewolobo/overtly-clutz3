@@ -1,0 +1,142 @@
+﻿@model Tag4s.Data.UserContract
+@using System.Activities.Statements
+@using Tag4s.Data
+@using Tag4s.Filters
+@using Tag4s.Helpers
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    //ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "UserContract", "UserContract", ref translation), controllername.TranslateString(ref translation));
+    //BreadCrum.SetName(ViewBag.Title, Session);
+
+    var randomFunctions = new[]
+    {
+        new {Id = 0, Value = "No random".TranslateString(ref translation)},
+        new {Id = 1, Value = "x% with different url".TranslateString(ref translation)},
+        new {Id = 2, Value = "One in x clicks with different url".TranslateString(ref translation)},
+        new {Id = 3, Value = "Weigthed ratios".TranslateString(ref translation)},
+        new {Id = 4, Value = "Generic random".TranslateString(ref translation)}
+    };
+
+    var randomFunctionsText = new[]
+    {
+        new {Id = 0, Value = "No random".TranslateString(ref translation)},
+        new {Id = 1, Value = "% goes to".TranslateString(ref translation)},
+        new {Id = 2, Value = "th goes to".TranslateString(ref translation)},
+        new {Id = 3, Value = "% goes to".TranslateString(ref translation)},
+        new {Id = 4, Value = "Generic random".TranslateString(ref translation)}
+    };
+        
+}
+
+@if (Model != null)
+{
+    @(Html.Kendo().PanelBar()
+          .Name("panel")
+          .ExpandMode(PanelBarExpandMode.Multiple)
+          .Items(panelbar =>
+          {
+              panelbar.Add().Text("UserContractDisplay".TranslateString(ref translation))
+                  .Expanded(false)
+                  .Content(@<text>
+ 
+        <h2>@("BaseUrl".TranslateString(ref translation)): @(Model.Uri) @Html.DisplayFor(m => Model.Actief)</h2>
+@foreach (var userContractUri in Model.UserContractUris)
+{
+    var aindex = 0;
+    <fieldset>
+        <h3>@("AlternateUrl".TranslateString(ref translation)): @(userContractUri.Uri) @Html.DisplayFor(m => userContractUri.Actief)</h3>
+        @foreach (var userContractRedirect in userContractUri.UserContractRedirects)
+        {
+            if (aindex == 0)
+            {
+                <h4>@("ifRule".TranslateString(ref translation))</h4>
+            }
+            if (aindex>0 && aindex < userContractUri.UserContractRedirects.Count)
+            {
+                <h4>@("orRule".TranslateString(ref translation))</h4>
+            }
+            aindex++;
+            <div style="padding-left:20px;">
+                <h4>@(userContractRedirect.Name) @Html.DisplayFor(m => userContractRedirect.Actief)</h4>
+                @{
+                    
+                    if (userContractRedirect.WeekdayActive)
+                    {
+                        <h5>@("WeekdayActive".TranslateString(ref translation)) @(Tag4s.Helpers.DataHelper.WeekDays(ref translation).FirstOrDefault(row => row.Id == userContractRedirect.DayOfTheWeekValue).Name)</h5>
+                    }
+                    if (userContractRedirect.StartDatumActive)
+                    {
+                        <h5>@("StartDatum".TranslateString(ref translation)) @Html.DisplayFor(m => userContractRedirect.StartDatum)</h5>
+                    }
+                    if (userContractRedirect.StopDatumActive)
+                    {
+                        <h5>@("StopDatum".TranslateString(ref translation)) @Html.DisplayFor(m => userContractRedirect.StopDatum)</h5>
+                    }
+                    if (userContractRedirect.BeginTimeActive)
+                    {
+                        <h5>@("StartTijd".TranslateString(ref translation)) @Html.DisplayFor(m => userContractRedirect.StartTijd)</h5>
+                    }
+                    if (userContractRedirect.EndTimeActive)
+                    {
+                        <h5>@("StopTijd".TranslateString(ref translation)) @Html.DisplayFor(m => userContractRedirect.StopTijd)</h5>
+                    }
+                    var index = 0;
+                    if (userContractRedirect.RedirectTypeValues.Any())
+                     {
+                         <h5>@("then with browser data".TranslateString(ref translation))</h5>
+                         foreach (var redirectTypeValue in userContractRedirect.RedirectTypeValues)
+                         {
+                             @(redirectTypeValue.RedirectType.FriendlyName)<text> </text>
+                             @("isValue".TranslateString(ref translation))
+                             <text> </text>
+                             @(redirectTypeValue.Name)
+                             <text> </text>
+                             @(index++ < userContractRedirect.RedirectTypeValues.Count ? "andCombine".TranslateString(ref translation) : "")<br/>
+                         }
+                     }
+                    index = 0;
+                    if (userContractRedirect.RuleParameterValues.Any())
+                    {
+                    <h5>@("then with rule data".TranslateString(ref translation))</h5>
+                        foreach (var ruleParameterValue in userContractRedirect.RuleParameterValues)
+                        {
+                            @(ruleParameterValue.RuleParameter.Name)
+                            <text> </text>
+                            @("isValue".TranslateString(ref translation))
+                            <text> </text>
+                            @(ruleParameterValue.Name)
+                            <text> </text>
+                            @(index++ < userContractRedirect.RedirectTypeValues.Count ? "andCombine".TranslateString(ref translation) : "")<br/>
+
+                        }
+                    }
+                }
+            </div>
+        }
+
+        @if (userContractUri.RandomFunction > 0 && userContractUri.RandomUris.Any())
+        {
+            <h5>@("and randomized with".TranslateString(ref translation))</h5> @*
+        <h4>@randomFunctions.FirstOrDefault(row => row.Id == userContractUri.RandomFunction).Value</h4>*@
+            foreach (var randomUri in userContractUri.RandomUris)
+            {
+                if (userContractUri.RandomFunction < 4)
+                {
+                    @(randomUri.RandomParameter)@(randomFunctionsText[userContractUri.RandomFunction].Value)
+                    @(randomUri.Uri)<br/>
+                }
+                else
+                {
+                    @(randomUri.Uri)<br/>
+                }
+            }
+        }
+        
+    </fieldset>
+}
+                            </text>);
+          }))
+}

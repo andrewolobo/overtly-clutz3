@@ -1,0 +1,17 @@
+﻿@using Tag4s.Data
+@using Tag4s.Helpers
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+}
+@{
+    ViewBag.Title = Html.DisplayNameTranslatedFor("", "Settings", "Settings", ref translation).ToString();
+    var defaultTeams = ViewBag.DefaultTeamId as SelectList;
+    var user = ViewBag.User as Person;
+}
+
+
+<div style="display: block;width:100%; height:100%; position:relative">
+    <ul class="gallery" @*style="padding: 20px;"*@>
+    </ul>
+    </div>

@@ -1,0 +1,24 @@
+﻿@using Tag4s.Data
+@using Tag4s.Helpers
+@model Tag4s.Data.RuleParameterValue
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}-{2}", Html.DisplayNameTranslatedFor("", "Delete", "Delete", ref translation), controllername.TranslateString(ref translation), Model != null ? Model.Name : "new".TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+}
+
+<h2>Delete</h2>
+
+<h3>@Html.DisplayNameTranslatedFor("", "Are you sure you want to delete this?", "Are you sure you want to delete this?", ref translation)</h3>
+@Html.DisplayForModel()
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="@Html.DisplayNameTranslatedFor("", "Delete", "Delete", ref translation)" />
+        @BreadCrum.ActionLinkStepBack(Session, ref translation)
+    </p>
+}

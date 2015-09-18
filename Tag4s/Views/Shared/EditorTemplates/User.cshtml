@@ -1,0 +1,192 @@
+@model Tag4s.Data.User
+@using Tag4s.Data
+@using Tag4s.Filters
+@using Tag4s.Helpers
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    //ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "User", "User", ref translation), controllername.TranslateString(ref translation));
+    //BreadCrum.SetName(ViewBag.Title, Session);
+    var user = ViewBag.User as User;
+}
+
+<fieldset class="Tag4s-fieldset">
+    <legend>@Html.DisplayNameTranslatedFor("","User","User",ref translation)</legend>
+    
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Organisation) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Organisation)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=>m.Organisation, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.Organisation)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Title) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Title)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=>m.Title, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.Title)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Firstname) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Firstname)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.Firstname ,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.Firstname)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Prefix) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Prefix)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=>m.Prefix, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.Prefix)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Lastname) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Lastname)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.Lastname ,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.Lastname)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.EmailAddress) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.EmailAddress)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.EmailAddress ,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.EmailAddress)
+        </div>
+    </fieldset>
+
+    
+    @if (Utilities.IsAdministrator(Session) || true)
+    {
+        <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.UserRoleId) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.UserRoleId)">
+                <label>
+                    @Html.DisplayNameTranslatedFor(m=> m.UserRoleId ,ref translation, TranslationTypes.Entity, controllername, actionname)
+                </label>
+                @Html.DropDownList("UserRoleId", string.Empty)
+            </div> 
+        </fieldset>
+        
+        <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.ReselerId) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.ReselerId)">
+                <label>
+                    @Html.DisplayNameTranslatedFor(m=> m.ReselerId,ref translation, TranslationTypes.Entity, controllername, actionname)
+                </label>
+                @Html.DropDownList("ReselerId", string.Empty)
+            </div>
+        </fieldset>
+        
+    }
+    else
+    {
+        @Html.HiddenFor(model => model.ReselerId)
+        @Html.HiddenFor(model => model.UserRoleId)
+    }
+    
+    <fieldset class="no-margin">
+        <div class="row">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.eId ,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            <label>
+            @Html.DisplayFor(model => model.eId)
+                </label>
+        </div>
+    </fieldset>
+    @Html.HiddenFor(model => model.eId)
+    @*    
+     <label>
+        @Html.DisplayNameTranslatedFor(m=> m.VAT,ref translation, TranslationTypes.Entity, controllername, actionname)
+    </label>*@
+        <fieldset class="no-margin">
+            <div class="row">
+                <label>
+                    @Html.DisplayNameTranslatedFor(m => m.Credit, ref translation, TranslationTypes.Entity, controllername, actionname)
+                </label>
+                <label>
+        @if (Model.Id != Guid.Empty)
+         {
+             if (!Model.IsDepartment && Model.Id == user.Id)
+             {
+                 @Utilities.ActionImage(customImages.Pay, "Index", "TargetPay", new {id = Model.Id}, "Pay".TranslateString(ref translation))
+             }
+             else
+             {
+                 if ((user.Credit ?? 0) > 0 && Model.Id!=user.Id)
+                 {
+                     @Utilities.ActionImage(customImages.Pay, "Credit", "User", new {id = Model.Id}, "Pay".TranslateString(ref translation))
+                 }
+             }
+         }
+                    @Html.DisplayFor(model => model.Credit) 
+                </label>
+            </div>
+        </fieldset>
+    @Html.HiddenFor(model => model.Credit)
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.DisableEditOwner) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.DisableEditOwner)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.DisableEditOwner ,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.DisableEditOwner)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Disabled) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Disabled)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.Disabled ,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.Disabled)
+        </div>
+    </fieldset>
+    
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Street) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Street)">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor(m => m.Street, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                      </label>
+                                      @Html.EditorFor(model => model.Street)
+                                  </div>
+                              </fieldset>
+
+                              <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.HouseNumber) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.HouseNumber)">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor(m => m.HouseNumber, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                      </label>
+                                      @Html.EditorFor(model => model.HouseNumber)
+                                  </div>
+                              </fieldset>
+
+                              <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.City) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.City)">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor(m => m.City, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                      </label>
+                                      @Html.EditorFor(model => model.City)
+                                  </div>
+                              </fieldset>
+
+                              <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.ZipCode) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.ZipCode)">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor(m => m.ZipCode, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                      </label>
+                                      @Html.EditorFor(model => model.ZipCode)
+                                  </div>
+                              </fieldset>
+
+</fieldset>

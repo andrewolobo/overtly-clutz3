@@ -1,0 +1,73 @@
+@model Tag4s.Data.Contract
+@using Tag4s.Data
+@using Tag4s.Filters
+@using Tag4s.Helpers
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+        //ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "Contract", "Contract", ref translation), controllername.TranslateString(ref translation));
+    //BreadCrum.SetName(ViewBag.Title, Session);
+}
+
+<fieldset class="Tag4s-fieldset">
+    <legend>@Html.DisplayNameTranslatedFor("","Contract","Contract",ref translation)</legend>
+    
+        <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.ContractTypeId) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.ContractTypeId)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.ContractTypeId,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.DropDownList("ContractTypeId")
+        </div>
+    </fieldset>
+
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Name) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Name)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.Name,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.Name)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Advertisement) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Advertisement)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.Advertisement,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.Advertisement)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.MaxUris) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.MaxUris)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.MaxUris,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+                @Html.EditorFor(model => model.MaxUris)
+        </div> 
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.MaxRedirectsPerUri) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.MaxRedirectsPerUri)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.MaxRedirectsPerUri,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.MaxRedirectsPerUri)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Price) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Price)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.Price,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.Price)
+        </div>
+    </fieldset>
+
+   
+</fieldset>

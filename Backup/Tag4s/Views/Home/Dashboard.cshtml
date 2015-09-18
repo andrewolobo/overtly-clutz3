@@ -1,0 +1,201 @@
+﻿@model List<UserContract>
+@using System.Activities.Statements
+@using Tag4s.Helpers;
+@using Tag4s.Data;
+@using WebGrease.Css.Extensions
+
+
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    ViewBag.Title = "QRs".TranslateString(ref translation);
+
+    var user = ViewBag.User as User;
+    var thisUser = ViewBag.ThisUser as User;
+    BreadCrum.SetName(ViewBag.Title, Session);
+
+    var recipes = ViewBag.Recipes as IEnumerable<ContractRecipe>;
+}
+
+<h2>
+                @Html.ActionLink("Departments".TranslateString(ref translation), "Departments", new {userId = user.Id}, null)
+</h2>
+<h2>@ViewBag.Title</h2>
+<fieldset>
+    @* @(Html.Kendo().Grid(Model)
+      .Name("Dashboard")
+      //.Localizable("nl-NL")
+     // .ToolBar(commands => { commands.Template(c => Utilities.ActionImage(customImages.Create, "Create", "Home", new {filterkey = filter.Key, filterid = filter.Id})); })
+      .DataSource(dataBinding =>
+          dataBinding
+              .Server()
+              //.Read(read => read
+              ////.ServerOperation(false)
+              //.Action("Index_AJAX", "Person", new {search = ""})
+              //)
+              .Model(model => model.Id(m => m.Id))
+              .PageSize(200)
+              .Sort(sortOrder => sortOrder.Add(o => o.Name).Ascending())
+      )
+      .Columns(columns =>
+      {
+          columns.Bound(c => c.Name).Title("Name".TranslateString(ref translation));
+          columns.Bound(c => c.Uri).Title("Uri".TranslateString(ref translation));
+          columns.Template(navigation => Utilities.ActionImageNavigation("UserContract", new { id = navigation.Id }, customImages.Edit)).ClientTemplate(Utilities.ActionImageNavigation("UserContract", new { id = "#=Id#" }, customImages.Edit).ToString()).Width(86).Title("");
+          columns.Template(navigation => Utilities.ActionImageNavigation("UserContract", new { id = navigation.Id }, customImages.Delete)).ClientTemplate(Utilities.ActionImageNavigation("UserContract", new { id = "#=Id#" }, customImages.Delete).ToString()).Width(116).Title("");
+      })
+      .Filterable(filtering => filtering.Enabled(false))
+      .Resizable(resizing => resizing.Columns(true))
+      .Scrollable(scrolling => scrolling.Enabled(true).Height("auto"))
+          .Pageable(paging =>
+              paging.PageSizes(new int[] { 25, 50, 100, 200, 1000, 2000 })
+                  .PreviousNext(true)
+          )
+      .Sortable(sorting => sorting.Enabled(true).SortMode(GridSortMode.MultipleColumn))
+      )*@
+   
+    
+    <table>
+@*        <tr>
+            <th style="width: 150px;">
+                @("Name".TranslateString(ref translation))
+            </th>
+            <th style="width: 200px;">
+                @("Uri".TranslateString(ref translation))
+            </th>
+            <th style="width: 60px;">
+                @("Edit".TranslateString(ref translation))
+            </th>
+            <th style="width: 60px;">
+                @("Delete".TranslateString(ref translation))
+            </th>
+        </tr>*@
+        @{
+            foreach (var userContract in Model)
+            {
+                <tr>
+                <td style="text-align: center;vertical-align: middle;">@userContract.Name</td>
+                    <td style="text-align: center;vertical-align: middle;">@(userContract.ContractRecipe!=null?userContract.ContractRecipe.Description.TranslateString(ref translation):"")</td>
+                    <td style="text-align: center;vertical-align: middle;">@userContract.Uri</td>
+                    <td style="text-align: center;vertical-align: middle;">@(userContract.Contract.Price>0?string.Format("{0} QRedits per day".TranslateString(ref translation),userContract.Contract.Price):"Free".TranslateString(ref translation))</td>
+                    <td class="userContractLinks" style="width:70px;vert-align: middle; vertical-align: middle">
+                        @userContract.UserContractLogs.Count.ToString() @Html.ActionLink(" ", "PerUserContract", "Statistics", new {userContractid = userContract.Id, userId = userContract.UserId}, new {Class = "userContractStatistics"})
+                    </td>
+                        <td class="userContractLinks">
+                    @if (userContract.ContractRecipeId.HasValue)
+                    {
+                        @Html.ActionLink(" ".TranslateString(ref translation), "Edit", "UserContract", new {id = userContract.Id}, new {Class = "userContractEdit"})
+                    }
+                    else
+                    {
+                        @Html.ActionLink(" ".TranslateString(ref translation), "Edit", "Contract", new {id = userContract.Id, userId = userContract.UserId}, new {Class = "userContractEdit"})
+                        
+                    }
+
+                        </td>
+                        
+@*        <td class="userContractLinks">
+            @Html.ActionLink(" ".TranslateString(ref translation), "Delete", "UserContract", new {id = userContract.Id}, new {Class = "userContractDelete"})
+        </td>*@
+                    </tr>
+            }
+        }
+        <tr>
+            
+        </tr>
+    </table>
+
+</fieldset>
+
+<div class="centerline">
+</div>
+    <div class="contacthor" style="height: 50px;">
+    </div>
+    <h2>@("Credit".TranslateString(ref translation)): @thisUser.Credit QRedits</h2>
+    <h3>
+    @("Buy credit".TranslateString(ref translation))
+    @if (!thisUser.IsDepartment && thisUser.Id == user.Id)
+     {
+         @Utilities.ActionImage(customImages.Pay, "Index", "TargetPay", new {id = user.Id}, "Pay".TranslateString(ref translation))
+     }
+     else
+     {
+         if ((user.Credit ?? 0) > 0)
+         {
+             @Utilities.ActionImage(customImages.Pay, "Credit", "User", new {id = user.Id}, "Pay".TranslateString(ref translation))
+         }
+     }
+        </h3>
+@if (thisUser.Credit > 0 || true)
+{
+    <h2>@("Nieuwe omleiding maken".TranslateString(ref translation))</h2>
+        var index = 0;
+        foreach (var recipe in recipes)
+        {
+            if (recipe.Contract.Price <= (thisUser.Credit ?? 0))
+            {
+                if (recipe.Code != 0)
+                {
+                    @Html.ActionLink(string.Format("{0}", recipe.Description.TranslateString(ref translation)), "CreateRecipe", "UserContract", new {recipeId = recipe.Id, ViewBag.userId, defaultContractId = recipe.ContractId}, new {Class = recipe.CssClass, title = recipe.Contract.Price > 0 ? string.Format("{0} QRedits per day".TranslateString(ref translation), recipe.Contract.Price) : "Free".TranslateString(ref translation)})
+                }
+                else
+                {
+                    @Html.ActionLink(recipe.Description.TranslateString(ref translation), "Edit", "Contract", new {userId = ViewBag.userId}, new {Class = recipe.CssClass, title = recipe.Contract.Price > 0 ? string.Format("{0} QRedits per day".TranslateString(ref translation), recipe.Contract.Price) : "Free".TranslateString(ref translation)})
+                }
+            }
+            else
+            {
+    if (!thisUser.IsDepartment && thisUser.Id == user.Id)
+     {
+         @Html.ActionLink(string.Format("{0}", recipe.Description.TranslateString(ref translation)), "Index", "TargetPay", new {id = user.Id}, new {Class = recipe.CssClass, title = recipe.Contract.Price > 0 ? string.Format("{0} QRedits per day".TranslateString(ref translation), recipe.Contract.Price) : "Free".TranslateString(ref translation)})
+     }
+                
+            }
+            <div class="picture_ver"></div>
+            index++;
+            if (index == 6)
+            {
+                index = 0;
+                <div class="contacthor" style="height: 20px;clear:both">
+                </div>
+
+            }
+
+        }
+        @*
+    <fieldset>
+        <div>
+            @Html.ActionLink("Op basis van de dag van de week".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe3, ViewBag.userId, defaultContractId = "eba32a33-0f5e-4dfd-b979-0018ab7254e0"}, new {Class = "picturebutton1"})
+            <div class="picture_ver"></div>
+            @Html.ActionLink("Op basis van de dag van de week Pro".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe11, ViewBag.userId, defaultContractId = "662277e4-d87a-45b6-9ba1-c40123e7b9aa"}, new {Class = "picturebutton1"})
+            <div class="picture_ver"></div>
+            @Html.ActionLink("Op basis van de tijd".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe6, ViewBag.userId, defaultContractId = "18a77083-3b99-4ef9-8fbc-93a3e64009d0"}, new {Class = "picturebutton1"})
+            <div class="picture_ver"></div>
+            @Html.ActionLink("Op basis van de tijd Pro".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe14, ViewBag.userId, defaultContractId = "662277e4-d87a-45b6-9ba1-c40123e7b9aa"}, new {Class = "picturebutton1"})
+            <div class="picture_ver"></div>
+            @Html.ActionLink("Op basis van de weersverwachting".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe1, ViewBag.userId, defaultContractId = "18a77083-3b99-4ef9-8fbc-93a3e64009d0"}, new {Class = "picturebutton2"})
+            <div class="picture_ver"></div>
+            @Html.ActionLink("Pro Account: eigen recept bedenken".TranslateString(ref translation), "Edit", "Contract", new {userId = ViewBag.userId}, new {Class = "picturebutton5"})
+        </div>
+    </fieldset>
+    <div class="contacthor" style="height: 20px;">
+    </div>
+    <fieldset>
+        <div>
+            @Html.ActionLink("Op basis van loting1".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe4, ViewBag.userId, defaultContractId = "18a77083-3b99-4ef9-8fbc-93a3e64009d0"}, new {Class = "picturebutton4"})
+            <div class="picture_ver"></div>
+            @Html.ActionLink("Op basis van loting2".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe5, ViewBag.userId, defaultContractId = "18a77083-3b99-4ef9-8fbc-93a3e64009d0"}, new {Class = "picturebutton4"})
+            <div class="picture_ver"></div>
+            @Html.ActionLink("Op basis van loting3".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe7, ViewBag.userId, defaultContractId = "18a77083-3b99-4ef9-8fbc-93a3e64009d0"}, new {Class = "picturebutton4"})
+            <div class="picture_ver"></div>
+            @Html.ActionLink("Op basis van loting4".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe8, ViewBag.userId, defaultContractId = "18a77083-3b99-4ef9-8fbc-93a3e64009d0"}, new {Class = "picturebutton4"})
+            <div class="picture_ver"></div>
+            @Html.ActionLink("Op basis van de beurskoers".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe2, ViewBag.userId, defaultContractId = "18a77083-3b99-4ef9-8fbc-93a3e64009d0"}, new {Class = "picturebutton3"})
+            <div class="picture_ver"></div>
+            @Html.ActionLink("Op basis van de beurskoers Pro".TranslateString(ref translation), "CreateRecipe", "UserContract", new {recipeId = recipe10, ViewBag.userId, defaultContractId = "662277e4-d87a-45b6-9ba1-c40123e7b9aa"}, new {Class = "picturebutton3"})
+            <div class="picture_ver"></div>
+        </div>
+    </fieldset>
+    <div class="contacthor" style="height: 20px;">
+    </div>*@
+}
+@BreadCrum.ActionLinkStepBack(Session, ref translation)

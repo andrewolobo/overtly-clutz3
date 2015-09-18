@@ -1,0 +1,91 @@
+﻿@model Tag4s.Data.Person
+@using System.Web.Optimization;
+@using Tag4s.Data
+@using Tag4s.Helpers;
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}-{2}", Html.DisplayNameTranslatedFor("", "Edit", "Edit", ref translation), controllername.TranslateString(ref translation), Model != null ? Model.FullName : "new".TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+}
+@section scripts
+{
+    <script>
+        function OnSelectCodeBlock(e) {
+            jQuery.noConflict();
+            var item = $(e.item);
+            $.cookie('PersonselectedTabIndex', item.index(), { path: '/' });
+        }
+    </script>
+    
+@*      <script>
+
+          $(document).ready(function () {
+              jQuery.noConflict();
+
+              var picker = $.find('BirthDate_wrapper');
+              var box = picker.get_textBox();
+
+              $(box).change(function () {
+                  alert('Found');
+              });
+
+              $('#BirthDate').change(function () {
+                  alert('boo');
+                  var val = $(this).val();
+                  alert(val);
+                  var d1 = Date.parse(val);
+                  alert(d1);
+                  //if (d1.year+18> Date.now().year) {
+                  //    $("#CareTaker").show();
+                  //} else {
+                  //    $("#CareTaker").hide();
+
+                  //}
+              });
+
+
+          });
+
+  </script>*@
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("Edit", "Person", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(model => model.Id)
+
+    @Html.EditorForModel()
+    @Html.DisplayForModel("PersonCommands")
+            <p>
+        <input type="submit" value="@Html.DisplayNameTranslatedFor("", "Save", "Save", ref translation)" />
+        </p>
+}
+
+<div>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</div>
+
+    <script type="text/javascript">
+        //function onParentFolderTreeviewSelect(e) {
+        //    var item = $(e.item);
+
+        //    var grid = jQuery('#GridMedia').data('tgrid');
+        //    grid.rebind({ parentFolderId: e.value });
+        //}
+        //$(document).ready(function () {
+
+        //    jQuery.noConflict();
+        //    var tabStrip = jQuery("#TabStrip_PersonEdit").data("kendoTabStrip");
+        //    var index = $.cookie('PersonselectedTabIndex');
+        //    if (index != null)
+        //        tabStrip.select(index);
+        //});
+</script>

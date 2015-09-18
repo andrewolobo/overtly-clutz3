@@ -1,0 +1,140 @@
+﻿@model Tag4s.Data.UserPassword
+@using Tag4s.Data
+@using Tag4s.Filters
+@using Tag4s.Helpers
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+        //ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "UserPassword", "UserPassword", ref translation), controllername.TranslateString(ref translation));
+    //BreadCrum.SetName(ViewBag.Title, Session);
+    var userPassword = ViewBag.UserPassword as UserPassword;
+}
+
+    <h3>@Html.DisplayNameTranslatedFor("", "UserPassword", "UserPassword", ref translation)</h3>
+
+    @if (Model != null)
+        {
+            @Html.HiddenFor(m => m.UserId)
+        }
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.FullName) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.FullName)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.FullName, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.FullName)
+        </div>
+    </fieldset>
+    
+<fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.EmailAddress) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.EmailAddress)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.EmailAddress, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.TextBoxFor(model => model.EmailAddress)
+        </div>
+    </fieldset>
+@Html.HiddenFor(m=>m.UserName)
+@*<fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.UserName) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.UserName)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.UserName, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.UserName)
+        </div>
+    </fieldset>*@
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Password) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Password)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.Password, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.PasswordFor(model => model.Password)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row">
+            <label>
+                @Html.DisplayNameTranslatedFor("", "Confirm Password", "Confirm Password", ref translation)
+            </label>
+            @Html.Password("PasswordConfirm")
+        </div>
+    </fieldset>
+
+@if (Utilities.IsAdministrator(Session) || (userPassword.IsAccountAdmin && Model!=null && userPassword.Id != Model.Id))
+{
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m => m.IsDisabled) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.IsDisabled)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.IsDisabled, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.IsDisabled)
+        </div>
+    </fieldset>
+    
+}
+else
+{
+            @Html.HiddenFor(model => model.IsDisabled)
+    
+}
+
+
+@if (Utilities.IsAdministrator(Session) || userPassword.IsAccountAdmin)
+{
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m => m.IsAccountAdmin) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.IsAccountAdmin)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.IsAccountAdmin, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.IsAccountAdmin)
+        </div>
+    </fieldset>
+    
+}
+else
+{
+            @Html.HiddenFor(model => model.IsAccountAdmin)
+    
+}
+
+@if (Utilities.IsAdministrator(Session) || userPassword.IsAccountAdmin)
+{
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m => m.CanStatistics) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.CanStatistics)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.CanStatistics, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.CanStatistics)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m => m.CanQr) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.CanQr)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.CanQr, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.CanQr)
+        </div>
+    </fieldset>
+        
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m => m.CanFinance) ? "error" : "")" title="@Html.GetErrorMessageFor(m => m.CanFinance)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.CanFinance, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.CanFinance)
+        </div>
+    </fieldset>
+    
+}
+else
+{
+            @Html.HiddenFor(model => model.CanFinance)
+            @Html.HiddenFor(model => model.CanQr)
+            @Html.HiddenFor(model => model.CanStatistics)
+    
+}

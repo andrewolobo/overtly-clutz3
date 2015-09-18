@@ -1,0 +1,207 @@
+﻿@model Tag4s.Data.UserContract
+@using System.Web.Optimization;
+@using Tag4s.Data
+@using Tag4s.Helpers;
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "Register", "Register", ref translation), controllername.TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+}
+@section scripts
+{
+    <script>
+        function OnSelectCodeBlock(e) {
+            jQuery.noConflict();
+            var item = $(e.item);
+            $.cookie('PersonselectedTabIndex', item.index(), { path: '/' });
+        }
+
+        $(document).ready(function () {
+
+            $('#Agree').change(function () {
+                if ($(this).is(":checked")) {
+                    $("#Submit").removeAttr("disabled");
+                } else {
+                    $("#Submit").attr("disabled", "disabled");
+                }
+            });
+
+        });
+    </script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("Register", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(model => model.Id)
+
+    @Html.HiddenFor(model => model.ContractId)
+    @Html.HiddenFor(model => model.UserId)
+    @Html.HiddenFor(model => model.StartDate)
+    @Html.HiddenFor(model => model.EndDate)
+    @Html.HiddenFor(model => model.Name)
+    @Html.HiddenFor(model => model.User.ReselerId)
+    @Html.HiddenFor(model => model.User.UserRoleId)
+    @Html.HiddenFor(model => model.User.Id)
+    @Html.HiddenFor(model => model.User.eId)
+    @Html.HiddenFor(model => model.eId)
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.User.Organisation) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.User.Organisation)">
+            <label>
+                @Html.DisplayNameTranslatedFor("User", "Organisation", "Organisation", ref translation)
+            </label>
+            @Html.EditorFor(model => model.User.Organisation)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.User.Title) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.User.Title)">
+            <label>
+                @Html.DisplayNameTranslatedFor("User", "Title", "Title", ref translation)
+            </label>
+            @Html.EditorFor(model => model.User.Title)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.User.Firstname) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.User.Firstname)">
+            <label>
+                @Html.DisplayNameTranslatedFor("User", "FirstName", "FirstName", ref translation)
+            </label>
+            @Html.EditorFor(model => model.User.Firstname)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.User.Prefix) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.User.Prefix)">
+            <label>
+                @Html.DisplayNameTranslatedFor("User", "Prefix", "Prefix", ref translation)
+            </label>
+            @Html.EditorFor(model => model.User.Prefix)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.User.Lastname) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.User.Lastname)">
+            <label>
+                @Html.DisplayNameTranslatedFor("User", "Lastname", "Lastname", ref translation)
+            </label>
+            @Html.EditorFor(model => model.User.Lastname)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Uri) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Uri)">
+
+            <label>
+                @Html.DisplayNameTranslatedFor("UserContract", "Uri", "Uri", ref translation)
+            </label>
+            @Html.EditorFor(model => model.Uri)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.User.EmailAddress) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.User.EmailAddress)">
+            <label>
+                @Html.DisplayNameTranslatedFor("User", "EmailAddress", "EmailAddress", ref translation)
+            </label>
+            @Html.EditorFor(model => model.User.EmailAddress)
+        </div>
+    </fieldset>
+    @*
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasError("User.UserPassword.UserName") ? "error" : "")" title="@Html.GetErrorMessage("User.UserPassword.UserName")">
+
+            <label>
+                @Html.DisplayNameTranslatedFor("User", "UserName", "UserName", ref translation)
+            </label>
+            @Html.Editor("UserName")
+        </div>
+    </fieldset>*@
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasError("User.UserPassword.Password") ? "error" : "")" title="@Html.GetErrorMessage("User.UserPassword.Password")">
+            <label>
+                @Html.DisplayNameTranslatedFor("UserPassword", "Password", "Password", ref translation)
+            </label>
+            @Html.Password("Password")
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row">
+            <label>
+                @Html.DisplayNameTranslatedFor("UserPassword", "Confirm Password", "Confirm Password", ref translation)
+            </label>
+            @Html.Password("PasswordConfirm")
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.User.Street) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.User.Street)">
+            <label>
+                @Html.DisplayNameTranslatedFor("User", "Street", "Street", ref translation)
+            </label>
+            @Html.EditorFor(model => model.User.Street)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.User.HouseNumber) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.User.HouseNumber)">
+            <label>
+                @Html.DisplayNameTranslatedFor("User", "HouseNumber", "HouseNumber", ref translation)
+            </label>
+            @Html.EditorFor(model => model.User.HouseNumber)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.User.ZipCode) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.User.ZipCode)">
+            <label>
+                @Html.DisplayNameTranslatedFor("User", "ZipCode", "ZipCode", ref translation)
+            </label>
+            @Html.EditorFor(model => model.User.ZipCode)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.User.City) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.User.City)">
+            <label>
+                @Html.DisplayNameTranslatedFor("User", "City", "City", ref translation)
+            </label>
+            @Html.EditorFor(model => model.User.City)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.User.VAT) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.User.VAT)">
+            <label>
+                @Html.DisplayNameTranslatedFor("User", "VAT", "VAT", ref translation)
+            </label>
+            @Html.EditorFor(model => model.User.VAT)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.User.KVK) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.User.KVK)">
+            <label>
+                @Html.DisplayNameTranslatedFor("User", "KVK", "KVK", ref translation)
+            </label>
+            @Html.EditorFor(model => model.User.KVK)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row ">
+            <label>
+                @Html.CheckBox("Agree")
+            </label>
+       <div><a href="/Content/Tag4S  PRIVACY STATEMENT june 2014.pdf" download="@("PrivacyStatement".TranslateString(ref translation))" target="_new">@("PrivacyStatement".TranslateString(ref translation))</a></div>
+   <div><a href="/Content/TERMS OF SERVICE Tag4S 1006114.pdf" download="@("TermsOfService".TranslateString(ref translation))" target="_new">@("TermsOfService".TranslateString(ref translation))</a></div>
+        </div>
+    </fieldset>
+    
+
+    <p>
+        <input id="Submit" type="submit" disabled="disabled" value="@Html.DisplayNameTranslatedFor("", "Register", "Register", ref translation)" />
+    </p>
+}
+
+<div>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</div>

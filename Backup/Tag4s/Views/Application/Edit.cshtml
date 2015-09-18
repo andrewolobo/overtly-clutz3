@@ -1,0 +1,110 @@
+﻿@using Tag4s.Filters
+@using Tag4s.Helpers
+@using Tag4s.Data
+@model Tag4s.Data.Application
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = Model.Description;
+    BreadCrum.SetName(ViewBag.Title, Session);
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m=>m.Id)
+    @Html.HiddenFor(m=>m.Description)
+    @Html.HiddenFor(m=>m.Name)
+
+        
+        <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.SystemEmailAddress) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.SystemEmailAddress)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.SystemEmailAddress ,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.SystemEmailAddress)
+        </div>
+    </fieldset>
+    
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.TemplateUserRegisteredSubject) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.TemplateUserRegisteredSubject)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.TemplateUserRegisteredSubject ,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.TemplateUserRegisteredSubject)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.TemplateUserRegistered) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.TemplateUserRegistered)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.TemplateUserRegistered ,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(m=>m.TemplateUserRegistered)
+@*            @(Html.Kendo().Editor()
+                  .Name("TemplateUserRegistered")
+                  .HtmlAttributes(new { style = "width: 740px;height:440px" })
+                  .Value(Model.TemplateUserRegistered)
+                  )*@
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.TemplateUserForgotPasswordSubject) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.TemplateUserForgotPasswordSubject)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.TemplateUserForgotPasswordSubject ,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.TemplateUserForgotPasswordSubject)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.TemplateUserForgotPassword) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.TemplateUserForgotPassword)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.TemplateUserForgotPassword ,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+@*            @(Html.Kendo().Editor()
+                  .Name("TemplateUserForgotPassword")
+                  .HtmlAttributes(new { style = "width: 740px;height:440px" })
+                  .Value(Model.TemplateUserRegistered)
+                  )*@
+            @Html.EditorFor(m=>m.TemplateUserForgotPassword)
+        </div>
+    </fieldset>
+    
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.TemplateProductOrderedSubject) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.TemplateProductOrderedSubject)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.TemplateProductOrderedSubject ,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.TemplateProductOrderedSubject)
+        </div>
+    </fieldset>
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.TemplateProductOrdered) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.TemplateProductOrdered)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.TemplateProductOrdered ,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+@*            @(Html.Kendo().Editor()
+                  .Name("TemplateProductOrdered")
+                  .HtmlAttributes(new { style = "width: 740px;height:440px" })
+                  .Value(Model.TemplateUserRegistered)
+                  )*@
+            @Html.EditorFor(m=>m.TemplateProductOrdered)
+        </div>
+    </fieldset>
+    
+    
+    <p>
+        <input type="submit" value="@Html.DisplayNameTranslatedFor("", "Save", "Save", ref translation)" />
+    </p>
+}
+
+<div>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</div>
+

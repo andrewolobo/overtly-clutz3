@@ -1,0 +1,205 @@
+﻿@using Tag4s.Filters
+@using Tag4s.Helpers
+@using Tag4s.Data
+@model Tag4s.Data.User
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "Edit", "Edit", ref translation), controllername.TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+    var user = ViewBag.User as User;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    Html.Kendo().TabStrip()
+        .Name("UserEdit")
+        .HighlightPath(true)
+        .Items(tabstrip =>
+        {
+            tabstrip.Add()
+                .Text("Relation".TranslateString(ref translation))
+                .ContentHtmlAttributes(new { style = "height:650px;" })
+                .Content(@<text>
+                              @Html.EditorForModel()
+                          </text>);
+            if (Utilities.IsAdministrator(Session))
+            {
+                tabstrip.Add()
+                    .Text("Contracts".TranslateString(ref translation))
+                    .ContentHtmlAttributes(new { style = "height:460px;" })
+                    .Content(@<text>
+                                  @(Html.Kendo().Grid(Model.UserContracts)
+                                        .Name("ContractsGrid")
+                                        //.Localizable("nl-NL")
+                                        .ToolBar(commands =>
+                                        {
+                                            commands.Template(c => Utilities.ActionImageWithText("Create".TranslateString(ref translation), customImages.Create, "CreateRecipe", "UserContract", new {userId = Model.Id})); })
+                                        .DataSource(dataBinding =>
+                                            dataBinding
+                                                .Server()
+                                                .Model(model => model.Id(m => m.Id))
+                                                .PageSize(10)
+                                                .Sort(sortOrder => sortOrder.Add(o => o.Name).Ascending())
+                                        )
+                                        .Columns(columns =>
+                                        {
+                                            columns.Bound(c => c.StartDate).Title("StartDate".TranslateString(ref translation));
+                                            columns.Bound(c => c.EndDate).Title("EndDate".TranslateString(ref translation));
+                                            columns.Bound(c => c.Name).Title("Name".TranslateString(ref translation));
+                                            columns.Template(c => c.Uri).Title("Uri".TranslateString(ref translation));
+                                            columns.Template(navigation =>
+                                                Utilities.ActionImageWithText(navigation.UserContractLogs.Count.ToString(), customImages.Tooltip, "PerUserContract", "Statistics", new { id = navigation.Id })).Title("Hits".TranslateString( ref translation));
+                                            columns.Template(navigation =>
+                                                Utilities.ActionImageNavigation("Contract", new {id = navigation.Id, userId = Model.Id}).ToString());
+                                        })
+                                        .Filterable(filtering => filtering.Enabled(false))
+                                        .Resizable(resizing => resizing.Columns(true))
+                                        .Scrollable(scrolling => scrolling.Enabled(true).Height("auto"))
+                                        .Pageable(paging =>
+                                            paging.PageSizes(new int[] {10, 25, 50, 100, 200, 1000, 2000})
+                                                .PreviousNext(true)
+                                        )
+                                        .Sortable(sorting => sorting.Enabled(true).SortMode(GridSortMode.MultipleColumn)
+                                        )
+                                        )
+                              </text>);
+            }
+            if (Utilities.IsAdministrator(Session) || user.Id == Model.Id || !(Model.DisableEditOwner??false))
+            {
+                tabstrip.Add()
+                    .Text("Accounts".TranslateString(ref translation))
+                    .ContentHtmlAttributes(new {style = "height:460px;"})
+                    .Content(@<text>
+                                  @(Html.Kendo().Grid(Model.UserPasswords)
+                                        .Name("AccountsGrid")
+                                        //.Localizable("nl-NL")
+                                        .ToolBar(commands => { commands.Template(c => Utilities.ActionImageNavigation("UserPassword", new {id = Guid.Empty, userId = Model.Id}, customImages.Create)); })
+                                        .DataSource(dataBinding =>
+                                            dataBinding
+                                                .Server()
+                                                .Model(model => model.Id(m => m.Id))
+                                                .PageSize(10)
+                                                .Sort(sortOrder => sortOrder.Add(o => o.UserName).Ascending())
+                                        )
+                                        .Columns(columns =>
+                                        {
+                                            columns.Bound(c => c.FullName).Title("FullName".TranslateString(ref translation));
+                                            columns.Bound(c => c.UserName).Title("UserName".TranslateString(ref translation));
+                                            columns.Template(navigation => Utilities.ActionImageWithText("SendEmail".TranslateString(ref translation), customImages.EmailUnread, "SendEmail", "UserPassword", new {id = navigation.Id})).Width(116).Title("");
+                                            columns.Template(navigation => Utilities.ActionImageNavigation("UserPassword", new {id = navigation.Id, userId = Model.Id}, customImages.Edit)).Width(116).Title("");
+                                        })
+                                        .Filterable(filtering => filtering.Enabled(false))
+                                        .Resizable(resizing => resizing.Columns(true))
+                                        .Scrollable(scrolling => scrolling.Enabled(true).Height("auto"))
+                                        .Pageable(paging =>
+                                            paging.PageSizes(new int[] {10, 25, 50, 100, 200, 1000, 2000})
+                                                .PreviousNext(true)
+                                        )
+                                        .Sortable(sorting => sorting.Enabled(true).SortMode(GridSortMode.MultipleColumn)
+                                        )
+                                        )
+                              </text>);
+            }
+            if (Utilities.IsAdministrator(Session) || user.Id == Model.Id )
+            {
+                tabstrip.Add()
+                    .Text("UserContracts".TranslateString(ref translation))
+                    .ContentHtmlAttributes(new {style = "height:460px;"})
+                    .Content(@<text>
+                                  @(Html.Kendo().Grid(Model.UserContracts)
+                                        .Name("UserContractsGrid")
+                                        //.Localizable("nl-NL")
+                                        .ToolBar(commands => { commands.Template(c => Utilities.ActionImage(customImages.Create, "Dashboard", "Home", new {userId = Model.Id})); })
+                                        .DataSource(dataBinding =>
+                                            dataBinding
+                                                .Server()
+                                                .Model(model => model.Id(m => m.Id))
+                                        )
+                                        .Columns(columns =>
+                                        {
+                                            columns.Bound(c => c.Name).Title("Name".TranslateString(ref translation));
+                                            columns.Template(c => c.Uri).Title("Uri".TranslateString(ref translation));
+                                            columns.Template(navigation => Utilities.ActionImageNavigation("UserContract", new {id = navigation.Id, userId = Model.Id}, customImages.Edit))
+                                                .ClientTemplate(Utilities.ActionImageNavigation(controllername, new {id = "#=Id#", userId = "#=Model.Id#"}, customImages.Edit).ToString()).Width(116).Title("");
+                                        })
+                                        .Filterable(filtering => filtering.Enabled(false))
+                                        .Resizable(resizing => resizing.Columns(true))
+                                        .Scrollable(scrolling => scrolling.Enabled(true).Height("auto"))
+                                        .Pageable(paging =>
+                                            paging.PageSizes(new int[] {10, 25, 50, 100, 200, 1000, 2000})
+                                                .PreviousNext(true)
+                                        )
+                                        .Sortable(sorting => sorting.Enabled(true).SortMode(GridSortMode.MultipleColumn)
+                                        )
+                                        )
+                              </text>);
+            }
+            if (Utilities.IsAdministrator(Session) || user.Id == Model.Id)
+            {
+                tabstrip.Add()
+                    .Text("Invoices".TranslateString(ref translation))
+                    .ContentHtmlAttributes(new {style = "height:550px;"})
+                    .Content(@<text>
+
+
+                                  @(Html.Kendo().Grid(Model.Invoices)
+                                        .Name("GridInvoices")
+                                        //.Localizable("nl-NL")
+                                        //.ToolBar(commands => { commands.Template(c => Utilities.ActionImage(customImages.Create, "Create", controllername, new {filterkey = filter.Key, filterid = filter.Id})); })
+                                        .DataSource(dataBinding =>
+                                            dataBinding
+                                                .Server()
+                                                .Model(model => model.Id(m => m.Id))
+                                                .PageSize(10)
+                                                .Sort(sortOrder => sortOrder.Add(o => o.Date).Descending())
+                                        )
+                                        .Columns(columns =>
+                                        {
+                                            columns.Bound(c => c.Number).Title("Number".TranslateString(ref translation));
+                                            columns.Bound(c => c.Date).Title("Date".TranslateString(ref translation));
+                                            columns.Bound(c => c.Quantity).Title("QRedits".TranslateString(ref translation));
+                                            columns.Bound(c => c.Amount).Title("Price".TranslateString(ref translation));
+                                            columns.Bound(c => c.VAT).Title("VAT".TranslateString(ref translation));
+                                            columns.Bound(c => c.TransactionId).Title("Transaction".TranslateString(ref translation));
+                                            columns.Bound(c => c.Paid).Template(c=>(c.Paid??false)?"Paid".TranslateString(ref translation):"Not paid".TranslateString(ref translation)).Title("Transaction".TranslateString(ref translation));
+                                            //columns.Template(navigation => Utilities.ActionImageNavigation("Invoice", new { id = navigation.Id }, customImages.Details))
+                                            //    .ClientTemplate(Utilities.ActionImageNavigation(controllername, new {id = "#=Id#"}).ToString()).Width(116).Title("");
+                                        })
+                                        .Filterable(filtering => filtering.Enabled(false))
+                                        .Resizable(resizing => resizing.Columns(true))
+                                        .Scrollable(scrolling => scrolling.Enabled(true).Height("auto"))
+                                        .Pageable(paging =>
+                                            paging.PageSizes(new int[] {10, 25, 50, 100, 200, 1000, 2000})
+                                                .PreviousNext(true)
+                                        )
+                                        .Sortable(sorting => sorting.Enabled(true).SortMode(GridSortMode.MultipleColumn)
+                                        )
+                                        )
+                              </text>);
+            }
+        })
+        .SelectedIndex(0)
+        //.Events(events => events
+        //    .Select("OnSelectCodeBlock")
+        //)
+        .Render();
+
+    if (Utilities.IsAdministrator(Session) || Model.IsDepartment || user.Id== Model.Id)
+    {
+        <p>
+            <input type="submit" value="@Html.DisplayNameTranslatedFor("", "Save", "Save", ref translation)" />
+        </p>
+    }
+}
+
+<div>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</div>

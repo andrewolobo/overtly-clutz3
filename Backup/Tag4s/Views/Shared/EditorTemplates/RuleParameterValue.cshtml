@@ -1,0 +1,48 @@
+@model Tag4s.Data.RuleParameterValue
+@using Tag4s.Data
+@using Tag4s.Filters
+@using Tag4s.Helpers
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    //ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "RuleParameterValue", "RuleParameterValue", ref translation), controllername.TranslateString(ref translation));
+    //BreadCrum.SetName(ViewBag.Title, Session);
+}
+
+<fieldset class="Tag4s-fieldset">
+    <legend>@Html.DisplayNameTranslatedFor("", "RuleParameterValue", "RuleParameterValue", ref translation)</legend>
+    
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.RuleParameterId) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.RuleParameterId)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.RuleParameterId, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @if (Model != null)
+            {
+                @Html.HiddenFor(m => m.RuleParameterId)
+            }
+            @Html.DropDownListFor(m => m.RuleParameterId, (ViewBag.RuleParameterId as List<SelectListItem>), new {@disabled = "disabled"})
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Name) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Name)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.Name, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.Name)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.IsActive) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.IsActive)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.IsActive, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.IsActive)
+        </div>
+    </fieldset>
+
+</fieldset>

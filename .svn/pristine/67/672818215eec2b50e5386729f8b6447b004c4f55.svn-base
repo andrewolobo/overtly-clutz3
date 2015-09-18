@@ -1,0 +1,64 @@
+﻿@model Tag4s.Data.Person
+@using Tag4s.Helpers;
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}-{2}", Html.DisplayNameTranslatedFor("", "Details", "Details", ref translation), controllername.TranslateString(ref translation), Model != null ? Model.FullName : "new".TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+
+    var customView = ViewBag.CustomView as string;
+}
+
+@section scripts
+{
+    <script>
+        function OnSelectCodeBlock(e) {
+            jQuery.noConflict();
+            var item = $(e.item);
+            $.cookie('PersonselectedTabIndex', item.index(), { path: '/' });
+        }
+
+        //function OnLoadCodeBlock(e) {
+        //    jQuery.noConflict();
+        //    var tabStrip = jQuery("#TabStrip_PersonDetails").data("tTabStrip");
+        //    var index = $.cookie('PersonselectedTabIndex');
+        //    var domElement = $("li", tabStrip.element)[index];
+        //    tabStrip.select(domElement);
+        //}
+        </script>
+}
+<h2>@ViewBag.Title</h2>
+@if (string.IsNullOrWhiteSpace(customView))
+{
+    @Html.DisplayForModel()
+    @Html.DisplayForModel("PersonCommands", new {ReadOnly = true})
+}
+else
+{
+    @Html.DisplayForModel(customView, new {ReadOnly = true})
+}
+
+<p>
+@*    @Html.ActionLink(Html.DisplayNameTranslatedFor("", "Edit", "Edit", ref translation).ToString(), "Edit", new { id=Model.Id }) |*@
+    @Utilities.ActionImageWithText("Edit".TranslateString(ref translation), customImages.Edit, "Edit",controllername,new { id=Model.Id }, false, "autowidth") |
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</p>
+
+    <script type="text/javascript">
+        //function onParentFolderTreeviewSelect(e) {
+        //    var item = $(e.item);
+
+        //    var grid = jQuery('#GridMedia').data('tgrid');
+        //    grid.rebind({ parentFolderId: e.value });
+        //}
+        //$(document).ready(function () {
+
+        //    jQuery.noConflict();
+        //    var tabStrip = jQuery("#TabStrip_PersonDetails").data("kendoTabStrip");
+        //    var index = $.cookie('PersonselectedTabIndex');
+        //    if (index != null)
+        //        tabStrip.select(index);
+        //});
+</script>

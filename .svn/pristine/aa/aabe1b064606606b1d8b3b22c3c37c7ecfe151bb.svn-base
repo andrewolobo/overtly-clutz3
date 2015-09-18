@@ -1,0 +1,30 @@
+﻿@using System.Web.Optimization
+@using Tag4s.Filters
+@using Tag4s.Helpers
+@using Tag4s.Data
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}", Html.DisplayNameTranslatedFor("", "About", "About", ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+}
+
+<h2>@ViewBag.Title</h2>
+
+<img class="wrap_text" src="/Images/slider/slide-1.jpg">
+<div>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate sit amet sem quis tempus. Vivamus et justo justo. Aenean a purus adipiscing, euismod augue a, sodales ipsum. Cras elementum et sapien ultrices malesuada. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In libero massa, bibendum vitae euismod eget, faucibus sodales quam. In non elit sed eros pulvinar sollicitudin. Integer accumsan faucibus felis porta vulputate. Suspendisse potenti. Cras rhoncus, nunc sit amet dictum iaculis, metus massa dignissim nulla, non ultrices mauris nisl in magna. Morbi sapien turpis, mattis in pretium ac, sollicitudin quis metus.
+
+    Aenean tempus vulputate eros, ac condimentum enim pharetra vel. Integer euismod eleifend odio sit amet volutpat. Cras non quam erat. Curabitur adipiscing convallis lectus. Proin accumsan tellus vel risus eleifend, quis ultricies sapien sollicitudin. Cras dictum turpis at quam auctor vehicula. In dictum tellus tellus. Sed sed elit ullamcorper justo laoreet lobortis. Cras et augue eu massa iaculis fermentum. Nullam aliquam sit amet tellus eget hendrerit. In aliquam, massa id adipiscing suscipit, risus ante malesuada eros, quis cursus quam ante sed lorem. Nulla eu condimentum lectus. Phasellus id convallis tellus. Nam gravida sapien nisl, condimentum aliquet leo vestibulum vulputate.
+
+    Curabitur feugiat sagittis ultrices. Integer convallis ligula urna, sit amet laoreet ipsum fringilla vitae. Vestibulum sit amet mollis mi. Nulla id risus sollicitudin, consequat turpis sit amet, pharetra diam. Integer dapibus laoreet feugiat. Mauris a condimentum sapien. Nam elementum justo quis nunc consequat sagittis. Praesent eros ligula, mollis sit amet sem in, cursus dignissim erat. In dapibus sit amet neque nec faucibus. Fusce egestas non diam sit amet aliquam. Nulla facilisi. Duis congue odio mi, laoreet ultricies quam euismod nec. Suspendisse ante metus, ornare eget feugiat a, dignissim et leo. Fusce dignissim enim in quam laoreet, sed laoreet turpis sagittis.
+
+    Praesent adipiscing magna et libero sagittis semper aliquet non metus. Aenean nec libero nisl. Morbi pulvinar urna ac augue viverra, nec tincidunt ligula fermentum. Nullam porta rutrum imperdiet. Praesent egestas pulvinar diam. Aliquam euismod pulvinar consequat. Sed justo urna, dapibus quis quam eu, faucibus pellentesque nibh.
+
+    Proin vestibulum purus sem, id hendrerit tortor facilisis et. Cras vel congue eros. Fusce enim diam, ultricies ut nunc quis, dapibus vehicula augue. Sed rhoncus urna sed interdum condimentum. Nulla imperdiet erat congue quam suscipit, quis gravida justo imperdiet. Nulla et mi vel dui consequat pulvinar. Ut posuere sapien id sollicitudin hendrerit. Curabitur a metus sed lacus pharetra pharetra in nec augue. Fusce quis lectus magna. Morbi sit amet porta nibh. Aenean egestas odio mauris. Nunc sed commodo justo. Donec laoreet tincidunt feugiat. Fusce fermentum velit ac mollis accumsan.
+</div>
+<div class="contact_link">
+    @Html.ActionLink("Interesse? Neem contact met ons op.".TranslateString(ref translation),"Contact","Home")
+</div>

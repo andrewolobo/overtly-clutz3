@@ -1,0 +1,56 @@
+@model Tag4s.Data.Invoice
+@using Tag4s.Data
+@using Tag4s.Filters
+@using Tag4s.Helpers
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+        //ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "Invoice", "Invoice", ref translation), controllername.TranslateString(ref translation));
+    //BreadCrum.SetName(ViewBag.Title, Session);
+}
+
+<fieldset class="Tag4s-fieldset">
+    <legend>@Html.DisplayNameTranslatedFor("","Invoice","Invoice",ref translation)</legend>
+    
+    @Html.HiddenFor(m=>m.UserId)
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Date) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Date)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.Date ,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.Date)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Amount) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Amount)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.Amount ,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.Amount)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.VAT) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.VAT)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.VAT ,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+                @Html.EditorFor(model => model.VAT)
+        </div> 
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Number) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Number)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.Number,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.Number)
+        </div>
+    </fieldset>
+
+   
+</fieldset>

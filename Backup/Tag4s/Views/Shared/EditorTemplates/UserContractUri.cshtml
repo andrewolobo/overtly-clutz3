@@ -1,0 +1,66 @@
+﻿@model Tag4s.Data.UserContractUri
+@using Tag4s.Data
+@using Tag4s.Filters
+@using Tag4s.Helpers
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+        //ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "UserContractUri", "UserContractUri", ref translation), controllername.TranslateString(ref translation));
+    //BreadCrum.SetName(ViewBag.Title, Session);
+
+    var randomFunctions = new[]
+    {
+        new {Id = 0, Value = "No random".TranslateString(ref translation)},
+        new {Id = 1, Value = "x% with different url".TranslateString(ref translation)},
+        new {Id = 2, Value = "One in x clicks with different url".TranslateString(ref translation)},
+        new {Id = 3, Value = "Weigthed ratios".TranslateString(ref translation)}
+    };
+
+    var randomFunctionsList = new SelectList(randomFunctions,"Id","Value", Model != null ? Model.RandomFunction : 0);
+    
+}
+
+    <h3>@Html.DisplayNameTranslatedFor("", "UserContractUri", "UserContractUri", ref translation)</h3>
+    
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.UserContractId) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.UserContractId)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.UserContractId, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @if (Model != null)
+            {
+                @Html.HiddenFor(m => m.UserContractId)
+            }
+            @Html.DropDownListFor(m=>m.UserContractId, (ViewBag.UserContractId as List<SelectListItem>), new {@disabled = "disabled"})
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Uri) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Uri)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.Uri, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.Uri)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Enabled) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Enabled)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m => m.Enabled, ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.Enabled)
+        </div>
+    </fieldset>
+
+                              <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.RandomFunction) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.RandomFunction)">
+                                      <label>
+                                          @Html.DisplayNameTranslatedFor(model => model.RandomFunction, ref translation, TranslationTypes.Entity, controllername, actionname)
+                                      </label>
+                                      @Html.DropDownList("RandomFunction", randomFunctionsList)
+                                  </div>
+                              </fieldset>
+

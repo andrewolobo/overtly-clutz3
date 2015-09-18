@@ -1,0 +1,72 @@
+﻿@using Tag4s.Filters
+@using Tag4s.Helpers
+@using Tag4s.Data
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "Betaal", "Betaal", ref translation), controllername.TranslateString(ref translation));
+    BreadCrum.SetName(ViewBag.Title, Session);
+    var idealBanks = ViewBag.IdealBanks as Dictionary<string, string>;
+    var userId = (Guid)ViewBag.UserId;
+    var clickAmounts = ViewBag.ClickAmounts as string[];
+    var clickPrice = ViewBag.ClickPrice as string;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@{
+    using (Html.BeginForm("Pay", "TargetPay"))
+    {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <legend>Betaal uw license</legend>
+
+            @Html.Hidden("UserId", userId)
+            @Html.Hidden("ClickPrice", clickPrice)
+            
+            
+            <fieldset class="no-margin">
+                <div class="row">
+                    <label>
+                                      @("ClickAmounts".TranslateString(ref translation))    
+                    </label>
+                @foreach (var clickAmount in clickAmounts)
+                {
+                    @clickAmount  @Html.RadioButton("ClickAmounts",clickAmount, true)
+                }
+                </div>
+            </fieldset>
+
+
+            <fieldset class="no-margin">
+                <div class="row">
+                    <label>
+                        @("ClickPrice".TranslateString(ref translation))    
+                    </label>
+                    <div style="padding-top: 10px;">
+                    &euro; @clickPrice</div>
+                </div>
+            </fieldset>
+
+            <fieldset class="no-margin">
+                <div class="row">
+                    <label>
+                                      @("Bank".TranslateString(ref translation))    
+                    </label>
+                @Html.DropDownList("BankId", new SelectList(idealBanks,"Value","Key"))
+                </div>
+            </fieldset>
+
+
+            <p>
+                <input type="submit" value="@("Pay".TranslateString(ref translation))" />
+            </p>
+        </fieldset>
+    }
+}
+
+<div>
+    @BreadCrum.ActionLinkStepBack(Session, ref translation)
+</div>

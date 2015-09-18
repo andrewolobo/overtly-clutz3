@@ -1,0 +1,36 @@
+@model Tag4s.Data.RedirectType
+@using Tag4s.Data
+@using Tag4s.Filters
+@using Tag4s.Helpers
+@{
+    var translation = ViewBag.Translation as Dictionary<string, string>;
+    var controllername = ViewBag.ControllerName as string;
+    var actionname = ViewBag.ActionName as string;
+    var filter = ViewBag.Filter as Tag4s.Filters.ViewFilter;
+    //ViewBag.Title = String.Format("{0}-{1}", Html.DisplayNameTranslatedFor("", "RedirectType", "RedirectType", ref translation), controllername.TranslateString(ref translation));
+    //BreadCrum.SetName(ViewBag.Title, Session);
+}
+
+<fieldset class="Tag4s-fieldset">
+    <legend>@Html.DisplayNameTranslatedFor("","RedirectType","RedirectType",ref translation)</legend>
+    
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.Name) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.Name)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.Name ,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.Name)
+        </div>
+    </fieldset>
+
+    <fieldset class="no-margin">
+        <div class="row @(Html.HasErrorFor(m=>m.FriendlyName) ? "error" : "")" title="@Html.GetErrorMessageFor(m=>m.FriendlyName)">
+            <label>
+                @Html.DisplayNameTranslatedFor(m=> m.FriendlyName ,ref translation, TranslationTypes.Entity, controllername, actionname)
+            </label>
+            @Html.EditorFor(model => model.FriendlyName)
+        </div>
+    </fieldset>
+
+
+</fieldset>
