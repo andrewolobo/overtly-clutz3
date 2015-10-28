@@ -224,6 +224,10 @@
     <Compile Include="Models\ContractRedirectParameterModel.cs" />
     <Compile Include="Models\ContractRedirectRedirectTypeModel.cs" />
     <Compile Include="Models\ContractUriModel.cs" />
+    <Compile Include="Models\ModelsPrime\Item.cs" />
+    <Compile Include="Models\ModelsPrime\LogFields.cs" />
+    <Compile Include="Models\ModelsPrime\PriceModelcs.cs" />
+    <Compile Include="Models\ModelsPrime\User.cs" />
     <Compile Include="Models\UserContractLogModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\ResellerModel.cs" />
@@ -505,6 +509,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\sliderman.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\kendo\2013.3.1119\images\kendoui.ttf" />
     <Content Include="Content\kendo\2013.3.1119\images\kendoui.woff" />
@@ -602,6 +607,10 @@
     <Content Include="Images\voorbeeld-QRcode.png" />
     <Content Include="Images\voorbeeld-visitekaartje.jpg" />
     <Content Include="Images\voorbeeld-winkelruit.jpg" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\foundation\jquery.customforms.js" />
     <Content Include="Scripts\foundation\jquery.orbit-1.4.0.js" />
