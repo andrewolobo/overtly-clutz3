@@ -71,6 +71,11 @@ namespace Tag4s.Controllers
 
             return View();
         }
+        public ActionResult Webstore()
+        {
+            ViewBag.Message = "Webstore";
+            return View();
+        }
 
         [AuthorizationFilter(Roles = "Administrator,Backdoor,Klant,Reseller,Beheerder,Afdeling")]
         public ActionResult About()

@@ -15,7 +15,8 @@ namespace Tag4s.Models.ModelsPrime
         public String item_name { get; set; }
         public ItemType item_type { get; set; }
         public Category category { get; set; }
-        public Int32 item_price { get; set; }
+        /*public Int32 item_price { get; set; }*/
+        public PriceModelcs price { get; set; }
     }
     public class Category
     {

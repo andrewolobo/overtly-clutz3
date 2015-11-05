@@ -2,7 +2,7 @@
 @using System.Web.UI.WebControls
 @using Tag4s.Data
 @using Tag4s.Helpers
-<!DOCTYPE html>
+
 
 @{
     var translation = ViewBag.Translation as Dictionary<string, string>;
@@ -27,259 +27,262 @@
         whiteBackground = "";
     }
 
-    var isMobile = (bool) ViewBag.IsMobile;
+    var isMobile = (bool)ViewBag.IsMobile;
 
     var User = ViewBag.User as User;
 }
 
-<!--[if IEMobile 7 ]> <html lang="en-US"class="no-js iem7"> <![endif]-->
-<!--[if lt IE 7 ]> <html lang="en-US" class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en-US" class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en-US" class="no-js ie8"> <![endif]-->
-<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!-->
-<html lang="en-US" class="no-js"><!--<![endif]-->
-    <head> 
+<html lang="en-US" class="no-js">
+<!--<![endif]-->
+<head>
 
-        <meta charset="utf-8" />
-        @*@if (!(isMobile && controllername == "Match" && (actionname == "Details" || actionname == "Edit")))
-    {
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    }
-    else
-    {
-    <meta name="viewport" content="width=device-width, initial-scale=0.8">
-    }*@
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        
-        @Styles.Render("~/Content/themes/base/jquery-ui.css")
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-        
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/jqueryui")
-        
-        @Scripts.Render("~/bundles/gymbase")
-						  
-        <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500' rel='stylesheet' type='text/css'>
-        
-        <title>@ViewBag.Title</title>
-        <link href="@Url.Content("~/Content/kendo/2013.3.1119/kendo.common.min.css")" rel="stylesheet" type="text/css" />
-        <link href="@Url.Content("~/Content/kendo/2013.3.1119/kendo.dataviz.min.css")" rel="stylesheet" type="text/css" />
-        <link href="@Url.Content("~/Content/kendo/2013.3.1119/kendo.blueopal.min.css")" rel="stylesheet" type="text/css" />
-        <link href="@Url.Content("~/Content/kendo/2013.3.1119/kendo.dataviz.default.min.css")" rel="stylesheet" type="text/css" />
-        <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
-        <link href="@Url.Content("~/Content/sliderman.css")" rel="stylesheet" type="text/css" />
-        <link href="@Url.Content("~/Content/app.css")" rel="stylesheet" type="text/css" media="all"/>
-        <link href="@Url.Content("~/Content/style.css")" rel="stylesheet" type="text/css" media="all"/>
-        <script src="@Url.Content("~/Scripts/kendo/2013.3.1119/jquery.min.js")"></script>
-        <script src="@Url.Content("~/Scripts/kendo/2013.3.1119/kendo.all.min.js")"></script>
-        <script src="@Url.Content("~/Scripts/kendo/2013.3.1119/kendo.aspnetmvc.min.js")"></script>
-        <script src="@Url.Content("~/Scripts/foundation/modernizr.foundation.js")"></script>
-        <script src="@Url.Content("~/Scripts/foundation/jquery.reveal.js")"></script>
-        <script src="@Url.Content("~/Scripts/foundation/jquery.orbit-1.4.0.js")"></script>
-        <script src="@Url.Content("~/Scripts/foundation/jquery.customforms.js")"></script>
-        <script src="@Url.Content("~/Scripts/foundation/jquery.placeholder.min.js")"></script>
-        <script src="@Url.Content("~/Scripts/sliderman.1.3.8.js")"></script>
-        <script src="@Url.Content("~/Scripts/foundation/jquery.tooltips.js")"></script>
-@*        <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")"></script>*@
-		 				
-        <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
-        
-        @if ((string) Session["Language"] == "NL")
-        {
-            <script src="@Url.Content("~/Scripts/kendo/2013.3.1119/cultures/kendo.culture.nl-NL.min.js")"></script>
-            <script>
-                kendo.culture("nl-NL");
-            </script>
+    <title>redirect.estate</title>
+    <meta name="description" content="redirect.estate">
+    <meta name="author" content="SitePoint">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style type="text/css">
+        .myc {
+            background: url('/Tag4s/Images/redirect.estate/bg.jpg') no-repeat;
+            width: 100%;
+            height: 100%;
         }
-        else
-        {
-            <script src="@Url.Content("~/Scripts/kendo/2013.3.1119/cultures/kendo.culture.en-US.min.js")"></script>
-            <script>
-                kendo.culture("en-US");
-            </script>
+
+        .fullscreen {
+            width: 100%;
+            height: 100%;
         }
-    
-        @RenderSection("scripts", required: false)
-        @RenderSection("styles", required: false)
-        @if (Request.Browser.IsMobileDevice)
-        {
-            <style>
-                body { background-image: none; }
-            </style>
+
+        body {
+            padding: 0px;
         }
-        else
-        {
-            <style>
-                .command_icon:hover { background-position: 0 -20px; }
-            </style>
+
+        .navbar-xs {
+            min-height: 30px;
+            border-radius: 0 background-color : black;
         }
-        <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
-    </head>
-	
-    <body class="page page-template page-template-page-dashboard-php">
 
-        <div class="row container">
-		
-            <div class="sixteen columns">
+            .navbar-xs .navbar-nav {
+                margin: 0;
+            }
 
-                <ul class="usermenu"> 
-                    <li><a href="~/Translation/SetLanguage?language=EN" style="width:40px"><img src="../../Images/flag-EN.png" style="margin-top: 10px;" width="20" title="EN"/></a></li>
-                    <li>
-                        <a href="~/Translation/SetLanguage?language=NL" style="width:40px"><img src="../../Images/flag-NL.png" width="20" style="margin-top: 10px;" title="NL"/></a></li>
-                    @if (User == null)
-                    {
-                        <li><a href="~/Home/Login" class="inloggen">@("Inloggen".TranslateString(ref translation))</a></li>
-                    <li><a href="~/Home/Register" class="inschrijven">@("Inschrijven".TranslateString(ref translation))</a></li> 
-                    }
-                    else
-                    {
-                         <li>@Html.ActionLink("Uw Profiel".TranslateString(ref translation), "Edit", "User", new {id = User.Id}, new {Class = "profile"})</li>
-                        <li>@Html.ActionLink("Statistics".TranslateString(ref translation), "PerUserContract", "Statistics", null, new {Class = "dashboard"})</li>@*
-                        <li><a href="~/Home/PROAccount" class ="proaccount">@("PRO Account".TranslateString(ref translation))</a></li>*@
-                        <li><a href="~/Home/Logoff" class="inloggen">@("Uitloggen".TranslateString(ref translation))</a></li>
-                    }
-                </ul>
+            .navbar-xs .navbar-right {
+                float: right !important;
+            }
 
-            </div>
-		
-            <div class="sixteen columns">
-                <header role="banner" id="top-header">
-					
-                    <div class="siteinfo">
-                        <h1><a class="brand" id="logo" href="/"><img src="/images/tag4slogo.png" width="123" height="50" alt="Tag4s"></a></h1>
-                        <h4 class="subhead">@("Slimme URL omleidingsdiensten".TranslateString(ref translation))</h4>
-                        @if (User != null)
-                        {
-                            <span style="float: right; margin-top: 10px;">@(string.Format("Welcome {0} as {1}".TranslateString(ref translation), User.FullName, User.UserRole.Name.TranslateString(ref translation)))</span>
-                        }
-                    </div>
-			
-                        <ul class="breadcrumbs">
-                            <li>@Html.DisplayNameTranslatedFor("", "You are here:", "You are here:", ref translation)</li>
-                            <li><a href="/">Home</a>
-                            @if (!isMobile)
-                            {
-                                foreach (var item in breadcrum)
-                                {
-                                    @*<li class="separator icon_small_arrow right_black">*@<img alt="=>" src="~/images/Dotcomteach_asset_pijlrechts.jpg"/>@*</li>*@
-                                    @MvcHtmlString.Create(BreadCrum.RenderItem(item.Value))
-                                }
-                            }
-                            @*<li style="float: right; margin: 5px;">@BreadCrum.ActionLinkStepBack(Session, ref translation)</li>*@</li>
-                        </ul>
-                    <ul id="menu-hoofdmenu" class="top-nav nav-bar ">
-                        @*<li id="menu-item-20"><a href="#">Home</a></li>*@
-                        <li id="menu-item-20">@Html.ActionLink("Home".TranslateString(ref translation), "Index", "Home")</li>
-                        <li id="menu-item-18">@Html.ActionLink("Over ons".TranslateString(ref translation), "About", "Home")</li>
-                        <li id="menu-item-15">@Html.ActionLink("Hoe werkt het".TranslateString(ref translation), "HowItWorks", "Home")</li>
-                        <li id="menu-item-16"><a href="#">Features</a></li>
-                        <li id="menu-item-14"><a href="#">Nieuws</a></li>
-                        <li id="menu-item-17">@Html.ActionLink("Contact".TranslateString(ref translation), "Contact", "Home")</li>
-                    </ul> 
+                .navbar-xs .navbar-right:last-child {
+                    margin-right: -15px;
+                }
 
-					
-                </header> <!-- end header -->
-            </div>			
-            <div id="content" class="sixteen columns clearfix">
-			
-                <div id="main" class="fifteen columns offset-by-one clearfix" role="main">
+            .navbar-xs .navbar-nav > li {
+                float: none;
+                display: inline-block;
+            }
 
-                    <div id="body" style="min-height:300px;">
-                        @RenderSection("featured", required: false)
-                        
+                .navbar-xs .navbar-nav > li > a {
+                    bord ` er-right: 1px solid #ddd;
+                    padding-top: 2px;
+                    padding-bottom: 0px;
+                    line-height: 28px;
+                }
 
-                        <section class="content-wrapper main-content clear-fix">
-                            @RenderBody()
-                        </section>
-                    </div>
-                                                                              
-								
-                </div> <!-- end #main --> 
-    
-            </div>  <!-- end #contentstuk -->
+            .navbar-xs .navbar-text {
+                margin-top: 0px;
+                margin-bottom: 0px;
+                padding-top: 6px;
+            }
 
-            <!-- begin footer -->
-            <!-- begin footer -->
-            <!-- begin footer -->
-            <!-- begin footer -->
-			 
-            <div class="sixteen columns clearfix">
+            .navbar-xs span.glyphicon {
+                color: blue;
+                padding-right: 8px;
+            }
 
-                    @if (User == null)
-                    {
-                        <div class="row"> 
-                            <section class="subfooter sixteen columns">
-						 
-					
-                                <h1>@("Probeer direct gratis uit!".TranslateString(ref translation))</h1>
-						 		
-                                <p>@("Met Tag4S maakt u zonder poespas een omleiding van het ene website adres naar het andere.".TranslateString(ref translation)) <br />
-                                    @("Zo kunt u bepaalde processen met minimale inspanning automatiseren.".TranslateString(ref translation))</p>
-								 
-                                <a href="/Home/Register" class="button signup">@("Schrijf u in en probeer het uit!".TranslateString(ref translation))</a>
-													
-                            </section> <!-- end article header -->
- 
+            .navbar-xs span.badge {
+                background-color: blue;
+                border-color: #d6e9c6;
+                color: white;
+            }
 
-                        </div>
-                    }
+        .showme {
+            display: none;
+        }
 
-            </div>
+        .showhim:hover .showme {
+            display: block;
+        }
 
-            <footer role="contentinfo">
-			 
+        .float-item {
+            position: absolute;
+        }
 
-                <div class="row">
- 
-                    <div class="support">
-							
-                        <h2>@("Ondersteuning".TranslateString(ref translation))</h2> 
-						 		
-                        <p style="height:60px;">@("Onze support-afdeling zit voor u klaar.".TranslateString(ref translation))</p>
-						 		
-                        <a href="#" class="button wide">@("Bel".TranslateString(ref translation)) +31 33 760 10 60</a>
-						 		
-                    </div>
-							 
-							
-                    <div class="address">   
-                        <h2>@("Adresgegevens".TranslateString(ref translation))</h2> 
-                        <p style="height:60px;">Tag4S B.V.  <br />
-                            Voorstraat 31a<br />
-                            3931HB Woudenberg</p>
-                        <a href="mailto:info@Tag4s.com" class="button wide">@("Stuur ons een e-mail".TranslateString(ref translation))</a>
-                    </div> 
-							 
-							
-                    <div class="socialmedia "> 
-                        <h2>@("Volg ons".TranslateString(ref translation))</h2> 
-								
-                        <p style="height:60px;">@("Blijf op de hoogte van de laatste ontwikkelingen via social media.".TranslateString(ref translation))</p>
-                        <ul class="social">
-                            <li><a href="http://www.facebook.com" class="facebook" target="_blank"></a></li>
-                            <li><a href="http://www.twitter.com" class="twitter" target="_blank"></a></li>
-                            <li><a href="http://www.youtube.com" class="youtube" target="_blank"></a></li>
-                            <li><a href="#" class="rss" target="_blank"></a></li> 
-                        </ul>
-                    </div>  
+        #navi, #infoi {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 50px;
+            left: 0;
+        }
+
+        #infoi {
+            z-index: 10;
+        }
+
+        /*  Dropdown menu on small screens
+             .navbar-xs .dropdown-menu>li>a {
+             display: block;
+             padding: 3px 20px;
+             clear: both;
+             font-weight: 400;
+             line-height: 1.428571429;
+             color: #333;
+             white-space: nowrap;
+             }
+
+             .navbar-xs .navbar-nav .open .dropdown-menu {
+             position: relative; // static
+             float: none;
+             width: auto;
+             margin-top: 0;
+             background-color: white;
+             border: 1;
+             box-shadow: none;
+             } */
+        voor magento menu bar nav.navbar.navbar-noborder {
+            border-radius: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="myc">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-9" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">redirect.estate</a>
                 </div>
-						
-                <div class="row">
-						
-                    <nav class="footerlinks sixteen columns">
-                    </nav>
-								
-                </div>
- 
-					
-            </footer> <!-- end footer -->
-		
-        </div> <!-- end #container --> 
-		
-        @*<script type='text/javascript' src='http://tag4s.squalproject.nl/wp-content/themes/tag4s/library/js/scripts.js?ver=1.0'></script>*@
-        <script type='text/javascript' src='/Scripts/scripts.js'></script>
 
-    </body>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="../">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">About Us</a>
+                        </li>
+                        <li>
+                            <a href="Home/Webstore"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Webstore</a>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div>
+            <div id="navi">
+                <div id="showhim">
+                    <img id="pens" class="float-item" src="/Tag4s/Images/redirect.estate/pens.png" style="margin-top: 63px; margin-left: 95px" />
+                    <div class="showme float-item">
+                        Hello there
+                    </div>
+                </div>
+                <img id="logo" class="float-item" src="/Tag4s/Images/redirect.estate/logo.png" style="margin-top: 75px; margin-left: 388px; " />
+                <img id="glasses" class="float-item" src="/Tag4s/Images/redirect.estate/glasses.png" style="margin-top: 415px; margin-left: 194px; " />
+                <img id="keychain" class="float-item" src="/Tag4s/Images/redirect.estate/keychain.png" style="margin-top: 300px; margin-left: 473px; " />
+                <img id="cards" class="float-item" src="/Tag4s/Images/redirect.estate/cards.png" style="margin-top: 452px; margin-left: 802px; " />
+                <img id="home" class="float-item" src="/Tag4s/Images/redirect.estate/home.png" style="margin-top: 132px; margin-left: 741px" />
+            </div>
+            <div id="info">
+                <canvas id="myCanvas" class="fullscreen"></canvas>
+            </div>
+        </div>
+        <img id="cloud" src="/Tag4s/Images/redirect.estate/cloud_small.png" />
+
+        @RenderBody()
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+
+            var img = document.getElementById("cloud");
+            img_x = 10;
+            img_y = 50;
+
+            var img1 = document.getElementById("cloud");
+            var img_x1 = 20;
+            var img_y1 = 100;
+
+            //floatImage(img1, img_x1, img_y1)
+
+            var images = Array();
+            for (var spawn = 0; spawn < 14; spawn++) {
+                img1 = document.getElementById("cloud");
+                var img_x1 = Math.floor((Math.random() * 200) + 3);
+                var img_y1 = Math.floor((Math.random() * 100) + 1);
+                var rate = Math.random();
+                base_image = new Image();
+                base_image.src = '/Tag4s/Images/redirect.estate/cloud_small.png'
+                image = {
+                    item: spawn,
+                    img_x: img_x1,
+                    img: base_image,
+                    img_y: img_y1,
+                    rate: rate
+                };
+
+                images.push(image);
+                // floatImage(img1, img_x1, img_y1,rate)
+            }
+            update();
+            function floatImageNoUpdate(this_img, x, y, rate) {
+                //ctx.clearRect(0, 0, c.width, c.height)
+                x += 0.8;
+                this_img.x = x
+                ctx.drawImage(this_img, x, y);
+                console.log(this_img.x);
+                setTimeout(function () {
+                    floatImageNoUpdate(this_img, x, y);
+                }, 50);
+
+            }
+
+            function update() {
+                setInterval(function () {
+                    ctx.clearRect(0, 0, c.width, c.height);
+
+                    images.forEach(function (entry) {
+                        //console.log(entry.img);
+                        floatImage(entry, entry.img, entry.img_x, entry.img_y, entry.rate)
+                    });
+                }, 70);
+            }
+
+            function floatImage(entry, this_img, x, y, rate) {
+                //ctx.clearRect(0, 0, c.width, c.height)
+                x += rate;
+                entry.img_x = entry.img_x + rate;
+                //console.log(x);
+                ctx.drawImage(this_img, entry.img_x, y);
+
+                //console.log(this_img+":"+this_img.x);
+                /*setTimeout(function() {
+                 floatImage(this_img, x, y, rate);
+                 }, 70);*/
+
+            }
+
+        });
+    </script>
+</body>
 
 </html>
